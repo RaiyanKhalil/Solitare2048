@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import BasicTable from './basicTable';
 
 class HomeScreen extends React.Component {
   render() {
@@ -15,7 +16,7 @@ class HomeScreen extends React.Component {
 
 const AppNavigator = createStackNavigator({
   Home: {
-    screen: HomeScreen,
+    screen: BasicTable,
   },
 });
 
