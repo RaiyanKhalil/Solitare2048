@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
 
+var RandomNumber
 
-export default class BasicTable extends Component {
+class BasicTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,6 +21,18 @@ export default class BasicTable extends Component {
     }
     
   }
+  randCard(){
+    RandomNumber = Math.floor(Math.random() * 2048) + 2 ;
+    if((RandomNumber % 2) == 0){
+      RandomNumber = RandomNumber
+      console.log(RandomNumber, 'EVEN')
+    }
+    else{
+      console.log(RandomNumber, 'ODD')
+      this.randCard()
+    }
+
+  }
   
   
   render() {
@@ -34,6 +47,7 @@ export default class BasicTable extends Component {
         <Table borderStyle={{borderWidth: 1, borderColor: '#ffa1d2'}}>
             <Row data={state.RandomTable} style={styles.HeadStyle} textStyle={styles.TableText}/> 
         </Table>
+        
       </View>
     )
   }
@@ -56,3 +70,5 @@ const styles = StyleSheet.create({
       margin: 10
     }
   });
+
+  export default BasicTable
