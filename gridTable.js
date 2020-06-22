@@ -17,11 +17,11 @@ export default class GridTable extends Component {
   constructor() {
     super();
     
-  this.randCard = this.randCard.bind(this);
-  this.randCard2 = this.randCard2.bind(this);
+  // this.randCard = this.randCard.bind(this);
+  // this.randCard2 = this.randCard2.bind(this);
     this.state = {
       dataSource: {},
-      randSource: {}, updateCount: [], topSection: []
+      randSource: {}, updateCount: [], topSection: [], sumValue: 0 
     };
   }
   componentDidMount() {
@@ -109,7 +109,9 @@ export default class GridTable extends Component {
 
   }
   render() {
+    let topSection = this.state.topSection
     let updateCount = this.state.updateCount
+    var sumValue = this.state.sumValue
     return (
       <View style={styles.MainContainer}>
         
@@ -119,7 +121,15 @@ export default class GridTable extends Component {
             <View style={{ flex: 1, flexDirection: 'column', margin: 1 }}>
                 <TouchableOpacity onPress = {() => {
                   var index1 = item.id
-                  this.randCard2(index1)
+                  var val2 = topSection[index1].value
+                  var sum2 = this.state.sumValue + parseInt(val2)
+                  this.setState({sumValue: sum2}, () => {
+                    console.log(sum2, ',,,,,')
+                    Alert.alert("SUM OF NUMBER ", sum2.toString())
+                  })
+                  
+
+                  // Alert.alert(val2 + val1, "SUM")
                   // this.sum
                 }}>
                 <Image style={styles.imageThumbnail} source={{ uri: item.src }} />
@@ -143,7 +153,14 @@ export default class GridTable extends Component {
             <View style={{ flex: 1, flexDirection: 'column', margin: 1 }}>
                 <TouchableOpacity onPress={() => {
                   var index = item.id
-                  this.randCard(index)
+                  // let val1 = this.randCard(index)
+                  // let sumValue = this.state.sumValue
+                  var val1 = updateCount[index].value
+                  var sum = this.state.sumValue + parseInt(val1)
+                  this.setState({sumValue: this.state.sumValue + sum})
+                    console.log(sum, ',,,,,')
+
+                  // })
                   
                 }}>
                 <Image style={styles.imageThumbnail} source={{ uri: item.src }} />
