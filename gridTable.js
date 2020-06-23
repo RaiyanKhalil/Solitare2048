@@ -21,7 +21,7 @@ export default class GridTable extends Component {
   // this.randCard2 = this.randCard2.bind(this);
     this.state = {
       dataSource: {},
-      randSource: {}, updateCount: [], topSection: [], sumValue: 0 
+      randSource: {}, updateCount: [], topSection: [], sumValue: 0, flag: false
     };
   }
   componentDidMount() {
@@ -112,6 +112,7 @@ export default class GridTable extends Component {
     let topSection = this.state.topSection
     let updateCount = this.state.updateCount
     var sumValue = this.state.sumValue
+    var flag = this.state.flag
     return (
       <View style={styles.MainContainer}>
         
@@ -122,13 +123,19 @@ export default class GridTable extends Component {
                 <TouchableOpacity onPress = {() => {
                   var index1 = item.id
                   var val2 = topSection[index1].value
-                  var sum2 = this.state.sumValue + parseInt(val2)
-                  this.setState({sumValue: sum2}, () => {
-                    console.log(sum2, ',,,,,')
-                    Alert.alert("SUM OF NUMBER ", sum2.toString())
-                    item.src = 'http://placehold.it/200x200?text=' + sum2
-                    this.setState({uri: item.src})
-                  })
+                  if(flag){
+                    var sum2 = this.state.sumValue + parseInt(val2)
+                    topSection[index1].value = sum2
+                    this.setState({sumValue: sum2}, () => {
+                      console.log(sum2, ',,,,,')
+                      Alert.alert("SUM OF NUMBER ", sum2.toString())
+                      item.src = 'http://placehold.it/200x200?text=' + sum2
+                      this.setState({uri: item.src})
+                    })
+                    var cleanSum = 0;
+                    this.setState({sumValue: cleanSum, flag: false})
+                  }
+                 
                   
 
                   // Alert.alert(val2 + val1, "SUM")
@@ -157,10 +164,13 @@ export default class GridTable extends Component {
                   var index = item.id
                   // let val1 = this.randCard(index)
                   // let sumValue = this.state.sumValue
-                  var val1 = updateCount[index].value
-                  var sum = this.state.sumValue + parseInt(val1)
-                  this.setState({sumValue: this.state.sumValue + sum})
-                    console.log(sum, ',,,,,')
+                    var val1 = updateCount[index].value
+                    if(!flag){
+                    var sum = this.state.sumValue + parseInt(val1)
+                    this.setState({sumValue: this.state.sumValue + sum, flag: true})
+                      console.log(sum, ',,,,,')
+                  }
+                  
 
                   // })
                   
