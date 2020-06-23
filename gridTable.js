@@ -11,7 +11,7 @@ import {
   Button
 } from 'react-native';
 //import all the components we will need
-
+let randItem, items
 var RandomNumber, power
 export default class GridTable extends Component {
   constructor() {
@@ -30,7 +30,7 @@ export default class GridTable extends Component {
     topSection = {value: ''}
     // RandomNumber = Math.floor(Math.random() * 16) + 1 ;
 
-    let items = Array.apply(null, Array(16)).map((v, i) => {
+    items = Array.apply(null, Array(16)).map((v, i) => {
       let topSection = this.state.topSection
         // if((i + 1) % 2 == 0){
             // if((RandomNumber % 2) == 0){
@@ -53,7 +53,7 @@ export default class GridTable extends Component {
       dataSource: items,
     });
 
-    let randItem = Array.apply(null, Array(4)).map((v, i) => {  
+    randItem = Array.apply(null, Array(4)).map((v, i) => {  
         var a = Math.floor(Math.random() * 8) + 1 ;
         let updateCount = this.state.updateCount
 
@@ -108,6 +108,18 @@ export default class GridTable extends Component {
     // this.sum(val2, 0)
 
   }
+
+  setBelow(i, sValue){
+    // let random = this.randItem
+    console.log(i, sValue, items[i].id)
+    var source = 'http://placehold.it/200x200?text=' + sValue
+    // var id = (i + 1)
+    items[i + 4].src = source 
+    this.setState({ uri: source})
+    console.log(id, source)
+    return source
+
+  }
   render() {
     let topSection = this.state.topSection
     let updateCount = this.state.updateCount
@@ -124,14 +136,25 @@ export default class GridTable extends Component {
                   var index1 = item.id
                   var val2 = topSection[index1].value
                   if(flag){
-                    var sum2 = this.state.sumValue + parseInt(val2)
-                    topSection[index1].value = sum2
-                    this.setState({sumValue: sum2}, () => {
-                      console.log(sum2, ',,,,,')
-                      Alert.alert("SUM OF NUMBER ", sum2.toString())
-                      item.src = 'http://placehold.it/200x200?text=' + sum2
-                      this.setState({uri: item.src})
-                    })
+                    if(this.state.sumValue == parseInt(val2)){
+                      var sum2 = this.state.sumValue + parseInt(val2)
+                      topSection[index1].value = sum2
+                      this.setState({sumValue: sum2}, () => {
+                        console.log(sum2, ',,,,,')
+                        // Alert.alert("SUM OF NUMBER ", sum2.toString())
+                        item.src = 'http://placehold.it/200x200?text=' + sum2
+                        this.setState({uri: item.src})
+                      })
+                    }
+                    else{
+                      // console.log(item.id, this.state.sumValue,val2, "hahaha")
+                      var returnValue = this.setBelow(item.id, this.state.sumValue)
+                      // console.log(this.setBelow(item.id))
+                      console.log(returnValue)
+                      topSection[index1 + 4].value = this.state.sumValue
+                      
+                    }
+                   
                     var cleanSum = 0;
                     this.setState({sumValue: cleanSum, flag: false})
                   }
