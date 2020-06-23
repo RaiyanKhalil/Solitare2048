@@ -126,6 +126,8 @@ export default class GridTable extends Component {
                   this.setState({sumValue: sum2}, () => {
                     console.log(sum2, ',,,,,')
                     Alert.alert("SUM OF NUMBER ", sum2.toString())
+                    item.src = 'http://placehold.it/200x200?text=' + sum2
+                    this.setState({uri: item.src})
                   })
                   
 
