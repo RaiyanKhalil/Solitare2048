@@ -116,8 +116,21 @@ export default class GridTable extends Component {
     console.log(i, sValue, items[i].id)
     var source = 'http://placehold.it/200x200?text=' + sValue
     // var id = (i + 1)
-    items[i + 4].src = source 
-    this.setState({ uri: source})
+    var initialSource = ('http://placehold.it/200x200?text=' + "<>")
+    if(items[i + 4].src != initialSource){
+      items[i + 8].src = source 
+      this.setState({ uri: source})
+    }
+    //WORKING ON THIS SECTION
+    else if(items[i + 8].src != initialSource){
+      items[i + 12].src = source 
+      this.setState({ uri: source})  
+    }
+    else{
+      items[i + 4].src = source 
+      this.setState({ uri: source})
+    }
+    
     console.log(id, source)
     return source
 
