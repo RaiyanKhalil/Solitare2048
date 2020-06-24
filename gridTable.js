@@ -40,7 +40,9 @@ export default class GridTable extends Component {
                 power = Math.pow(2, a)
                 // }
                 topSection.push({value: power})
-                return { id: i, src: 'http://placehold.it/200x200?text=' + power };
+                // return { id: i, src: 'http://placehold.it/200x200?text=' + power };
+                return { id: i, src: 'http://placehold.it/200x200?text=' + "<>" };
+
 
             // }
         // }
@@ -133,31 +135,43 @@ export default class GridTable extends Component {
           renderItem={({ item }) => (
             <View style={{ flex: 1, flexDirection: 'column', margin: 1 }}>
                 <TouchableOpacity onPress = {() => {
+                  var initialSource = ('http://placehold.it/200x200?text=' + "<>")
+                  
                   var index1 = item.id
                   var val2 = topSection[index1].value
                   if(flag){
-                    if(this.state.sumValue == parseInt(val2)){
-                      var sum2 = this.state.sumValue + parseInt(val2)
-                      topSection[index1].value = sum2
-                      this.setState({sumValue: sum2}, () => {
-                        console.log(sum2, ',,,,,')
-                        // Alert.alert("SUM OF NUMBER ", sum2.toString())
-                        item.src = 'http://placehold.it/200x200?text=' + sum2
-                        this.setState({uri: item.src})
-                      })
+                    if(item.src == initialSource){
+                      item.src = 'http://placehold.it/200x200?text=' + this.state.sumValue
+                      var cleanSum = 0
+                      topSection[index1].value = sumValue
+                      this.setState({uri: item.src, sumValue: cleanSum, flag:false})
+                    }else{
+                      if(this.state.sumValue == parseInt(val2)){
+                        var sum2 = this.state.sumValue + parseInt(val2)
+                        topSection[index1].value = sum2
+                        this.setState({sumValue: sum2}, () => {
+                          console.log(sum2, ',,,,,')
+                          // Alert.alert("SUM OF NUMBER ", sum2.toString())
+                          item.src = 'http://placehold.it/200x200?text=' + sum2
+                          this.setState({uri: item.src})
+                        })
+                      }
+                      else{
+                        // console.log(item.id, this.state.sumValue,val2, "hahaha")
+                        var returnValue = this.setBelow(item.id, this.state.sumValue)
+                        // console.log(this.setBelow(item.id))
+                        console.log(returnValue)
+                        topSection[index1 + 4].value = this.state.sumValue
+                        
+                      }
+                    
+                     
+                      cleanSum = 0;
+                      this.setState({sumValue: cleanSum, flag: false})
                     }
-                    else{
-                      // console.log(item.id, this.state.sumValue,val2, "hahaha")
-                      var returnValue = this.setBelow(item.id, this.state.sumValue)
-                      // console.log(this.setBelow(item.id))
-                      console.log(returnValue)
-                      topSection[index1 + 4].value = this.state.sumValue
-                      
-                    }
-                   
-                    var cleanSum = 0;
-                    this.setState({sumValue: cleanSum, flag: false})
+                    
                   }
+                
                  
                   
 
