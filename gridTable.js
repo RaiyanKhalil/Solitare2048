@@ -112,26 +112,64 @@ export default class GridTable extends Component {
   }
 
   setBelow(i, sValue){
-    // let random = this.randItem
+
     console.log(i, sValue, items[i].id)
     var source = 'http://placehold.it/200x200?text=' + sValue
-    // var id = (i + 1)
     var initialSource = ('http://placehold.it/200x200?text=' + "<>")
-    if(items[i + 4].src != initialSource){
-      items[i + 8].src = source 
-      this.setState({ uri: source})
+    // console.log(items[i].value, "VALUEEEE")
+    if(i == 0 || i == 1 || i == 2 || i == 3){
+      if(items[i + 4].src != initialSource){
+        console.log((i + 4), "has a number in it already.")
+        if(items[i + 8].src != initialSource){
+          if(items[i + 12].src != initialSource){
+            Alert.alert("FULL")
+          }else{
+            items[i + 12].src = source 
+            this.setState({ uri: source})
+          }
+        }
+        else{
+          items[i + 8].src = source 
+          this.setState({ uri: source})
+        }
+        
+      }
+      else{
+        items[i + 4].src = source 
+        this.setState({ uri: source})
+      }
     }
-    //WORKING ON THIS SECTION
-    else if(items[i + 8].src != initialSource){
-      items[i + 12].src = source 
-      this.setState({ uri: source})  
+    else if(i == 4 || i == 5 || i == 6 || i == 7){
+     
+        if(items[i + 4].src != initialSource){
+          if(items[i + 8].src != initialSource){
+            Alert.alert("FULL")
+          }else{
+            items[i + 8].src = source 
+            this.setState({ uri: source})
+          }
+        }
+        else{
+          items[i + 4].src = source 
+          this.setState({ uri: source})
+        }
     }
-    else{
-      items[i + 4].src = source 
-      this.setState({ uri: source})
+    else if(i == 8 || i == 9 || i == 10 || i == 11){
+      if(items[i + 4].src != initialSource){
+        Alert.alert("FULL")
+      }else{
+        items[i + 4].src = source 
+        this.setState({ uri: source})
+      }
+    }
+    else if(i == 12 || i == 13 || i == 14 || i == 15){
+      if(items[i].src != initialSource){
+        Alert.alert("FULL")
+      }
     }
     
-    console.log(id, source)
+    
+    // console.log(id, source)
     return source
 
   }
@@ -173,8 +211,16 @@ export default class GridTable extends Component {
                         // console.log(item.id, this.state.sumValue,val2, "hahaha")
                         var returnValue = this.setBelow(item.id, this.state.sumValue)
                         // console.log(this.setBelow(item.id))
-                        console.log(returnValue)
-                        topSection[index1 + 4].value = this.state.sumValue
+                        console.log(returnValue, "RETURN VALUE")
+                        if(index1 == 12 || index1 == 13 || index1 == 14 || index1 == 15){
+                          console.log("I am ", index1)
+                        }
+                        else{
+                          topSection[index1 + 4].value = this.state.sumValue
+
+                          // console.log("NOT POSSIBLE")
+                        }
+                        
                         
                       }
                     
