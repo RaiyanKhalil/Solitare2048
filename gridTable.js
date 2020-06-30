@@ -63,15 +63,15 @@ export default class GridTable extends Component {
                 power = Math.pow(2, a)
                 // }
                 if((i == 2) || (i == 3)){
-                    console.log(i, 'Discard')
+                    // console.log(i, 'Discard')
                     return { id: i, src: 'http://placehold.it/200x200?text=' + "Discard" };
 
                 }
                 else{
-                  console.log(i, 'Power')
+                  // console.log(i, 'Power')
                   // updateCount = {value:}
                   updateCount.push({value: power})
-                  console.log(updateCount)
+                  // console.log(updateCount)
                   return { id: i, src: 'http://placehold.it/200x200?text=' + power };
 
                 }
@@ -83,7 +83,7 @@ export default class GridTable extends Component {
   randCard(index){
    
     let updateCount = this.state.updateCount
-    console.log(updateCount[index].value, "FROM CONSOLE")
+    // console.log(updateCount[index].value, "FROM CONSOLE")
   
     Alert.alert("HELLO ", updateCount[index].value.toString())
     
@@ -95,47 +95,50 @@ export default class GridTable extends Component {
   }
   sum(){
     // var sum = JSON.stringify(this.randCard) + JSON.stringify(this.randCard2)
-    console.log(this.randCard)
+    // console.log(this.randCard)
     // console.log(sum, "SUM")
   }
   randCard2(index1){
     
     let topSection = this.state.topSection
-    console.log(topSection[index1].value, "FROM CONSOLE")
+    // console.log(topSection[index1].value, "FROM CONSOLE")
     Alert.alert("HELLO ", topSection[index1].value.toString())
     
     var val2 = topSection[index1].value
-    console.log(val2, "VAL2")
+    // console.log(val2, "VAL2")
     return val2
     // this.sum(val2, 0)
 
   }
 
-  setBelow(i, sValue){
+  setBelow(i, sValue, topSection){
 
-    console.log(i, sValue, items[i].id)
+    // console.log(i, sValue, items[i].id)
     var source = 'http://placehold.it/200x200?text=' + sValue
     var initialSource = ('http://placehold.it/200x200?text=' + "<>")
     // console.log(items[i].value, "VALUEEEE")
     if(i == 0 || i == 1 || i == 2 || i == 3){
       if(items[i + 4].src != initialSource){
-        console.log((i + 4), "has a number in it already.")
         if(items[i + 8].src != initialSource){
           if(items[i + 12].src != initialSource){
             Alert.alert("FULL")
-          }else{
-            items[i + 12].src = source 
+          }
+          else{
+            items[i + 12].src = source
+            topSection[i + 12].value = sValue 
             this.setState({ uri: source})
           }
         }
         else{
           items[i + 8].src = source 
+          topSection[i + 8].value = sValue 
           this.setState({ uri: source})
         }
         
       }
       else{
         items[i + 4].src = source 
+        topSection[i + 4].value = sValue 
         this.setState({ uri: source})
       }
     }
@@ -146,11 +149,13 @@ export default class GridTable extends Component {
             Alert.alert("FULL")
           }else{
             items[i + 8].src = source 
+            topSection[i + 8].value = sValue 
             this.setState({ uri: source})
           }
         }
         else{
           items[i + 4].src = source 
+          topSection[i + 4].value = sValue 
           this.setState({ uri: source})
         }
     }
@@ -159,6 +164,7 @@ export default class GridTable extends Component {
         Alert.alert("FULL")
       }else{
         items[i + 4].src = source 
+        topSection[i + 4].value = sValue 
         this.setState({ uri: source})
       }
     }
@@ -197,31 +203,21 @@ export default class GridTable extends Component {
                       topSection[index1].value = sumValue
                       this.setState({uri: item.src, sumValue: cleanSum, flag:false})
                     }else{
+                      console.log("MATCHES", parseInt(val2))
                       if(this.state.sumValue == parseInt(val2)){
+                        
                         var sum2 = this.state.sumValue + parseInt(val2)
                         topSection[index1].value = sum2
                         this.setState({sumValue: sum2}, () => {
-                          console.log(sum2, ',,,,,')
+                          // console.log(sum2, ',,,,,')
                           // Alert.alert("SUM OF NUMBER ", sum2.toString())
                           item.src = 'http://placehold.it/200x200?text=' + sum2
                           this.setState({uri: item.src})
                         })
                       }
                       else{
-                        // console.log(item.id, this.state.sumValue,val2, "hahaha")
-                        var returnValue = this.setBelow(item.id, this.state.sumValue)
-                        // console.log(this.setBelow(item.id))
-                        console.log(returnValue, "RETURN VALUE")
-                        if(index1 == 12 || index1 == 13 || index1 == 14 || index1 == 15){
-                          console.log("I am ", index1)
-                        }
-                        else{
-                          topSection[index1 + 4].value = this.state.sumValue
-
-                          // console.log("NOT POSSIBLE")
-                        }
-                        
-                        
+                        // console.log(items[item.id].src)
+                        this.setBelow(item.id, this.state.sumValue, topSection)      
                       }
                     
                      
@@ -264,7 +260,7 @@ export default class GridTable extends Component {
                     if(!flag){
                     var sum = this.state.sumValue + parseInt(val1)
                     this.setState({sumValue: this.state.sumValue + sum, flag: true})
-                      console.log(sum, ',,,,,')
+                      // console.log(sum, ',,,,,')
                   }
                   
 
