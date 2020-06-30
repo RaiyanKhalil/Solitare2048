@@ -40,14 +40,14 @@ export default class GridTable extends Component {
                 power = Math.pow(2, a)
                 // }
                 topSection.push({value: power})
-                // return { id: i, src: 'http://placehold.it/200x200?text=' + power };
-                return { id: i, src: 'http://placehold.it/200x200?text=' + "<>" };
+                // return { id: i, src: 'http://placehold.it/200x200/FFFF00/000000?text=' + power };
+                return { id: i, src: 'http://placehold.it/200x200/FFFF00/000000?text=' + "<>" };
 
 
             // }
         // }
         // else{
-        //     return { id: i, src: 'http://placehold.it/200x200?text=' + '' };
+        //     return { id: i, src: 'http://placehold.it/200x200/FFFF00/000000?text=' + '' };
         // }
       
     });
@@ -64,7 +64,7 @@ export default class GridTable extends Component {
                 // }
                 if((i == 2) || (i == 3)){
                     // console.log(i, 'Discard')
-                    return { id: i, src: 'http://placehold.it/200x200?text=' + "Discard" };
+                    return { id: i, src: 'http://placehold.it/200x200/FFFF00/000000?text=' + "Discard" };
 
                 }
                 else{
@@ -72,7 +72,7 @@ export default class GridTable extends Component {
                   // updateCount = {value:}
                   updateCount.push({value: power})
                   // console.log(updateCount)
-                  return { id: i, src: 'http://placehold.it/200x200?text=' + power };
+                  return { id: i, src: 'http://placehold.it/200x200/FFFF00/000000?text=' + power };
 
                 }
       });
@@ -82,8 +82,8 @@ export default class GridTable extends Component {
   }
   
   setAbove(i, sValue, topSection){
-    var source = 'http://placehold.it/200x200?text=' + sValue
-    var initialSource = ('http://placehold.it/200x200?text=' + "<>")
+    var source = 'http://placehold.it/200x200/FFFF00/000000?text=' + sValue
+    var initialSource = ('http://placehold.it/200x200/FFFF00/000000?text=' + "<>")
 
     // if( i >= 11 && i <= 15){
     //   if(items[i - 12].src == initialSource){
@@ -169,8 +169,8 @@ export default class GridTable extends Component {
   setBelow(i, sValue, topSection){
 
     // console.log(i, sValue, items[i].id)
-    var source = 'http://placehold.it/200x200?text=' + sValue
-    var initialSource = ('http://placehold.it/200x200?text=' + "<>")
+    var source = 'http://placehold.it/200x200/FFFF00/000000?text=' + sValue
+    var initialSource = ('http://placehold.it/200x200/FFFF00/000000?text=' + "<>")
     // console.log(items[i].value, "VALUEEEE")
     if(i == 0 || i == 1 || i == 2 || i == 3){
       if(items[i + 4].src != initialSource){
@@ -245,9 +245,9 @@ export default class GridTable extends Component {
         <FlatList
           data={this.state.dataSource}
           renderItem={({ item }) => (
-            <View style={{ flex: 1, flexDirection: 'column', margin: 1 }}>
+            <View style={{ flex: 1, flexDirection: 'column', margin: 1}}>
                 <TouchableOpacity onPress = {() => {
-                  var initialSource = ('http://placehold.it/200x200?text=' + "<>")
+                  var initialSource = ('http://placehold.it/200x200/FFFF00/000000?text=' + "<>")
                   var cleanSum = 0
 
                   var index1 = item.id
@@ -255,30 +255,8 @@ export default class GridTable extends Component {
                   if(flag){
                     if(item.src == initialSource){
 
-                      // if(items[item.id - 4].src == initialSource){
-                      //   //To check the pressed index
-                      //   if(index1 >= 4 && index1 <= 7){
-                      //     //To check if the above index is empty 
-                      //     if(items[item.id - 4].src == initialSource){
-                      //       this.setAbove(item.id, this.state.sumValue, topSection)
-                      //       this.setState({sumValue: cleanSum, flag: false})  
-                      //     }
-                      //   }
-                      //   else if(index1 >= 8 && index1 <= 11){
-                      //     if(items[item.id - 8].src == initialSource){
-                      //       this.setAbove(item.id, this.state.sumValue, topSection)
-                      //       this.setState({sumValue: cleanSum, flag: false})
-                      //     }
-                      //   }
-                      //   else if(index1 >= 12 && index1 <= 15){
-                      //     if(items[item.id - 12].src == initialSource){
-                      //       this.setAbove(item.id, this.state.sumValue, topSection)
-                      //       this.setState({sumValue: cleanSum, flag: false})
-                      //     }
-                      //   }
-                      // }
                       if(item.id >= 0 && item.id <= 4){
-                          item.src = 'http://placehold.it/200x200?text=' + this.state.sumValue
+                          item.src = 'http://placehold.it/200x200/FFFF00/000000?text=' + this.state.sumValue
                           topSection[index1].value = sumValue
                           this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
                       }
@@ -288,7 +266,7 @@ export default class GridTable extends Component {
                           this.setState({sumValue: cleanSum, flag: false})  
                         }
                         else{
-                          item.src = 'http://placehold.it/200x200?text=' + this.state.sumValue
+                          item.src = 'http://placehold.it/200x200/FFFF00/000000?text=' + this.state.sumValue
                           topSection[index1].value = sumValue
                           this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
                         }
@@ -297,7 +275,7 @@ export default class GridTable extends Component {
                       else if(item.id >= 8 && item.id <= 11){
                         if(items[item.id - 8].src != initialSource){
                           if(items[item.id - 4].src != initialSource){
-                            item.src = 'http://placehold.it/200x200?text=' + this.state.sumValue
+                            item.src = 'http://placehold.it/200x200/FFFF00/000000?text=' + this.state.sumValue
                             topSection[index1].value = sumValue
                             this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
                           }
@@ -316,7 +294,7 @@ export default class GridTable extends Component {
                         if(items[item.id - 12].src != initialSource){
                           if(items[item.id - 8].src != initialSource){
                             if(items[item.id - 4].src != initialSource){
-                              item.src = 'http://placehold.it/200x200?text=' + this.state.sumValue
+                              item.src = 'http://placehold.it/200x200/FFFF00/000000?text=' + this.state.sumValue
                               topSection[index1].value = sumValue
                               this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
                             }
@@ -335,21 +313,9 @@ export default class GridTable extends Component {
                           this.setState({sumValue: cleanSum, flag: false}) 
                         }
                       }
-                      
-                      // if(items[item.id - 4].src == initialSource || items[item.id - 8].src == initialSource || items[item.id - 12].src == initialSource || items[item.id].src == initialSource){
-                        
-                      //   this.setAbove(item.id, this.state.sumValue, topSection)
-                      //   this.setState({sumValue: cleanSum, flag: false})
-                      // }
-                      // else{
-                      //   item.src = 'http://placehold.it/200x200?text=' + this.state.sumValue
-                      //   topSection[index1].value = sumValue
-                      //   this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
-                      // }
                     }
                     else{
-                      // console.log("MATCHES", parseInt(val2))
-                      // if(items[item.id - 4].src == )
+                      
 
                       if(this.state.sumValue == parseInt(val2)){
                         
@@ -358,7 +324,7 @@ export default class GridTable extends Component {
                         this.setState({sumValue: sum2}, () => {
                           // console.log(sum2, ',,,,,')
                           // Alert.alert("SUM OF NUMBER ", sum2.toString())
-                          item.src = 'http://placehold.it/200x200?text=' + sum2
+                          item.src = 'http://placehold.it/200x200/FFFF00/000000?text=' + sum2
                           this.setState({uri: item.src})
                         })
                       }
@@ -389,10 +355,7 @@ export default class GridTable extends Component {
           numColumns={4}
           keyExtractor={(item, index) => index.toString()}
         />
-       <Button 
-      title = "ADD"
-      onPress={this.sum}></Button>
-      <View>
+       <View>
      
       
       <FlatList
@@ -434,10 +397,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
     paddingTop: 0,
+    // backgroundColor: "#FFB6C1"
   },
   imageThumbnail: {
     justifyContent: 'center',
     alignItems: 'center',
     height: 100,
+    // backgroundColor: "#FFB6C1",
   },
 });
