@@ -40,14 +40,14 @@ export default class GridTable extends Component {
                 power = Math.pow(2, a)
                 // }
                 topSection.push({value: power})
-                // return { id: i, src: 'http://placehold.it/200x200/FFFF00/000000?text=' + power };
-                return { id: i, src: 'http://placehold.it/200x200/FFFF00/000000?text=' + "<>" };
+                // return { id: i, src: 'http://placehold.it/200x200/FFB6C1/000000?text=' + power };
+                return { id: i, src: 'http://placehold.it/200x200/FFB6C1/000000?text=' + "<>" };
 
 
             // }
         // }
         // else{
-        //     return { id: i, src: 'http://placehold.it/200x200/FFFF00/000000?text=' + '' };
+        //     return { id: i, src: 'http://placehold.it/200x200/FFB6C1/000000?text=' + '' };
         // }
       
     });
@@ -62,19 +62,19 @@ export default class GridTable extends Component {
                 // while(a < 8){
                 power = Math.pow(2, a)
                 // }
-                if((i == 2) || (i == 3)){
-                    // console.log(i, 'Discard')
-                    return { id: i, src: 'http://placehold.it/200x200/FFFF00/000000?text=' + "Discard" };
+                // if((i == 2) || (i == 3)){
+                //     // console.log(i, 'Discard')
+                //     return { id: i, src: 'http://placehold.it/200x200/FFB6C1/000000?text=' + "Discard" };
 
-                }
-                else{
+                // }
+                // else{
                   // console.log(i, 'Power')
                   // updateCount = {value:}
                   updateCount.push({value: power})
                   // console.log(updateCount)
-                  return { id: i, src: 'http://placehold.it/200x200/FFFF00/000000?text=' + power };
+                  return { id: i, src: 'http://placehold.it/200x200/FFB6C1/000000?text=' + power };
 
-                }
+                // }
       });
     that.setState({
       randSource: randItem,
@@ -82,8 +82,8 @@ export default class GridTable extends Component {
   }
   
   setAbove(i, sValue, topSection){
-    var source = 'http://placehold.it/200x200/FFFF00/000000?text=' + sValue
-    var initialSource = ('http://placehold.it/200x200/FFFF00/000000?text=' + "<>")
+    var source = 'http://placehold.it/200x200/FFB6C1/000000?text=' + sValue
+    var initialSource = ('http://placehold.it/200x200/FFB6C1/000000?text=' + "<>")
 
     // if( i >= 11 && i <= 15){
     //   if(items[i - 12].src == initialSource){
@@ -169,8 +169,8 @@ export default class GridTable extends Component {
   setBelow(i, sValue, topSection){
 
     // console.log(i, sValue, items[i].id)
-    var source = 'http://placehold.it/200x200/FFFF00/000000?text=' + sValue
-    var initialSource = ('http://placehold.it/200x200/FFFF00/000000?text=' + "<>")
+    var source = 'http://placehold.it/200x200/FFB6C1/000000?text=' + sValue
+    var initialSource = ('http://placehold.it/200x200/FFB6C1/000000?text=' + "<>")
     // console.log(items[i].value, "VALUEEEE")
     if(i == 0 || i == 1 || i == 2 || i == 3){
       if(items[i + 4].src != initialSource){
@@ -245,9 +245,9 @@ export default class GridTable extends Component {
         <FlatList
           data={this.state.dataSource}
           renderItem={({ item }) => (
-            <View style={{ flex: 1, flexDirection: 'column', margin: 1}}>
+            <View style={{ flex: 1, flexDirection: 'column', margin: 1, borderColor: '#000000'}}>
                 <TouchableOpacity onPress = {() => {
-                  var initialSource = ('http://placehold.it/200x200/FFFF00/000000?text=' + "<>")
+                  var initialSource = ('http://placehold.it/200x200/FFB6C1/000000?text=' + "<>")
                   var cleanSum = 0
 
                   var index1 = item.id
@@ -256,7 +256,7 @@ export default class GridTable extends Component {
                     if(item.src == initialSource){
 
                       if(item.id >= 0 && item.id <= 3){
-                          item.src = 'http://placehold.it/200x200/FFFF00/000000?text=' + this.state.sumValue
+                          item.src = 'http://placehold.it/200x200/FFB6C1/000000?text=' + this.state.sumValue
                           topSection[index1].value = sumValue
                           this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
                       }
@@ -266,7 +266,7 @@ export default class GridTable extends Component {
                           this.setState({sumValue: cleanSum, flag: false})  
                         }
                         else{
-                          item.src = 'http://placehold.it/200x200/FFFF00/000000?text=' + this.state.sumValue
+                          item.src = 'http://placehold.it/200x200/FFB6C1/000000?text=' + this.state.sumValue
                           topSection[index1].value = sumValue
                           this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
                         }
@@ -275,7 +275,7 @@ export default class GridTable extends Component {
                       else if(item.id >= 8 && item.id <= 11){
                         if(items[item.id - 8].src != initialSource){
                           if(items[item.id - 4].src != initialSource){
-                            item.src = 'http://placehold.it/200x200/FFFF00/000000?text=' + this.state.sumValue
+                            item.src = 'http://placehold.it/200x200/FFB6C1/000000?text=' + this.state.sumValue
                             topSection[index1].value = sumValue
                             this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
                           }
@@ -294,7 +294,7 @@ export default class GridTable extends Component {
                         if(items[item.id - 12].src != initialSource){
                           if(items[item.id - 8].src != initialSource){
                             if(items[item.id - 4].src != initialSource){
-                              item.src = 'http://placehold.it/200x200/FFFF00/000000?text=' + this.state.sumValue
+                              item.src = 'http://placehold.it/200x200/FFB6C1/000000?text=' + this.state.sumValue
                               topSection[index1].value = sumValue
                               this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
                             }
@@ -324,7 +324,7 @@ export default class GridTable extends Component {
                         this.setState({sumValue: sum2}, () => {
                           // console.log(sum2, ',,,,,')
                           // Alert.alert("SUM OF NUMBER ", sum2.toString())
-                          item.src = 'http://placehold.it/200x200/FFFF00/000000?text=' + sum2
+                          item.src = 'http://placehold.it/200x200/FFB6C1/000000?text=' + sum2
                           this.setState({uri: item.src})
                         })
                       }
@@ -403,6 +403,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: 100,
+    // borderColor: '#000000'
     // backgroundColor: "#FFB6C1",
   },
 });
