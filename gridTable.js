@@ -30,6 +30,8 @@ export default class GridTable extends Component {
     topSection = {value: ''}
     // RandomNumber = Math.floor(Math.random() * 16) + 1 ;
 
+
+
     items = Array.apply(null, Array(16)).map((v, i) => {
       let topSection = this.state.topSection
         // if((i + 1) % 2 == 0){
@@ -81,6 +83,38 @@ export default class GridTable extends Component {
     });
   }
   
+  sound(){
+    // Import the react-native-sound module
+var Sound = require('react-native-sound');
+ 
+// Enable playback in silence mode
+Sound.setCategory('Playback');
+ 
+// Load the sound file 'whoosh.mp3' from the app bundle
+// See notes below about preloading sounds within initialization code below.
+var whoosh = new Sound('water.mp3', Sound.MAIN_BUNDLE, (error) => {
+  if (error) {
+    console.log('failed to load the sound', error);
+    return;
+  }
+  // loaded successfully
+  // console.log('duration in seconds: ' + whoosh.getDuration() + 'number of channels: ' + whoosh.getNumberOfChannels());
+ 
+  // Play the sound with an onEnd callback
+  whoosh.play((success) => {
+    if (success) {
+      console.log('successfully finished playing');
+    } else {
+      console.log('playback failed due to audio decoding errors');
+    }
+  });
+
+});
+// whoosh.setNumberOfLoops(-1);
+
+whoosh.release()
+  }
+
   setAbove(i, sValue, topSection){
     var source = 'http://placehold.it/200x200/FFB6C1/000000?text=' + sValue
     var initialSource = ('http://placehold.it/200x200/FFB6C1/000000?text=' + "<>")
@@ -239,6 +273,7 @@ export default class GridTable extends Component {
     let updateCount = this.state.updateCount
     var sumValue = this.state.sumValue
     var flag = this.state.flag
+    // var whoosh = whoosh
     return (
       <View style={styles.MainContainer}>
         
@@ -247,6 +282,7 @@ export default class GridTable extends Component {
           renderItem={({ item }) => (
             <View style={{ flex: 1, flexDirection: 'column', margin: 1, borderColor: '#000000'}}>
                 <TouchableOpacity onPress = {() => {
+                  this.sound()
                   var initialSource = ('http://placehold.it/200x200/FFB6C1/000000?text=' + "<>")
                   var cleanSum = 0
 
