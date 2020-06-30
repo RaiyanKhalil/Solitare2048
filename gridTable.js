@@ -255,7 +255,7 @@ export default class GridTable extends Component {
                   if(flag){
                     if(item.src == initialSource){
 
-                      if(item.id >= 0 && item.id <= 4){
+                      if(item.id >= 0 && item.id <= 3){
                           item.src = 'http://placehold.it/200x200/FFFF00/000000?text=' + this.state.sumValue
                           topSection[index1].value = sumValue
                           this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
