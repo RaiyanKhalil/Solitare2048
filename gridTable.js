@@ -80,35 +80,90 @@ export default class GridTable extends Component {
       randSource: randItem,
     });
   }
-  randCard(index){
-   
-    let updateCount = this.state.updateCount
-    // console.log(updateCount[index].value, "FROM CONSOLE")
   
-    Alert.alert("HELLO ", updateCount[index].value.toString())
-    
-    var val1 = updateCount[index].value.toString()
-    return val1
-    // this.sum(0, val1)
-    
+  setAbove(i, sValue, topSection){
+    var source = 'http://placehold.it/200x200?text=' + sValue
+    var initialSource = ('http://placehold.it/200x200?text=' + "<>")
 
-  }
-  sum(){
-    // var sum = JSON.stringify(this.randCard) + JSON.stringify(this.randCard2)
-    // console.log(this.randCard)
-    // console.log(sum, "SUM")
-  }
-  randCard2(index1){
+    // if( i >= 11 && i <= 15){
+    //   if(items[i - 12].src == initialSource){
+    //     items[i - 12].src = source
+    //     topSection[i - 12].value = sValue 
+    //     this.setState({ uri: source})
+    //   }
+    //   else if(items[i - 8].src == initialSource){
+    //     items[i - 8].src = source
+    //     topSection[i - 8].value = sValue 
+    //     this.setState({ uri: source})
+    //   }
+    //   else if(items[i - 4].src == initialSource){
+    //     items[i - 4].src = source
+    //     topSection[i - 4].value = sValue 
+    //     this.setState({ uri: source})
+    //   }
+    // }
+    if(i >= 12 && i <= 15){
+      if(items[i - 12].src != initialSource){
+        if(items[i - 8].src != initialSource){
+          if(items[i - 4].src != initialSource){
+            console.log("ALL GOOD")
+          }
+          else{
+            items[i - 4].src = source
+            topSection[i - 4].value = sValue 
+            this.setState({ uri: source})
+          }
+        }
+        else{
+          items[i - 8].src = source
+          topSection[i - 8].value = sValue 
+          this.setState({ uri: source})
+        }
+      }
+      else{
+        items[i - 12].src = source
+          topSection[i - 12].value = sValue 
+          this.setState({ uri: source})
+      }
+    }
+    else if(i >= 8 && i <= 11){
+      if(items[i - 8].src != initialSource){
+        if(items[i - 4].src != initialSource){
+          console.log("ALL GOOD")
+        }
+        else{
+          items[i - 4].src = source
+          topSection[i - 4].value = sValue 
+          this.setState({ uri: source})
+        }
+      }
+      else{
+        items[i - 8].src = source
+        topSection[i - 8].value = sValue 
+        this.setState({ uri: source})
+      }
+    }
+    else if(i >= 4 && i <= 7){
+      if(items[i - 4].src != initialSource){
+        console.log("ALL GOOD")
+      }
+      else{
+        items[i - 4].src = source
+        topSection[i - 4].value = sValue 
+        this.setState({ uri: source})
+      }
+    }
     
-    let topSection = this.state.topSection
-    // console.log(topSection[index1].value, "FROM CONSOLE")
-    Alert.alert("HELLO ", topSection[index1].value.toString())
-    
-    var val2 = topSection[index1].value
-    // console.log(val2, "VAL2")
-    return val2
-    // this.sum(val2, 0)
-
+    // else if(items[i - 8].src == initialSource){
+    //   items[i - 8].src = source
+    //   topSection[i - 8].value = sValue 
+    //   this.setState({ uri: source})
+    // }
+    // else if(items[i - 12].src == initialSource){
+    //   items[i - 12].src = source
+    //   topSection[i - 12].value = sValue 
+    //   this.setState({ uri: source})
+    // }
   }
 
   setBelow(i, sValue, topSection){
@@ -143,7 +198,7 @@ export default class GridTable extends Component {
       }
     }
     else if(i == 4 || i == 5 || i == 6 || i == 7){
-     
+        
         if(items[i + 4].src != initialSource){
           if(items[i + 8].src != initialSource){
             Alert.alert("FULL")
@@ -193,17 +248,109 @@ export default class GridTable extends Component {
             <View style={{ flex: 1, flexDirection: 'column', margin: 1 }}>
                 <TouchableOpacity onPress = {() => {
                   var initialSource = ('http://placehold.it/200x200?text=' + "<>")
-                  
+                  var cleanSum = 0
+
                   var index1 = item.id
                   var val2 = topSection[index1].value
                   if(flag){
                     if(item.src == initialSource){
-                      item.src = 'http://placehold.it/200x200?text=' + this.state.sumValue
-                      var cleanSum = 0
-                      topSection[index1].value = sumValue
-                      this.setState({uri: item.src, sumValue: cleanSum, flag:false})
-                    }else{
-                      console.log("MATCHES", parseInt(val2))
+
+                      // if(items[item.id - 4].src == initialSource){
+                      //   //To check the pressed index
+                      //   if(index1 >= 4 && index1 <= 7){
+                      //     //To check if the above index is empty 
+                      //     if(items[item.id - 4].src == initialSource){
+                      //       this.setAbove(item.id, this.state.sumValue, topSection)
+                      //       this.setState({sumValue: cleanSum, flag: false})  
+                      //     }
+                      //   }
+                      //   else if(index1 >= 8 && index1 <= 11){
+                      //     if(items[item.id - 8].src == initialSource){
+                      //       this.setAbove(item.id, this.state.sumValue, topSection)
+                      //       this.setState({sumValue: cleanSum, flag: false})
+                      //     }
+                      //   }
+                      //   else if(index1 >= 12 && index1 <= 15){
+                      //     if(items[item.id - 12].src == initialSource){
+                      //       this.setAbove(item.id, this.state.sumValue, topSection)
+                      //       this.setState({sumValue: cleanSum, flag: false})
+                      //     }
+                      //   }
+                      // }
+                      if(item.id >= 0 && item.id <= 4){
+                          item.src = 'http://placehold.it/200x200?text=' + this.state.sumValue
+                          topSection[index1].value = sumValue
+                          this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
+                      }
+                      else if(item.id >= 4 && item.id <= 7){
+                        if(items[item.id - 4].src == initialSource){
+                          this.setAbove(item.id, this.state.sumValue, topSection)
+                          this.setState({sumValue: cleanSum, flag: false})  
+                        }
+                        else{
+                          item.src = 'http://placehold.it/200x200?text=' + this.state.sumValue
+                          topSection[index1].value = sumValue
+                          this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
+                        }
+                      }
+                      
+                      else if(item.id >= 8 && item.id <= 11){
+                        if(items[item.id - 8].src != initialSource){
+                          if(items[item.id - 4].src != initialSource){
+                            item.src = 'http://placehold.it/200x200?text=' + this.state.sumValue
+                            topSection[index1].value = sumValue
+                            this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
+                          }
+                          else{
+                            this.setAbove(item.id, this.state.sumValue, topSection)
+                          this.setState({sumValue: cleanSum, flag: false}) 
+                          }
+                        }
+                        else{
+                          this.setAbove(item.id, this.state.sumValue, topSection)
+                          this.setState({sumValue: cleanSum, flag: false}) 
+                        }
+                      }
+
+                      else if(item.id >= 12 && item.id <= 15){
+                        if(items[item.id - 12].src != initialSource){
+                          if(items[item.id - 8].src != initialSource){
+                            if(items[item.id - 4].src != initialSource){
+                              item.src = 'http://placehold.it/200x200?text=' + this.state.sumValue
+                              topSection[index1].value = sumValue
+                              this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
+                            }
+                            else{
+                              this.setAbove(item.id, this.state.sumValue, topSection)
+                            this.setState({sumValue: cleanSum, flag: false}) 
+                            } 
+                          }
+                          else{
+                            this.setAbove(item.id, this.state.sumValue, topSection)
+                          this.setState({sumValue: cleanSum, flag: false}) 
+                          }
+                        }
+                        else{
+                          this.setAbove(item.id, this.state.sumValue, topSection)
+                          this.setState({sumValue: cleanSum, flag: false}) 
+                        }
+                      }
+                      
+                      // if(items[item.id - 4].src == initialSource || items[item.id - 8].src == initialSource || items[item.id - 12].src == initialSource || items[item.id].src == initialSource){
+                        
+                      //   this.setAbove(item.id, this.state.sumValue, topSection)
+                      //   this.setState({sumValue: cleanSum, flag: false})
+                      // }
+                      // else{
+                      //   item.src = 'http://placehold.it/200x200?text=' + this.state.sumValue
+                      //   topSection[index1].value = sumValue
+                      //   this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
+                      // }
+                    }
+                    else{
+                      // console.log("MATCHES", parseInt(val2))
+                      // if(items[item.id - 4].src == )
+
                       if(this.state.sumValue == parseInt(val2)){
                         
                         var sum2 = this.state.sumValue + parseInt(val2)
