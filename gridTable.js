@@ -21,7 +21,7 @@ export default class GridTable extends Component {
   // this.randCard2 = this.randCard2.bind(this);
     this.state = {
       dataSource: {},
-      randSource: {}, updateCount: [], topSection: [], sumValue: 0, flag: false
+      randSource: {}, updateCount: [], topSection: [], sumValue: 0, flag: false, index2: 0
     };
   }
   componentDidMount() {
@@ -57,7 +57,7 @@ export default class GridTable extends Component {
       dataSource: items,
     });
 
-    randItem = Array.apply(null, Array(4)).map((v, i) => {  
+    randItem = Array.apply(null, Array(2)).map((v, i) => {  
         var a = Math.floor(Math.random() * 8) + 1 ;
         let updateCount = this.state.updateCount
 
@@ -74,7 +74,12 @@ export default class GridTable extends Component {
                   // updateCount = {value:}
                   updateCount.push({value: power})
                   // console.log(updateCount)
-                  return { id: i, src: 'http://placehold.it/200x200/FFB6C1/000000?text=' + power };
+                  if(i == 1){
+                    return { id: i, src: 'http://placehold.it/200x200/FFFF00/000000?text=' + power };
+                  }
+                  else{
+                    return { id: i, src: 'http://placehold.it/200x200/FFB6C1/000000?text=' + power };
+                  }
 
                 // }
       });
@@ -268,11 +273,36 @@ whoosh.release()
     return source
 
   }
+
+  slideValue(index2){
+    var updateCount = this.state.updateCount
+    var a = Math.floor(Math.random() * 8) + 1 ;
+    var powerOf2 = Math.pow(2, a)
+    // if(index2 == 3){
+      updateCount[index2].value = updateCount[index2 - 1].value
+      randItem[index2].src = randItem[index2 - 1].src
+
+      updateCount[index2 - 1].value = powerOf2
+      randItem[index2 - 1].src = 'http://placehold.it/200x200/FFB6C1/000000?text=' + powerOf2
+      // updateCount[index2 - 1].value = updateCount[index2 - 2].value
+      // randItem[index2 - 1].src = randItem[index2 - 2].src
+
+      // updateCount[index2 -2].value = updateCount[index2 - 3].value
+      // randItem[index2 - 2].src = randItem[index2 - 3].src
+
+      // updateCount[index2 - 3].value = powerOf2
+      // randItem[index2 - 3].src = 'http://placehold.it/200x200/FFB6C1/000000?text=' + powerOf2
+    // }
+    
+    this.setState({index2: 0})
+  }
+
   render() {
     let topSection = this.state.topSection
     let updateCount = this.state.updateCount
     var sumValue = this.state.sumValue
     var flag = this.state.flag
+    var index2 = this.state.index2
     // var whoosh = whoosh
     return (
       <View style={styles.MainContainer}>
@@ -285,10 +315,16 @@ whoosh.release()
                   this.sound()
                   var initialSource = ('http://placehold.it/200x200/FFB6C1/000000?text=' + "<>")
                   var cleanSum = 0
-
+                  console.log(randItem[index].id, "rand")
+                  // var passValue = updateCount[index].value
+                  // console.log(index, "PASS VALUE")
                   var index1 = item.id
                   var val2 = topSection[index1].value
                   if(flag){
+                    this.slideValue(index2)
+                    // updateCount[index2].value = updateCount[index2 - 1].value
+                    // randItem[index2].src = randItem[index2 - 1].src
+                    // console.log(updateCount[index2].value, "update count index")
                     if(item.src == initialSource){
 
                       if(item.id >= 0 && item.id <= 3){
@@ -371,7 +407,7 @@ whoosh.release()
                     
                      
                       cleanSum = 0;
-                      this.setState({sumValue: cleanSum, flag: false})
+                      this.setState({sumValue: cleanSum, flag: false, index2: cleanSum})
                     }
                     
                   }
@@ -399,14 +435,21 @@ whoosh.release()
           renderItem={({ item }) => (
             <View style={{ flex: 1, flexDirection: 'column', margin: 1 }}>
                 <TouchableOpacity onPress={() => {
-                  var index = item.id
+                  index = item.id
+                  // this.setState({flag: false})
                   // let val1 = this.randCard(index)
                   // let sumValue = this.state.sumValue
                     var val1 = updateCount[index].value
                     if(!flag){
-                    var sum = this.state.sumValue + parseInt(val1)
-                    this.setState({sumValue: this.state.sumValue + sum, flag: true})
-                      // console.log(sum, ',,,,,')
+                      if(index == 1){
+                        var sum = this.state.sumValue + parseInt(val1)
+                        var passIndex = this.state.index2 + index
+                        // updateCount[index].value = updateCount[index - 1].value
+                        // randItem[index].src = randItem[index - 1].src
+                        this.setState({sumValue: this.state.sumValue + sum, flag: true, index: index, updateCount : this.state.updateCount, index2 : this.state.index2 + passIndex})
+                          // console.log(index, updateCount[index - 1].value, ',,,,,')
+                      }
+                   
                   }
                   
 
