@@ -315,7 +315,7 @@ whoosh.release()
                   this.sound()
                   var initialSource = ('http://placehold.it/200x200/FFB6C1/000000?text=' + "<>")
                   var cleanSum = 0
-                  console.log(randItem[index].id, "rand")
+                  // console.log(randItem[index].id, "rand")
                   // var passValue = updateCount[index].value
                   // console.log(index, "PASS VALUE")
                   var index1 = item.id
@@ -435,7 +435,7 @@ whoosh.release()
           renderItem={({ item }) => (
             <View style={{ flex: 1, flexDirection: 'column', margin: 1 }}>
                 <TouchableOpacity onPress={() => {
-                  index = item.id
+                  var index = item.id
                   // this.setState({flag: false})
                   // let val1 = this.randCard(index)
                   // let sumValue = this.state.sumValue
@@ -446,7 +446,7 @@ whoosh.release()
                         var passIndex = this.state.index2 + index
                         // updateCount[index].value = updateCount[index - 1].value
                         // randItem[index].src = randItem[index - 1].src
-                        this.setState({sumValue: this.state.sumValue + sum, flag: true, index: index, updateCount : this.state.updateCount, index2 : this.state.index2 + passIndex})
+                        this.setState({sumValue: this.state.sumValue + sum, flag: true, updateCount : this.state.updateCount, index2 : this.state.index2 + passIndex})
                           // console.log(index, updateCount[index - 1].value, ',,,,,')
                       }
                    
