@@ -41,7 +41,8 @@ export default class GridTable extends Component {
                 // while(a < 8){
                 power = Math.pow(2, a)
                 // }
-                topSection.push({value: power})
+                // var zero = 0
+                topSection.push({value: 0})
                 // return { id: i, src: 'http://placehold.it/200x200/FFB6C1/000000?text=' + power };
                 return { id: i, src: 'http://placehold.it/200x200/FFB6C1/000000?text=' + "<>" };
 
@@ -297,6 +298,177 @@ whoosh.release()
     this.setState({index2: 0})
   }
 
+  checkSum(){
+    var topSection = this.state.topSection
+    var initialSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + "<>"
+    var newSum = 0
+    console.log("CheckSum")
+    for(var j = 4; j <= 15; j++){
+      console.log(items.length)
+
+      if(j >= 4 && j <= 7){
+        if(items[j - 4].src != initialSource){
+          if(topSection[j - 4].value == topSection[j].value){
+            newSum = topSection[j].value + topSection[j - 4].value
+            console.log(newSum, "New Sum")
+            var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
+    
+            topSection[j - 4].value = newSum
+            items[j - 4].src = newSource
+    
+            topSection[j].value = 0
+            items[j].src = initialSource
+            this.checkSum()
+          }
+        }
+      }
+      if(j >= 8 && j <= 11){
+        if(items[j - 4].src != initialSource){
+          if(topSection[j - 4].value == topSection[j].value){
+            newSum = topSection[j].value + topSection[j - 4].value
+            console.log(newSum, "New Sum")
+            var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
+    
+            topSection[j - 4].value = newSum
+            items[j - 4].src = newSource
+    
+            topSection[j].value = 0
+            items[j].src = initialSource
+            this.checkSum()
+          }
+        }
+        else if(items[j - 8].src != initialSource){
+          if(topSection[j - 8].value == topSection[j].value){
+            newSum = topSection[j].value + topSection[j - 8].value
+            console.log(newSum, "New Sum")
+            var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
+    
+            topSection[j - 8].value = newSum
+            items[j - 8].src = newSource
+    
+            topSection[j].value = 0
+            items[j].src = initialSource
+            this.checkSum()
+          }
+        }
+      }
+      if(j >= 12 && j <= 15){
+        if(items[j - 4].src != initialSource){
+          if(topSection[j - 4].value == topSection[j].value){
+            newSum = topSection[j].value + topSection[j - 4].value
+            console.log(newSum, "New Sum")
+            var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
+    
+            topSection[j - 4].value = newSum
+            items[j - 4].src = newSource
+    
+            topSection[j].value = 0
+            items[j].src = initialSource
+            this.checkSum()
+          }
+        }
+        else if(items[j - 8].src != initialSource){
+          if(topSection[j - 8].value == topSection[j].value){
+            newSum = topSection[j].value + topSection[j - 8].value
+            console.log(newSum, "New Sum")
+            var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
+    
+            topSection[j - 8].value = newSum
+            items[j - 8].src = newSource
+    
+            topSection[j].value = 0
+            items[j].src = initialSource
+            this.checkSum()
+          }
+        }
+        else if(items[j - 12].src != initialSource){
+          if(topSection[j - 12].value == topSection[j].value){
+            newSum = topSection[j].value + topSection[j - 12].value
+            console.log(newSum, "New Sum")
+            var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
+    
+            topSection[j - 12].value = newSum
+            items[j - 12].src = newSource
+    
+            topSection[j].value = 0
+            items[j].src = initialSource
+            this.checkSum();
+          }
+        }
+      }
+      // newSum = 0
+    }
+    // if(i >= 4 && i <=15){
+    // for(var j = 15; j > 3; j--){
+    //   console.log("Loop")
+    //   if(j >= 12 && j <= 15){
+    //   if(items[j - 12].src == initialSource){
+    //     if(items[j - 8].src == initialSource){
+    //       if(items[j - 4].src == initialSource){
+    //         console.log("NOTHING TO DO")
+    //       }
+    //       else{
+            // if(topSection[j - 4].value == topSection[j].value){
+            //   newSum = topSection[j].value + topSection[j - 4].value
+            //   console.log(newSum, "New Sum")
+            //   var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
+      
+            //   topSection[j - 4].value = newSum
+            //   items[j - 4].src = newSource
+      
+            //   topSection[j].value = 0
+            //   items[j].src = initialSource
+            // }
+    //       }
+    //     }
+    //     else{
+    //       if(topSection[j - 8].value == topSection[j].value){
+    //         newSum = topSection[j].value + topSection[j - 8].value
+    //         console.log(newSum, "New Sum")
+    //         var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
+    
+    //         topSection[j - 8].value = newSum
+    //         items[j - 8].src = newSource
+    
+    //         topSection[j].value = 0
+    //         items[j].src = initialSource
+    //       }
+    //     }
+    //   }
+    //   else{
+    //     if(topSection[j - 12].value == topSection[j].value){
+    //       newSum = topSection[j].value + topSection[j - 12].value
+    //       console.log(newSum, "New Sum")
+    //       var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
+  
+    //       topSection[j - 12].value = newSum
+    //       items[j - 12].src = newSource
+  
+    //       topSection[j].value = 0
+    //       items[j].src = initialSource
+    //     }
+    //   }
+    // }
+      // if(topSection[j].value == topSection[j - 4].value){
+        // newSum = topSection[j].value + topSection[j - 4].value
+        // console.log(newSum, "New Sum")
+        // var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
+
+        // topSection[j - 4].value = newSum
+        // items[j - 4].src = newSource
+
+        // topSection[j].value = 0
+        // items[j].src = initialSource
+
+
+      // }
+      // else{
+      //   break
+      // }
+    // }
+  // }
+  }
+
   render() {
     let topSection = this.state.topSection
     let updateCount = this.state.updateCount
@@ -320,6 +492,7 @@ whoosh.release()
                   // console.log(index, "PASS VALUE")
                   var index1 = item.id
                   var val2 = topSection[index1].value
+
                   if(flag){
                     this.slideValue(index2)
                     // updateCount[index2].value = updateCount[index2 - 1].value
@@ -385,9 +558,10 @@ whoosh.release()
                           this.setState({sumValue: cleanSum, flag: false}) 
                         }
                       }
+                      this.checkSum()
                     }
                     else{
-                      
+                      // this.checkSum()
 
                       if(this.state.sumValue == parseInt(val2)){
                         
@@ -399,6 +573,7 @@ whoosh.release()
                           item.src = 'http://placehold.it/200x200/FFB6C1/000000?text=' + sum2
                           this.setState({uri: item.src})
                         })
+                        // this.checkSum()
                       }
                       else{
                         // console.log(items[item.id].src)
@@ -407,13 +582,14 @@ whoosh.release()
                     
                      
                       cleanSum = 0;
+                      this.checkSum()
                       this.setState({sumValue: cleanSum, flag: false, index2: cleanSum})
+                      // this.checkSum()
                     }
-                    
+                    // this.checkSum()
+                    // this.checkSum(initialSource, item.id)
                   }
-                
-                 
-                  
+
 
                   // Alert.alert(val2 + val1, "SUM")
                   // this.sum
