@@ -298,14 +298,16 @@ whoosh.release()
     this.setState({index2: 0})
   }
 
-  checkSum(){
+  checkSum(cloneSum, i, sValue){
     var topSection = this.state.topSection
     var initialSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + "<>"
     var newSum = 0
-    console.log("CheckSum")
+    // console.log("CheckSum", i, topSection[10].value, cloneSum)
+    if(i >= 4 && i <= 15){
+      console.log(sValue, " == ", cloneSum)
+    }
     for(var j = 4; j <= 15; j++){
       console.log(items.length)
-
       if(j >= 4 && j <= 7){
         if(items[j - 4].src != initialSource){
           if(topSection[j - 4].value == topSection[j].value){
@@ -396,77 +398,15 @@ whoosh.release()
           }
         }
       }
+      // if(sValue == cloneSum){
+      //   topSection[j].value = 0
+      //   items[j].src = initialSource
+      //   console.log("HELLO")
+      //   this.setState({uri: initialSource})
+      // }
       // newSum = 0
     }
-    // if(i >= 4 && i <=15){
-    // for(var j = 15; j > 3; j--){
-    //   console.log("Loop")
-    //   if(j >= 12 && j <= 15){
-    //   if(items[j - 12].src == initialSource){
-    //     if(items[j - 8].src == initialSource){
-    //       if(items[j - 4].src == initialSource){
-    //         console.log("NOTHING TO DO")
-    //       }
-    //       else{
-            // if(topSection[j - 4].value == topSection[j].value){
-            //   newSum = topSection[j].value + topSection[j - 4].value
-            //   console.log(newSum, "New Sum")
-            //   var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
-      
-            //   topSection[j - 4].value = newSum
-            //   items[j - 4].src = newSource
-      
-            //   topSection[j].value = 0
-            //   items[j].src = initialSource
-            // }
-    //       }
-    //     }
-    //     else{
-    //       if(topSection[j - 8].value == topSection[j].value){
-    //         newSum = topSection[j].value + topSection[j - 8].value
-    //         console.log(newSum, "New Sum")
-    //         var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
     
-    //         topSection[j - 8].value = newSum
-    //         items[j - 8].src = newSource
-    
-    //         topSection[j].value = 0
-    //         items[j].src = initialSource
-    //       }
-    //     }
-    //   }
-    //   else{
-    //     if(topSection[j - 12].value == topSection[j].value){
-    //       newSum = topSection[j].value + topSection[j - 12].value
-    //       console.log(newSum, "New Sum")
-    //       var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
-  
-    //       topSection[j - 12].value = newSum
-    //       items[j - 12].src = newSource
-  
-    //       topSection[j].value = 0
-    //       items[j].src = initialSource
-    //     }
-    //   }
-    // }
-      // if(topSection[j].value == topSection[j - 4].value){
-        // newSum = topSection[j].value + topSection[j - 4].value
-        // console.log(newSum, "New Sum")
-        // var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
-
-        // topSection[j - 4].value = newSum
-        // items[j - 4].src = newSource
-
-        // topSection[j].value = 0
-        // items[j].src = initialSource
-
-
-      // }
-      // else{
-      //   break
-      // }
-    // }
-  // }
   }
 
   render() {
@@ -492,9 +432,9 @@ whoosh.release()
                   // console.log(index, "PASS VALUE")
                   var index1 = item.id
                   var val2 = topSection[index1].value
-
                   if(flag){
                     this.slideValue(index2)
+                    let cloneSum = JSON.parse(JSON.stringify(this.state.sumValue))
                     // updateCount[index2].value = updateCount[index2 - 1].value
                     // randItem[index2].src = randItem[index2 - 1].src
                     // console.log(updateCount[index2].value, "update count index")
@@ -558,7 +498,7 @@ whoosh.release()
                           this.setState({sumValue: cleanSum, flag: false}) 
                         }
                       }
-                      this.checkSum()
+                      this.checkSum(cloneSum, item.id, sumValue)
                     }
                     else{
                       // this.checkSum()
@@ -580,9 +520,9 @@ whoosh.release()
                         this.setBelow(item.id, this.state.sumValue, topSection)      
                       }
                     
-                     
+                     console.log(JSON.parse(JSON.stringify(cloneSum)), 'clone')
                       cleanSum = 0;
-                      this.checkSum()
+                      this.checkSum(cloneSum,item.id, sumValue)
                       this.setState({sumValue: cleanSum, flag: false, index2: cleanSum})
                       // this.checkSum()
                     }
