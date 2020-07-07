@@ -540,7 +540,7 @@ whoosh.release()
                     }
                     else{
                       // this.checkSum()
-
+                      if(topSection[index1 + 4] == initialSource || (index1 >= 12 && index1 <= 15)){
                       if(this.state.sumValue == parseInt(val2)){
                         
                         var sum2 = this.state.sumValue + parseInt(val2)
@@ -553,6 +553,7 @@ whoosh.release()
                           this.setState({uri: item.src, points: points})
                         })
                         // this.checkSum()
+                      }
                       }
                       else{
                         // //console.log(items[item.id].src)
