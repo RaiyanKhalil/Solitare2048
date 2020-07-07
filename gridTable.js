@@ -316,8 +316,11 @@ whoosh.release()
             topSection[j - 4].value = newSum
             items[j - 4].src = newSource
     
-            topSection[j].value = 0
-            items[j].src = initialSource
+            topSection[j].value = topSection[j + 4].value 
+            items[j].src = items[j + 4].src
+
+            topSection[j + 4].value = topSection[j + 8].value 
+            items[j + 4].src = items[j + 8].src
             points = points + 1
             this.setState({points: points})
             // console.log("Points: ", points)
@@ -335,31 +338,40 @@ whoosh.release()
             topSection[j - 4].value = newSum
             items[j - 4].src = newSource
     
-            topSection[j].value = 0
-            items[j].src = initialSource
+            topSection[j].value = topSection[j + 4].value 
+            items[j].src = items[j + 4].src
+
+            topSection[j + 4].value = 0
+            items[j + 4].src = initialSource
             points = points + 1
             this.setState({points: points})
             // console.log("Points: ", points)
             this.checkSum()
           }
         }
-        else if(items[j - 8].src != initialSource){
-          if(topSection[j - 8].value == topSection[j].value){
-            newSum = topSection[j].value + topSection[j - 8].value
-            //console.log(newSum, "New Sum")
-            var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
+        // if(items[j - 8].src != initialSource){
+        //   if(topSection[j - 8].value == topSection[j].value){
+        //     newSum = topSection[j].value + topSection[j - 8].value
+        //     //console.log(newSum, "New Sum")
+        //     var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
     
-            topSection[j - 8].value = newSum
-            items[j - 8].src = newSource
+        //     topSection[j - 8].value = newSum
+        //     items[j - 8].src = newSource
     
-            topSection[j].value = 0
-            items[j].src = initialSource
-            points = points + 1
-            this.setState({points: points})
-            // console.log("Points: ", points)
-            this.checkSum()
-          }
-        }
+        //     topSection[j - 4].value = topSection[j].value 
+        //     items[j - 4].src = items[j].src
+
+        //     topSection[j].value = topSection[j + 4].value 
+        //     items[j].src = items[j + 4].src
+
+        //     topSection[j + 4].value = 0 
+        //     items[j + 4].src = initialSource
+        //     points = points + 1
+        //     this.setState({points: points})
+        //     // console.log("Points: ", points)
+        //     this.checkSum()
+        //   }
+        // }
       }
       if(j >= 12 && j <= 15){
         if(items[j - 4].src != initialSource){
@@ -379,40 +391,49 @@ whoosh.release()
             this.checkSum()
           }
         }
-        else if(items[j - 8].src != initialSource){
-          if(topSection[j - 8].value == topSection[j].value){
-            newSum = topSection[j].value + topSection[j - 8].value
-            //console.log(newSum, "New Sum")
-            var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
+        // if(items[j - 8].src != initialSource){
+        //   if(topSection[j - 8].value == topSection[j].value){
+        //     newSum = topSection[j].value + topSection[j - 8].value
+        //     //console.log(newSum, "New Sum")
+        //     var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
     
-            topSection[j - 8].value = newSum
-            items[j - 8].src = newSource
+        //     topSection[j - 8].value = newSum
+        //     items[j - 8].src = newSource
     
-            topSection[j].value = 0
-            items[j].src = initialSource
-            points = points + 1
-            this.setState({points: points})
-            // console.log("Points: ", points)
-            this.checkSum()
-          }
-        }
-        else if(items[j - 12].src != initialSource){
-          if(topSection[j - 12].value == topSection[j].value){
-            newSum = topSection[j].value + topSection[j - 12].value
-            //console.log(newSum, "New Sum")
-            var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
+        //     topSection[j - 4].value = topSection[j].value 
+        //     items[j - 4].src = items[j].src
+
+        //     topSection[j].value = 0
+        //     items[j].src = initialSource
+        //     points = points + 1
+        //     this.setState({points: points})
+        //     // console.log("Points: ", points)
+        //     this.checkSum()
+        //   }
+        // }
+        // if(items[j - 12].src != initialSource){
+        //   if(topSection[j - 12].value == topSection[j].value){
+        //     newSum = topSection[j].value + topSection[j - 12].value
+        //     //console.log(newSum, "New Sum")
+        //     var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
     
-            topSection[j - 12].value = newSum
-            items[j - 12].src = newSource
+        //     topSection[j - 12].value = newSum
+        //     items[j - 12].src = newSource
     
-            topSection[j].value = 0
-            items[j].src = initialSource
-            points = points + 1
-            this.setState({points: points})
-            // console.log("Points: ", points)
-            this.checkSum();
-          }
-        }
+        //     topSection[j - 8].value = topSection[j - 4].value 
+        //     items[j - 8].src = items[j - 4].src
+
+        //     topSection[j - 4].value = topSection[j].value 
+        //     items[j - 4].src = items[j].src
+
+        //     topSection[j].value = 0
+        //     items[j].src = initialSource
+        //     points = points + 1
+        //     this.setState({points: points})
+        //     // console.log("Points: ", points)
+        //     this.checkSum();
+        //   }
+        // }
       }
       // if(sValue == cloneSum){
       //   topSection[j].value = 0
