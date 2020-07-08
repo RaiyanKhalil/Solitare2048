@@ -90,14 +90,14 @@ export default class GridTable extends Component {
   }
   
   sound(){
-    // Import the react-native-sound module
+
+// Import the react-native-sound module
 var Sound = require('react-native-sound');
  
 // Enable playback in silence mode
 Sound.setCategory('Playback');
  
 // Load the sound file 'whoosh.mp3' from the app bundle
-// See notes below about preloading sounds within initialization code below.
 var whoosh = new Sound('water.mp3', Sound.MAIN_BUNDLE, (error) => {
   if (error) {
     //console.log('failed to load the sound', error);
@@ -109,15 +109,14 @@ var whoosh = new Sound('water.mp3', Sound.MAIN_BUNDLE, (error) => {
   // Play the sound with an onEnd callback
   whoosh.play((success) => {
     if (success) {
-      //console.log('successfully finished playing');
+      console.log('successfully finished playing');
     } else {
-      //console.log('playback failed due to audio decoding errors');
+      console.log('playback failed due to audio decoding errors');
     }
   });
 
 });
 // whoosh.setNumberOfLoops(-1);
-
 whoosh.release()
   }
 
@@ -125,23 +124,6 @@ whoosh.release()
     var source = 'http://placehold.it/200x200/FFB6C1/000000?text=' + sValue
     var initialSource = ('http://placehold.it/200x200/FFB6C1/000000?text=' + "<>")
 
-    // if( i >= 11 && i <= 15){
-    //   if(items[i - 12].src == initialSource){
-    //     items[i - 12].src = source
-    //     topSection[i - 12].value = sValue 
-    //     this.setState({ uri: source})
-    //   }
-    //   else if(items[i - 8].src == initialSource){
-    //     items[i - 8].src = source
-    //     topSection[i - 8].value = sValue 
-    //     this.setState({ uri: source})
-    //   }
-    //   else if(items[i - 4].src == initialSource){
-    //     items[i - 4].src = source
-    //     topSection[i - 4].value = sValue 
-    //     this.setState({ uri: source})
-    //   }
-    // }
     if(i >= 12 && i <= 15){
       if(items[i - 12].src != initialSource){
         if(items[i - 8].src != initialSource){
@@ -194,24 +176,13 @@ whoosh.release()
       }
     }
     
-    // else if(items[i - 8].src == initialSource){
-    //   items[i - 8].src = source
-    //   topSection[i - 8].value = sValue 
-    //   this.setState({ uri: source})
-    // }
-    // else if(items[i - 12].src == initialSource){
-    //   items[i - 12].src = source
-    //   topSection[i - 12].value = sValue 
-    //   this.setState({ uri: source})
-    // }
   }
 
   setBelow(i, sValue, topSection){
 
-    // //console.log(i, sValue, items[i].id)
     var source = 'http://placehold.it/200x200/FFB6C1/000000?text=' + sValue
     var initialSource = ('http://placehold.it/200x200/FFB6C1/000000?text=' + "<>")
-    // //console.log(items[i].value, "VALUEEEE")
+
     if(i == 0 || i == 1 || i == 2 || i == 3){
       if(items[i + 4].src != initialSource){
         if(items[i + 8].src != initialSource){
@@ -268,11 +239,7 @@ whoosh.release()
         Alert.alert("FULL")
       }
     }
-    
-    
-    // //console.log(id, source)
     return source
-
   }
 
   slideValue(index2){
@@ -285,15 +252,6 @@ whoosh.release()
 
       updateCount[index2 - 1].value = powerOf2
       randItem[index2 - 1].src = 'http://placehold.it/200x200/FFB6C1/000000?text=' + powerOf2
-      // updateCount[index2 - 1].value = updateCount[index2 - 2].value
-      // randItem[index2 - 1].src = randItem[index2 - 2].src
-
-      // updateCount[index2 -2].value = updateCount[index2 - 3].value
-      // randItem[index2 - 2].src = randItem[index2 - 3].src
-
-      // updateCount[index2 - 3].value = powerOf2
-      // randItem[index2 - 3].src = 'http://placehold.it/200x200/FFB6C1/000000?text=' + powerOf2
-    // }
     
     this.setState({index2: 0})
   }
@@ -349,29 +307,7 @@ whoosh.release()
             this.checkSum()
           }
         }
-        // if(items[j - 8].src != initialSource){
-        //   if(topSection[j - 8].value == topSection[j].value){
-        //     newSum = topSection[j].value + topSection[j - 8].value
-        //     //console.log(newSum, "New Sum")
-        //     var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
-    
-        //     topSection[j - 8].value = newSum
-        //     items[j - 8].src = newSource
-    
-        //     topSection[j - 4].value = topSection[j].value 
-        //     items[j - 4].src = items[j].src
-
-        //     topSection[j].value = topSection[j + 4].value 
-        //     items[j].src = items[j + 4].src
-
-        //     topSection[j + 4].value = 0 
-        //     items[j + 4].src = initialSource
-        //     points = points + 1
-        //     this.setState({points: points})
-        //     // console.log("Points: ", points)
-        //     this.checkSum()
-        //   }
-        // }
+        
       }
       if(j >= 12 && j <= 15){
         if(items[j - 4].src != initialSource){
@@ -391,60 +327,10 @@ whoosh.release()
             this.checkSum()
           }
         }
-        // if(items[j - 8].src != initialSource){
-        //   if(topSection[j - 8].value == topSection[j].value){
-        //     newSum = topSection[j].value + topSection[j - 8].value
-        //     //console.log(newSum, "New Sum")
-        //     var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
-    
-        //     topSection[j - 8].value = newSum
-        //     items[j - 8].src = newSource
-    
-        //     topSection[j - 4].value = topSection[j].value 
-        //     items[j - 4].src = items[j].src
-
-        //     topSection[j].value = 0
-        //     items[j].src = initialSource
-        //     points = points + 1
-        //     this.setState({points: points})
-        //     // console.log("Points: ", points)
-        //     this.checkSum()
-        //   }
-        // }
-        // if(items[j - 12].src != initialSource){
-        //   if(topSection[j - 12].value == topSection[j].value){
-        //     newSum = topSection[j].value + topSection[j - 12].value
-        //     //console.log(newSum, "New Sum")
-        //     var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
-    
-        //     topSection[j - 12].value = newSum
-        //     items[j - 12].src = newSource
-    
-        //     topSection[j - 8].value = topSection[j - 4].value 
-        //     items[j - 8].src = items[j - 4].src
-
-        //     topSection[j - 4].value = topSection[j].value 
-        //     items[j - 4].src = items[j].src
-
-        //     topSection[j].value = 0
-        //     items[j].src = initialSource
-        //     points = points + 1
-        //     this.setState({points: points})
-        //     // console.log("Points: ", points)
-        //     this.checkSum();
-        //   }
-        // }
-      }
-      // if(sValue == cloneSum){
-      //   topSection[j].value = 0
-      //   items[j].src = initialSource
-      //   //console.log("HELLO")
-      //   this.setState({uri: initialSource})
-      // }
-      // newSum = 0
     }
     
   }
+}
 
   render() {
     let topSection = this.state.topSection
@@ -457,6 +343,7 @@ whoosh.release()
     return (
       <View style={styles.MainContainer}>
         
+        {/* Gameboard Section */}
         <FlatList
           data={this.state.dataSource}
           renderItem={({ item }) => (
@@ -465,19 +352,17 @@ whoosh.release()
                   this.sound()
                   var initialSource = ('http://placehold.it/200x200/FFB6C1/000000?text=' + "<>")
                   var cleanSum = 0
-                  // //console.log(randItem[index].id, "rand")
-                  // var passValue = updateCount[index].value
-                  // //console.log(index, "PASS VALUE")
                   var index1 = item.id
                   var val2 = topSection[index1].value
+
                   if(flag){
                     this.slideValue(index2)
                     let cloneSum = JSON.parse(JSON.stringify(this.state.sumValue))
-                    // updateCount[index2].value = updateCount[index2 - 1].value
-                    // randItem[index2].src = randItem[index2 - 1].src
-                    // //console.log(updateCount[index2].value, "update count index")
+                    
+                    //Checks if pressed index matches with <>
                     if(item.src == initialSource){
 
+                      //Finding out the pressed index and checks if it is empty
                       if(item.id >= 0 && item.id <= 3){
                           item.src = 'http://placehold.it/200x200/FFB6C1/000000?text=' + this.state.sumValue
                           topSection[index1].value = sumValue
@@ -539,41 +424,32 @@ whoosh.release()
                       this.checkSum(cloneSum, item.id, sumValue)
                     }
                     else{
-                      // this.checkSum()
+                      //Checks if the box below is empty OR if the index is within the range of 12 and 15
                       if(topSection[index1 + 4] == initialSource || (index1 >= 12 && index1 <= 15)){
+                        
+                        //If the selected value from the "Random Section" is equal to the existing number on the Gameboard
                       if(this.state.sumValue == parseInt(val2)){
                         
                         var sum2 = this.state.sumValue + parseInt(val2)
                         topSection[index1].value = sum2
                         points = points + 1
                         this.setState({sumValue: sum2}, () => {
-                          // //console.log(sum2, ',,,,,')
-                          // Alert.alert("SUM OF NUMBER ", sum2.toString())
                           item.src = 'http://placehold.it/200x200/FFB6C1/000000?text=' + sum2
                           this.setState({uri: item.src, points: points})
                         })
-                        // this.checkSum()
                       }
                       }
                       else{
-                        // //console.log(items[item.id].src)
                         this.setBelow(item.id, this.state.sumValue, topSection)      
                       }
                     
-                     //console.log(JSON.parse(JSON.stringify(cloneSum)), 'clone')
                       cleanSum = 0;
-                      // this.checkSum()
                       this.setState({sumValue: cleanSum, flag: false, index2: cleanSum})
-                      // this.checkSum()
                     }
-                    // this.checkSum()
-                    // this.checkSum(initialSource, item.id)
                   }
 
 
-                  // Alert.alert(val2 + val1, "SUM")
-                  // this.sum
-                  // console.log("Points: ",points)
+                
                 }}>
                 <Image style={styles.imageThumbnail} source={{ uri: item.src }} />
                 </TouchableOpacity>
@@ -586,16 +462,13 @@ whoosh.release()
         />
        <View>
      
-      
+      {/* Random Number generator section */}
       <FlatList
           data={this.state.randSource}
           renderItem={({ item }) => (
             <View style={{ flex: 1, flexDirection: 'column', margin: 1 }}>
                 <TouchableOpacity onPress={() => {
                   var index = item.id
-                  // this.setState({flag: false})
-                  // let val1 = this.randCard(index)
-                  // let sumValue = this.state.sumValue
                     var val1 = updateCount[index].value
                     if(!flag){
                       if(index == 1){
@@ -604,10 +477,7 @@ whoosh.release()
 
                         var sum = this.state.sumValue + parseInt(val1)
                         var passIndex = this.state.index2 + index
-                        // updateCount[index].value = updateCount[index - 1].value
-                        // randItem[index].src = randItem[index - 1].src
                         this.setState({sumValue: this.state.sumValue + sum, flag: true, updateCount : this.state.updateCount, index2 : this.state.index2 + passIndex})
-                          // //console.log(index, updateCount[index - 1].value, ',,,,,')
                       }
                    
                   }
