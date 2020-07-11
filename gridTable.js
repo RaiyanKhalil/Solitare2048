@@ -535,6 +535,7 @@ gameOver(){
                 }}
                 onLongPress= {() => {
                   // var jsonDiscardCount = JSON.stringify(discardCount)
+                  this.setState({flag: false})
                   if(item.id == 1 && discardCount <= 3){
                     this.discard()
                   }
