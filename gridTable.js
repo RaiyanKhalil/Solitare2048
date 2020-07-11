@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 //import rect in our project
 import {
-  StyleSheet,
-  View,
-  FlatList,
-  ActivityIndicator,
-  Image,
-  TouchableOpacity,
-  Alert,
-  Button
+  StyleSheet, View, FlatList, ActivityIndicator, Image, TouchableOpacity, Alert, Button, Text
 } from 'react-native';
 //import all the components we will need
 let randItem, items
@@ -30,6 +23,7 @@ export default class GridTable extends Component {
     topSection = {value: ''}
     // RandomNumber = Math.floor(Math.random() * 16) + 1 ;
 
+    
 
 
     items = Array.apply(null, Array(16)).map((v, i) => {
@@ -332,6 +326,7 @@ whoosh.release()
   }
 }
 
+
   render() {
     let topSection = this.state.topSection
     let updateCount = this.state.updateCount
@@ -340,6 +335,7 @@ whoosh.release()
     var index2 = this.state.index2
     var points = this.state.points
     // var whoosh = whoosh
+
     return (
       <View style={styles.MainContainer}>
         
@@ -460,9 +456,15 @@ whoosh.release()
           numColumns={4}
           keyExtractor={(item, index) => index.toString()}
         />
-       <View>
-     
+
+        <View style={{ flex: 1, flexDirection: 'column', margin: 1 }}>
+              <Text style = {{fontSize: 30, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", bottom: 20}}>
+                Points: {this.state.points}
+              </Text>
+        </View>
+
       {/* Random Number generator section */}
+       <View>
       <FlatList
           data={this.state.randSource}
           renderItem={({ item }) => (
