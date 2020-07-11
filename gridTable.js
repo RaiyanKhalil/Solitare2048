@@ -515,7 +515,7 @@ gameOver(){
                 <TouchableOpacity onPress={() => {
                   var index = item.id
                     var val1 = updateCount[index].value
-                    if(!flag){
+                    if(!flag ){
                       if(index == 1){
                         this.checkSum()
                         console.log("Final Points: ",points)
@@ -535,7 +535,7 @@ gameOver(){
                 }}
                 onLongPress= {() => {
                   // var jsonDiscardCount = JSON.stringify(discardCount)
-                  this.setState({flag: false})
+                  this.setState({flag: false, sumValue: 0, index2 : 0})
                   if(item.id == 1 && discardCount <= 3){
                     this.discard()
                   }
