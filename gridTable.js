@@ -502,7 +502,7 @@ gameOver(){
 
         <View style={{ flex: 1, flexDirection: 'column', margin: 1 }}>
               <Text style = {{fontSize: 30, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", bottom: 20}}>
-                Points: {this.state.points}
+                Points: {this.state.points}       Discarded: {discardCount}
               </Text>
         </View>
 
