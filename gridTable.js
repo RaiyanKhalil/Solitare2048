@@ -182,7 +182,7 @@ whoosh.release()
       if(items[i + 4].src != initialSource){
         if(items[i + 8].src != initialSource){
           if(items[i + 12].src != initialSource){
-            Alert.alert("FULL")
+            // Alert.alert("FULL")
           }
           else{
             items[i + 12].src = source
@@ -207,7 +207,7 @@ whoosh.release()
         
         if(items[i + 4].src != initialSource){
           if(items[i + 8].src != initialSource){
-            Alert.alert("FULL")
+            // Alert.alert("FULL")
           }else{
             items[i + 8].src = source 
             topSection[i + 8].value = sValue 
@@ -222,7 +222,7 @@ whoosh.release()
     }
     else if(i == 8 || i == 9 || i == 10 || i == 11){
       if(items[i + 4].src != initialSource){
-        Alert.alert("FULL")
+        // Alert.alert("FULL")
       }else{
         items[i + 4].src = source 
         topSection[i + 4].value = sValue 
@@ -231,7 +231,7 @@ whoosh.release()
     }
     else if(i == 12 || i == 13 || i == 14 || i == 15){
       if(items[i].src != initialSource){
-        Alert.alert("FULL")
+        // Alert.alert("FULL")
         // this.setState({flag: true})
       }
     }
@@ -328,6 +328,23 @@ whoosh.release()
   }
 }
 
+gameOver(){
+  var initialSource = ('http://placehold.it/200x200/FF6347/000000?text=' + "<>")
+  var topSection = this.state.topSection
+  var updateCount = this.state.updateCount
+  var count = 0
+  for(var j = 12; j <= 15; j++){
+    if(items[j].src != initialSource){
+      if(topSection[j].value != updateCount[1].value){
+        count += 1
+        console.log("DIDN'T MATCH")
+      }
+    }
+  }
+  if(count == 4){
+    Alert.alert("GAME OVER")
+  }
+}
 
   render() {
     let topSection = this.state.topSection
@@ -440,7 +457,7 @@ whoosh.release()
                       }
                       }
                       else{
-                        this.setBelow(item.id, this.state.sumValue, topSection, flag)      
+                        this.setBelow(item.id, this.state.sumValue, topSection)      
                       }
                     
                       cleanSum = 0;
@@ -448,7 +465,7 @@ whoosh.release()
                     }
                   }
 
-
+                  this.gameOver()
                 
                 }}>
                 <Image style={styles.imageThumbnail} source={{ uri: item.src }} />
