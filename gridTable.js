@@ -37,14 +37,14 @@ export default class GridTable extends Component {
                 // }
                 // var zero = 0
                 topSection.push({value: 0})
-                // return { id: i, src: 'http://placehold.it/200x200/FFB6C1/000000?text=' + power };
-                return { id: i, src: 'http://placehold.it/200x200/FFB6C1/000000?text=' + "<>" };
+                // return { id: i, src: 'http://placehold.it/200x200/FF6347/000000?text=' + power };
+                return { id: i, src: 'http://placehold.it/200x200/FF6347/000000?text=' + "<>" };
 
 
             // }
         // }
         // else{
-        //     return { id: i, src: 'http://placehold.it/200x200/FFB6C1/000000?text=' + '' };
+        //     return { id: i, src: 'http://placehold.it/200x200/FF6347/000000?text=' + '' };
         // }
       
     });
@@ -61,7 +61,7 @@ export default class GridTable extends Component {
                 // }
                 // if((i == 2) || (i == 3)){
                 //     // //console.log(i, 'Discard')
-                //     return { id: i, src: 'http://placehold.it/200x200/FFB6C1/000000?text=' + "Discard" };
+                //     return { id: i, src: 'http://placehold.it/200x200/FF6347/000000?text=' + "Discard" };
 
                 // }
                 // else{
@@ -73,7 +73,7 @@ export default class GridTable extends Component {
                     return { id: i, src: 'http://placehold.it/200x200/FFFF00/000000?text=' + power };
                   }
                   else{
-                    return { id: i, src: 'http://placehold.it/200x200/FFB6C1/000000?text=' + power };
+                    return { id: i, src: 'http://placehold.it/200x200/FF6347/000000?text=' + power };
                   }
 
                 // }
@@ -115,8 +115,8 @@ whoosh.release()
   }
 
   setAbove(i, sValue, topSection){
-    var source = 'http://placehold.it/200x200/FFB6C1/000000?text=' + sValue
-    var initialSource = ('http://placehold.it/200x200/FFB6C1/000000?text=' + "<>")
+    var source = 'http://placehold.it/200x200/FF6347/000000?text=' + sValue
+    var initialSource = ('http://placehold.it/200x200/FF6347/000000?text=' + "<>")
 
     if(i >= 12 && i <= 15){
       if(items[i - 12].src != initialSource){
@@ -174,8 +174,9 @@ whoosh.release()
 
   setBelow(i, sValue, topSection){
 
-    var source = 'http://placehold.it/200x200/FFB6C1/000000?text=' + sValue
-    var initialSource = ('http://placehold.it/200x200/FFB6C1/000000?text=' + "<>")
+    var source = 'http://placehold.it/200x200/FF6347/000000?text=' + sValue
+    var initialSource = ('http://placehold.it/200x200/FF6347/000000?text=' + "<>")
+    // var flag = this.state.flag
 
     if(i == 0 || i == 1 || i == 2 || i == 3){
       if(items[i + 4].src != initialSource){
@@ -231,6 +232,7 @@ whoosh.release()
     else if(i == 12 || i == 13 || i == 14 || i == 15){
       if(items[i].src != initialSource){
         Alert.alert("FULL")
+        // this.setState({flag: true})
       }
     }
     return source
@@ -245,7 +247,7 @@ whoosh.release()
       randItem[index2].src = randItem[index2 - 1].src
 
       updateCount[index2 - 1].value = powerOf2
-      randItem[index2 - 1].src = 'http://placehold.it/200x200/FFB6C1/000000?text=' + powerOf2
+      randItem[index2 - 1].src = 'http://placehold.it/200x200/FF6347/000000?text=' + powerOf2
     
     this.setState({index2: 0})
   }
@@ -253,7 +255,7 @@ whoosh.release()
   checkSum(){
     var topSection = this.state.topSection
     var points = this.state.points
-    var initialSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + "<>"
+    var initialSource = 'http://placehold.it/200x200/FF6347/000000?text=' + "<>"
     var newSum = 0
     
     for(var j = 4; j <= 15; j++){
@@ -263,7 +265,7 @@ whoosh.release()
           if(topSection[j - 4].value == topSection[j].value){
             newSum = topSection[j].value + topSection[j - 4].value
             //console.log(newSum, "New Sum")
-            var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
+            var newSource = 'http://placehold.it/200x200/FF6347/000000?text=' + newSum
     
             topSection[j - 4].value = newSum
             items[j - 4].src = newSource
@@ -285,7 +287,7 @@ whoosh.release()
           if(topSection[j - 4].value == topSection[j].value){
             newSum = topSection[j].value + topSection[j - 4].value
             //console.log(newSum, "New Sum")
-            var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
+            var newSource = 'http://placehold.it/200x200/FF6347/000000?text=' + newSum
     
             topSection[j - 4].value = newSum
             items[j - 4].src = newSource
@@ -308,7 +310,7 @@ whoosh.release()
           if(topSection[j - 4].value == topSection[j].value){
             newSum = topSection[j].value + topSection[j - 4].value
             //console.log(newSum, "New Sum")
-            var newSource = 'http://placehold.it/200x200/FFB6C1/000000?text=' + newSum
+            var newSource = 'http://placehold.it/200x200/FF6347/000000?text=' + newSum
     
             topSection[j - 4].value = newSum
             items[j - 4].src = newSource
@@ -346,21 +348,22 @@ whoosh.release()
             <View style={{ flex: 1, flexDirection: 'column', margin: 1, borderColor: '#000000'}}>
                 <TouchableOpacity onPress = {() => {
                   this.sound()
-                  var initialSource = ('http://placehold.it/200x200/FFB6C1/000000?text=' + "<>")
+                  var initialSource = ('http://placehold.it/200x200/FF6347/000000?text=' + "<>")
                   var cleanSum = 0
                   var index1 = item.id
                   var val2 = topSection[index1].value
 
                   if(flag){
-                    this.slideValue(index2)
+                    // this.slideValue(index2)
                     let cloneSum = JSON.parse(JSON.stringify(this.state.sumValue))
                     
                     //Checks if pressed index matches with <>
                     if(item.src == initialSource){
+                      this.slideValue(index2)
 
                       //Finding out the pressed index and checks if it is empty
                       if(item.id >= 0 && item.id <= 3){
-                          item.src = 'http://placehold.it/200x200/FFB6C1/000000?text=' + this.state.sumValue
+                          item.src = 'http://placehold.it/200x200/FF6347/000000?text=' + this.state.sumValue
                           topSection[index1].value = sumValue
                           this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
                       }
@@ -370,7 +373,7 @@ whoosh.release()
                           this.setState({sumValue: cleanSum, flag: false})  
                         }
                         else{
-                          item.src = 'http://placehold.it/200x200/FFB6C1/000000?text=' + this.state.sumValue
+                          item.src = 'http://placehold.it/200x200/FF6347/000000?text=' + this.state.sumValue
                           topSection[index1].value = sumValue
                           this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
                         }
@@ -379,7 +382,7 @@ whoosh.release()
                       else if(item.id >= 8 && item.id <= 11){
                         if(items[item.id - 8].src != initialSource){
                           if(items[item.id - 4].src != initialSource){
-                            item.src = 'http://placehold.it/200x200/FFB6C1/000000?text=' + this.state.sumValue
+                            item.src = 'http://placehold.it/200x200/FF6347/000000?text=' + this.state.sumValue
                             topSection[index1].value = sumValue
                             this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
                           }
@@ -398,7 +401,7 @@ whoosh.release()
                         if(items[item.id - 12].src != initialSource){
                           if(items[item.id - 8].src != initialSource){
                             if(items[item.id - 4].src != initialSource){
-                              item.src = 'http://placehold.it/200x200/FFB6C1/000000?text=' + this.state.sumValue
+                              item.src = 'http://placehold.it/200x200/FF6347/000000?text=' + this.state.sumValue
                               topSection[index1].value = sumValue
                               this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
                             }
@@ -425,18 +428,19 @@ whoosh.release()
                         
                         //If the selected value from the "Random Section" is equal to the existing number on the Gameboard
                       if(this.state.sumValue == parseInt(val2)){
-                        
+                        this.slideValue(index2)
+
                         var sum2 = this.state.sumValue + parseInt(val2)
                         topSection[index1].value = sum2
                         points = points + 1
                         this.setState({sumValue: sum2}, () => {
-                          item.src = 'http://placehold.it/200x200/FFB6C1/000000?text=' + sum2
+                          item.src = 'http://placehold.it/200x200/FF6347/000000?text=' + sum2
                           this.setState({uri: item.src, points: points})
                         })
                       }
                       }
                       else{
-                        this.setBelow(item.id, this.state.sumValue, topSection)      
+                        this.setBelow(item.id, this.state.sumValue, topSection, flag)      
                       }
                     
                       cleanSum = 0;
@@ -476,10 +480,12 @@ whoosh.release()
                       if(index == 1){
                         this.checkSum()
                         console.log("Final Points: ",points)
-
-                        var sum = this.state.sumValue + parseInt(val1)
-                        var passIndex = this.state.index2 + index
-                        this.setState({sumValue: this.state.sumValue + sum, flag: true, updateCount : this.state.updateCount, index2 : this.state.index2 + passIndex})
+                        
+                          var sum = this.state.sumValue + parseInt(val1)
+                          var passIndex = this.state.index2 + index
+                          this.setState({sumValue: sum, flag: true, updateCount : this.state.updateCount, index2 : this.state.index2 + passIndex})
+                        
+                        
                       }
                    
                   }
@@ -494,8 +500,8 @@ whoosh.release()
             </View>
           )}
           //Setting the number of column
-          numColumns={4}
-          keyExtractor={(item, index) => index.toString()}
+          numColumns={2}
+          keyExtractor={(randItem, index) => index.toString()}
         />
       </View>
       </View>
