@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 //import all the components we will need
 let randItem, items
-var RandomNumber, power
+var RandomNumber, power, discardCount = 0
 export default class GridTable extends Component {
   constructor() {
     super();
@@ -328,6 +328,23 @@ whoosh.release()
   }
 }
 
+discard(){
+var updateCount = this.state.updateCount
+// var discardCount = this.state.discardCount
+var a = Math.floor(Math.random() * 8) + 1 ;
+var powerOf2 = Math.pow(2, a)
+
+updateCount[1].value = updateCount[0].value
+updateCount[0].value = powerOf2
+
+randItem[1].src = randItem[0].src
+randItem[0].src = ('http://placehold.it/200x200/FF6347/000000?text=' + powerOf2)
+
+discardCount = discardCount + 1
+// Alert.alert(JSON.stringify(this.state.discardCount))
+this.setState({uri: randItem[0].src})
+}
+
 gameOver(){
   var initialSource = ('http://placehold.it/200x200/FF6347/000000?text=' + "<>")
   var topSection = this.state.topSection
@@ -342,7 +359,10 @@ gameOver(){
     }
   }
   if(count == 4){
-    Alert.alert("GAME OVER")
+    return true
+  }
+  else{
+    return false
   }
 }
 
@@ -353,6 +373,7 @@ gameOver(){
     var flag = this.state.flag
     var index2 = this.state.index2
     var points = this.state.points
+    // var discardCount = this.state.discardCount
     // var whoosh = whoosh
 
     return (
@@ -464,8 +485,9 @@ gameOver(){
                       this.setState({sumValue: cleanSum, flag: false, index2: cleanSum})
                     }
                   }
-
-                  this.gameOver()
+                  if(this.gameOver() && discardCount > 3){
+                    Alert.alert("GAME OVER")
+                  }
                 
                 }}>
                 <Image style={styles.imageThumbnail} source={{ uri: item.src }} />
@@ -510,6 +532,19 @@ gameOver(){
 
                   // })
                   
+                }}
+                onLongPress= {() => {
+                  // var jsonDiscardCount = JSON.stringify(discardCount)
+                  if(item.id == 1 && discardCount <= 3){
+                    this.discard()
+                  }
+                  else if(discardCount > 3){
+                    Alert.alert("DISCARD LIMIT HAS BEEN REACHED")
+                    // this.gameOver()
+                  }
+                  // else if(this.gameOver()){
+                  //   Alert.alert("GAME OVER")
+                  // }
                 }}>
                 <Image style={styles.imageThumbnail} source={{ uri: item.src }} />
                 </TouchableOpacity>
