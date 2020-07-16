@@ -425,8 +425,13 @@ gameOver(){
 
     return (
       <View>
-        
+        <View style = {{paddingTop: 35}}>
+              <Text style = {{fontSize: 30, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", bottom: 20}}>
+                Points: {this.state.points}       Discarded: {discardCount}
+              </Text>
+        </View>
         {/* Gameboard Section */}
+        <View>
         <FlatList
           data={this.state.dataSource}
           renderItem={({ item }) => (
@@ -553,19 +558,15 @@ gameOver(){
           numColumns={4}
           keyExtractor={(item, index) => index.toString()}
         />
+    </View>
 
-        <View>
-              <Text style = {{fontSize: 30, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", bottom: 20}}>
-                Points: {this.state.points}       Discarded: {discardCount}
-              </Text>
-        </View>
 
       {/* Random Number generator section */}
-       <View>
+       <View style = {{paddingTop: 60}}>
       <FlatList
           data={this.state.randSource}
           renderItem={({ item }) => (
-            <View style={styles.item}>
+            <View style={styles.item2}>
                 <TouchableOpacity onPress={() => {
                   var index = item.id
                     var val1 = updateCount[index].value
@@ -630,7 +631,7 @@ const styles = StyleSheet.create({
     // backgroundColor: "#FFB6C1",
   },
   itemText: {
-    color: '#fff',
+    color: '#000000',
     fontSize: 34
   },
   itemText2: {
@@ -638,11 +639,20 @@ const styles = StyleSheet.create({
     fontSize: 50
   },
   item: {
-    backgroundColor: '#4D243D',
+    backgroundColor: '#FF4500',
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
     margin: 1,
     height: Dimensions.get('window').width / 4, // approximate a square
+  },
+  item2: {
+    backgroundColor: '#000000',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    margin: 3,
+    height: Dimensions.get('window').width / 4, // approximate a square
+    paddingTop: 0
   },
 });
