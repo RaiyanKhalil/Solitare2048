@@ -599,7 +599,7 @@ gameOver(){
                   //   Alert.alert("GAME OVER")
                   // }
                 }}>
-                <Text style = {styles.itemText}>{item.src}</Text>
+                <Text style = {styles.itemText2}>{item.src}</Text>
                 </TouchableOpacity>
               
             </View>
@@ -630,7 +630,11 @@ const styles = StyleSheet.create({
   },
   itemText: {
     color: '#fff',
-    fontSize: 45
+    fontSize: 25
+  },
+  itemText2: {
+    color: '#fff',
+    fontSize: 50
   },
   item: {
     backgroundColor: '#4D243D',
