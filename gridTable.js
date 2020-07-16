@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 //import rect in our project
 import {
-  StyleSheet, View, FlatList, ActivityIndicator, Image, TouchableOpacity, Alert, Button, Text
+  StyleSheet, View, FlatList, ActivityIndicator, Image, TouchableOpacity, Alert, Button, Text, Dimensions
 } from 'react-native';
 //import all the components we will need
 let randItem, items
@@ -37,14 +37,14 @@ export default class GridTable extends Component {
                 // }
                 // var zero = 0
                 topSection.push({value: 0})
-                // return { id: i, src: 'http://placehold.it/200x200/FF6347/000000?text=' + power };
-                return { id: i, src: 'http://placehold.it/200x200/FF6347/000000?text=' + "<>" };
+                // return { id: i, src:  power };
+                return { id: i, src: "_" };
 
 
             // }
         // }
         // else{
-        //     return { id: i, src: 'http://placehold.it/200x200/FF6347/000000?text=' + '' };
+        //     return { id: i, src:  '' };
         // }
       
     });
@@ -61,19 +61,23 @@ export default class GridTable extends Component {
                 // }
                 // if((i == 2) || (i == 3)){
                 //     // //console.log(i, 'Discard')
-                //     return { id: i, src: 'http://placehold.it/200x200/FF6347/000000?text=' + "Discard" };
+                //     return { id: i, src:  "Discard" };
 
                 // }
                 // else{
                   // //console.log(i, 'Power')
                   // updateCount = {value:}
                   updateCount.push({value: power})
+                  // if(power == 2){
+                  //  console.log('২')
+                  //   // var powerBangla = '২'
+                  // }
                   // //console.log(updateCount)
                   if(i == 1){
-                    return { id: i, src: 'http://placehold.it/200x200/FFFF00/000000?text=' + power };
+                    return { id: i, src: "২" };
                   }
                   else{
-                    return { id: i, src: 'http://placehold.it/200x200/FF6347/000000?text=' + power };
+                    return { id: i, src:  power };
                   }
 
                 // }
@@ -114,9 +118,48 @@ var whoosh = new Sound('water.mp3', Sound.MAIN_BUNDLE, (error) => {
 whoosh.release()
   }
 
+  banglaConverter(sValue){
+    var source 
+    if(sValue == 2){
+      source = '২'
+    }
+    else if(sValue == 4){
+      source = '৪'
+    }
+    else if(sValue == 8){
+      source = '৮'
+    }
+    else if(sValue == 16){
+      source = '১৬'
+    }
+    else if(sValue == 32){
+      source = '৩২'
+    }
+    else if(sValue == 64){
+      source = '৬৪'
+    }
+    else if(sValue == 128){
+      source = '১২৮'
+    }
+    else if(sValue == 256){
+      source = '২৫৬'
+    }
+    else if(sValue == 512){
+      source = '৫১২'
+    }
+    else if(sValue == 1024){
+      source = '১০২৪'
+    }
+    else if(sValue == 2048){
+      source = '২০৪৮'
+    }
+    return source
+  }
+
   setAbove(i, sValue, topSection){
-    var source = 'http://placehold.it/200x200/FF6347/000000?text=' + sValue
-    var initialSource = ('http://placehold.it/200x200/FF6347/000000?text=' + "<>")
+     
+    var initialSource = "_"
+    var source = this.banglaConverter(sValue)
 
     if(i >= 12 && i <= 15){
       if(items[i - 12].src != initialSource){
@@ -174,8 +217,8 @@ whoosh.release()
 
   setBelow(i, sValue, topSection){
 
-    var source = 'http://placehold.it/200x200/FF6347/000000?text=' + sValue
-    var initialSource = ('http://placehold.it/200x200/FF6347/000000?text=' + "<>")
+    var source =  this.banglaConverter(sValue)
+    var initialSource = "_"
     // var flag = this.state.flag
 
     if(i == 0 || i == 1 || i == 2 || i == 3){
@@ -247,7 +290,7 @@ whoosh.release()
       randItem[index2].src = randItem[index2 - 1].src
 
       updateCount[index2 - 1].value = powerOf2
-      randItem[index2 - 1].src = 'http://placehold.it/200x200/FF6347/000000?text=' + powerOf2
+      randItem[index2 - 1].src =  powerOf2
     
     this.setState({index2: 0})
   }
@@ -255,8 +298,9 @@ whoosh.release()
   checkSum(){
     var topSection = this.state.topSection
     var points = this.state.points
-    var initialSource = 'http://placehold.it/200x200/FF6347/000000?text=' + "<>"
+    var initialSource = "_"
     var newSum = 0
+    console.log("CHECK SUM")
     
     for(var j = 4; j <= 15; j++){
       //console.log(items.length)
@@ -265,7 +309,7 @@ whoosh.release()
           if(topSection[j - 4].value == topSection[j].value){
             newSum = topSection[j].value + topSection[j - 4].value
             //console.log(newSum, "New Sum")
-            var newSource = 'http://placehold.it/200x200/FF6347/000000?text=' + newSum
+            var newSource =  this.banglaConverter(newSum)
     
             topSection[j - 4].value = newSum
             items[j - 4].src = newSource
@@ -287,7 +331,7 @@ whoosh.release()
           if(topSection[j - 4].value == topSection[j].value){
             newSum = topSection[j].value + topSection[j - 4].value
             //console.log(newSum, "New Sum")
-            var newSource = 'http://placehold.it/200x200/FF6347/000000?text=' + newSum
+            var newSource =  this.banglaConverter(newSum)
     
             topSection[j - 4].value = newSum
             items[j - 4].src = newSource
@@ -310,7 +354,7 @@ whoosh.release()
           if(topSection[j - 4].value == topSection[j].value){
             newSum = topSection[j].value + topSection[j - 4].value
             //console.log(newSum, "New Sum")
-            var newSource = 'http://placehold.it/200x200/FF6347/000000?text=' + newSum
+            var newSource =  this.banglaConverter(newSum)
     
             topSection[j - 4].value = newSum
             items[j - 4].src = newSource
@@ -326,6 +370,7 @@ whoosh.release()
     }
     
   }
+  
 }
 
 discard(){
@@ -338,7 +383,7 @@ updateCount[1].value = updateCount[0].value
 updateCount[0].value = powerOf2
 
 randItem[1].src = randItem[0].src
-randItem[0].src = ('http://placehold.it/200x200/FF6347/000000?text=' + powerOf2)
+randItem[0].src = ( powerOf2)
 
 discardCount = discardCount + 1
 // Alert.alert(JSON.stringify(this.state.discardCount))
@@ -346,7 +391,7 @@ this.setState({uri: randItem[0].src})
 }
 
 gameOver(){
-  var initialSource = ('http://placehold.it/200x200/FF6347/000000?text=' + "<>")
+  var initialSource = "_"
   var topSection = this.state.topSection
   var updateCount = this.state.updateCount
   var count = 0
@@ -377,16 +422,16 @@ gameOver(){
     // var whoosh = whoosh
 
     return (
-      <View style={styles.MainContainer}>
+      <View>
         
         {/* Gameboard Section */}
         <FlatList
           data={this.state.dataSource}
           renderItem={({ item }) => (
-            <View style={{ flex: 1, flexDirection: 'column', margin: 1, borderColor: '#000000'}}>
+            <View style={styles.item}>
                 <TouchableOpacity onPress = {() => {
                   this.sound()
-                  var initialSource = ('http://placehold.it/200x200/FF6347/000000?text=' + "<>")
+                  var initialSource = ( "_")
                   var cleanSum = 0
                   var index1 = item.id
                   var val2 = topSection[index1].value
@@ -395,13 +440,13 @@ gameOver(){
                     // this.slideValue(index2)
                     let cloneSum = JSON.parse(JSON.stringify(this.state.sumValue))
                     
-                    //Checks if pressed index matches with <>
+                    //Checks if pressed index matches with _
                     if(item.src == initialSource){
                       this.slideValue(index2)
 
                       //Finding out the pressed index and checks if it is empty
                       if(item.id >= 0 && item.id <= 3){
-                          item.src = 'http://placehold.it/200x200/FF6347/000000?text=' + this.state.sumValue
+                          item.src =  this.banglaConverter(this.state.sumValue)
                           topSection[index1].value = sumValue
                           this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
                       }
@@ -411,7 +456,7 @@ gameOver(){
                           this.setState({sumValue: cleanSum, flag: false})  
                         }
                         else{
-                          item.src = 'http://placehold.it/200x200/FF6347/000000?text=' + this.state.sumValue
+                          item.src =  this.banglaConverter(this.state.sumValue)
                           topSection[index1].value = sumValue
                           this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
                         }
@@ -420,7 +465,7 @@ gameOver(){
                       else if(item.id >= 8 && item.id <= 11){
                         if(items[item.id - 8].src != initialSource){
                           if(items[item.id - 4].src != initialSource){
-                            item.src = 'http://placehold.it/200x200/FF6347/000000?text=' + this.state.sumValue
+                            item.src =  this.banglaConverter(this.state.sumValue)
                             topSection[index1].value = sumValue
                             this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
                           }
@@ -439,7 +484,7 @@ gameOver(){
                         if(items[item.id - 12].src != initialSource){
                           if(items[item.id - 8].src != initialSource){
                             if(items[item.id - 4].src != initialSource){
-                              item.src = 'http://placehold.it/200x200/FF6347/000000?text=' + this.state.sumValue
+                              item.src =  this.banglaConverter(this.state.sumValue)
                               topSection[index1].value = sumValue
                               this.setState({uri: item.src, sumValue: cleanSum, flag:false}) 
                             }
@@ -472,7 +517,7 @@ gameOver(){
                         topSection[index1].value = sum2
                         points = points + 1
                         this.setState({sumValue: sum2}, () => {
-                          item.src = 'http://placehold.it/200x200/FF6347/000000?text=' + sum2
+                          item.src =  this.banglaConverter(sum2)
                           this.setState({uri: item.src, points: points})
                         })
                       }
@@ -488,9 +533,16 @@ gameOver(){
                   if(this.gameOver() && discardCount > 3){
                     Alert.alert("GAME OVER")
                   }
-                
+                //   if(item.src == 2){item.src = "২"
+                // this.setState({uri: item.src})}
+                // if(items[index1].src == 2){
+                  // items[index1].src = "২"
+                  // item.src = "২"
+                  // this.setState({uri: item.src})
+                // }
                 }}>
-                <Image style={styles.imageThumbnail} source={{ uri: item.src }} />
+                  
+                <Text style = {styles.itemText}>{item.src}</Text>
                 </TouchableOpacity>
               
             </View>
@@ -500,7 +552,7 @@ gameOver(){
           keyExtractor={(item, index) => index.toString()}
         />
 
-        <View style={{ flex: 1, flexDirection: 'column', margin: 1 }}>
+        <View>
               <Text style = {{fontSize: 30, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", bottom: 20}}>
                 Points: {this.state.points}       Discarded: {discardCount}
               </Text>
@@ -511,7 +563,7 @@ gameOver(){
       <FlatList
           data={this.state.randSource}
           renderItem={({ item }) => (
-            <View style={{ flex: 1, flexDirection: 'column', margin: 1 }}>
+            <View style={styles.item}>
                 <TouchableOpacity onPress={() => {
                   var index = item.id
                     var val1 = updateCount[index].value
@@ -547,7 +599,7 @@ gameOver(){
                   //   Alert.alert("GAME OVER")
                   // }
                 }}>
-                <Image style={styles.imageThumbnail} source={{ uri: item.src }} />
+                <Text style = {styles.itemText}>{item.src}</Text>
                 </TouchableOpacity>
               
             </View>
@@ -575,5 +627,17 @@ const styles = StyleSheet.create({
     height: 100,
     // borderColor: '#000000'
     // backgroundColor: "#FFB6C1",
+  },
+  itemText: {
+    color: '#fff',
+    fontSize: 45
+  },
+  item: {
+    backgroundColor: '#4D243D',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    margin: 1,
+    height: Dimensions.get('window').width / 4, // approximate a square
   },
 });
