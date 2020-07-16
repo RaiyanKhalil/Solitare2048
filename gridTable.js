@@ -74,10 +74,10 @@ export default class GridTable extends Component {
                   // }
                   // //console.log(updateCount)
                   if(i == 1){
-                    return { id: i, src: "২" };
+                    return { id: i, src: this.banglaConverter(power) };
                   }
                   else{
-                    return { id: i, src:  power };
+                    return { id: i, src:  this.banglaConverter(power) };
                   }
 
                 // }
@@ -287,10 +287,11 @@ whoosh.release()
     var powerOf2 = Math.pow(2, a)
     // if(index2 == 3){
       updateCount[index2].value = updateCount[index2 - 1].value
-      randItem[index2].src = randItem[index2 - 1].src
+      //Doubt
+      randItem[index2].src = (randItem[index2 - 1].src)
 
       updateCount[index2 - 1].value = powerOf2
-      randItem[index2 - 1].src =  powerOf2
+      randItem[index2 - 1].src =  this.banglaConverter(powerOf2)
     
     this.setState({index2: 0})
   }
@@ -383,7 +384,7 @@ updateCount[1].value = updateCount[0].value
 updateCount[0].value = powerOf2
 
 randItem[1].src = randItem[0].src
-randItem[0].src = ( powerOf2)
+randItem[0].src = this.banglaConverter(powerOf2)
 
 discardCount = discardCount + 1
 // Alert.alert(JSON.stringify(this.state.discardCount))
@@ -571,7 +572,6 @@ gameOver(){
                       if(index == 1){
                         this.checkSum()
                         console.log("Final Points: ",points)
-                        
                           var sum = this.state.sumValue + parseInt(val1)
                           var passIndex = this.state.index2 + index
                           this.setState({sumValue: sum, flag: true, updateCount : this.state.updateCount, index2 : this.state.index2 + passIndex})
