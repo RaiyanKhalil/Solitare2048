@@ -149,10 +149,10 @@ whoosh.release()
       source = '  ৫১২  '
     }
     else if(sValue == 1024){
-      source = ' ১০২৪ '
+      source = '১০২৪'
     }
     else if(sValue == 2048){
-      source = ' ২০৪৮ '
+      source = '২০৪৮'
     }
     return source
   }
