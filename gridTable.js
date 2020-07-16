@@ -38,7 +38,8 @@ export default class GridTable extends Component {
                 // var zero = 0
                 topSection.push({value: 0})
                 // return { id: i, src:  power };
-                return { id: i, src: "_" };
+                return { id: i, src: "                        " };
+                // return { id: i, src: '১০২৪' };
 
 
             // }
@@ -121,44 +122,44 @@ whoosh.release()
   banglaConverter(sValue){
     var source 
     if(sValue == 2){
-      source = '২'
+      source = '  ২  '
     }
     else if(sValue == 4){
-      source = '৪'
+      source = '  ৪  '
     }
     else if(sValue == 8){
-      source = '৮'
+      source = '  ৮  '
     }
     else if(sValue == 16){
-      source = '১৬'
+      source = '  ১৬  '
     }
     else if(sValue == 32){
-      source = '৩২'
+      source = '  ৩২  '
     }
     else if(sValue == 64){
-      source = '৬৪'
+      source = '  ৬৪  '
     }
     else if(sValue == 128){
-      source = '১২৮'
+      source = '  ১২৮  '
     }
     else if(sValue == 256){
-      source = '২৫৬'
+      source = '  ২৫৬  '
     }
     else if(sValue == 512){
-      source = '৫১২'
+      source = '  ৫১২  '
     }
     else if(sValue == 1024){
-      source = '১০২৪'
+      source = ' ১০২৪ '
     }
     else if(sValue == 2048){
-      source = '২০৪৮'
+      source = ' ২০৪৮ '
     }
     return source
   }
 
   setAbove(i, sValue, topSection){
      
-    var initialSource = "_"
+    var initialSource = "                        "
     var source = this.banglaConverter(sValue)
 
     if(i >= 12 && i <= 15){
@@ -218,7 +219,7 @@ whoosh.release()
   setBelow(i, sValue, topSection){
 
     var source =  this.banglaConverter(sValue)
-    var initialSource = "_"
+    var initialSource = "                        "
     // var flag = this.state.flag
 
     if(i == 0 || i == 1 || i == 2 || i == 3){
@@ -299,7 +300,7 @@ whoosh.release()
   checkSum(){
     var topSection = this.state.topSection
     var points = this.state.points
-    var initialSource = "_"
+    var initialSource = "                        "
     var newSum = 0
     console.log("CHECK SUM")
     
@@ -392,7 +393,7 @@ this.setState({uri: randItem[0].src})
 }
 
 gameOver(){
-  var initialSource = "_"
+  var initialSource = "                        "
   var topSection = this.state.topSection
   var updateCount = this.state.updateCount
   var count = 0
@@ -432,7 +433,7 @@ gameOver(){
             <View style={styles.item}>
                 <TouchableOpacity onPress = {() => {
                   this.sound()
-                  var initialSource = ( "_")
+                  var initialSource = ( "                        ")
                   var cleanSum = 0
                   var index1 = item.id
                   var val2 = topSection[index1].value
@@ -441,7 +442,7 @@ gameOver(){
                     // this.slideValue(index2)
                     let cloneSum = JSON.parse(JSON.stringify(this.state.sumValue))
                     
-                    //Checks if pressed index matches with _
+                    //Checks if pressed index matches with                         
                     if(item.src == initialSource){
                       this.slideValue(index2)
 
@@ -630,7 +631,7 @@ const styles = StyleSheet.create({
   },
   itemText: {
     color: '#fff',
-    fontSize: 25
+    fontSize: 34
   },
   itemText2: {
     color: '#fff',
