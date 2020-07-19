@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-//import rect in our project
-import {
-  StyleSheet, View, FlatList, ActivityIndicator, Image, TouchableOpacity, Alert, Button, Text, Dimensions
-} from 'react-native';
+import {StyleSheet, View, FlatList, ActivityIndicator, Image, TouchableOpacity, Alert, Button, Text, Dimensions} from 'react-native';
+import CountDown from 'react-native-countdown-component';
+
 //import all the components we will need
 let randItem, items
 var RandomNumber, power, discardCount = 0
@@ -14,15 +13,36 @@ export default class GridTable extends Component {
   // this.randCard2 = this.randCard2.bind(this);
     this.state = {
       dataSource: {},
-      randSource: {}, updateCount: [], topSection: [], sumValue: 0, flag: false, index2: 0, points: 0
+      randSource: {}, updateCount: [], topSection: [], sumValue: 0, flag: false, index2: 0, points: 0, second: 15, flag2: false
     };
   }
+
+  _interval : any;
+  
+onStart = () => {
+  // var flag = this.state.flag
+
+     this._interval = setInterval(() => {
+      this.setState({
+        second: this.state.second - 1,
+        
+     })
+     if(this.state.second == 0){
+      this.setState({
+        second: 0, flag: true, flag2: false
+      });
+      // this.setState({flag: true})
+      clearInterval(this._interval);
+      Alert.alert("Time Over")
+      }
+  }, 1000);
+}
   componentDidMount() {
     var that = this;
     updateCount = {value: ''}
     topSection = {value: ''}
     // RandomNumber = Math.floor(Math.random() * 16) + 1 ;
-
+    
     
 
 
@@ -302,6 +322,7 @@ whoosh.release()
     var points = this.state.points
     var initialSource = "                        "
     var newSum = 0
+    var second = this.state.second
     console.log("CHECK SUM")
     
     for(var j = 4; j <= 15; j++){
@@ -322,7 +343,7 @@ whoosh.release()
             topSection[j + 4].value = topSection[j + 8].value 
             items[j + 4].src = items[j + 8].src
             points = points + 1
-            this.setState({points: points})
+            this.setState({points: points, second: this.state.second + 5})
             // console.log("Points: ", points)
             this.checkSum()
           }
@@ -344,7 +365,7 @@ whoosh.release()
             topSection[j + 4].value = 0
             items[j + 4].src = initialSource
             points = points + 1
-            this.setState({points: points})
+            this.setState({points: points,second: this.state.second + 5})
             // console.log("Points: ", points)
             this.checkSum()
           }
@@ -364,7 +385,7 @@ whoosh.release()
             topSection[j].value = 0
             items[j].src = initialSource
             points = points + 1
-            this.setState({points: points})
+            this.setState({points: points, second: this.state.second + 5})
             // console.log("Points: ", points)
             this.checkSum()
           }
@@ -413,23 +434,26 @@ gameOver(){
   }
 }
 
+
   render() {
     let topSection = this.state.topSection
     let updateCount = this.state.updateCount
     var sumValue = this.state.sumValue
     var flag = this.state.flag
+    var flag2 = this.state.flag2
     var index2 = this.state.index2
     var points = this.state.points
+    var second = this.state.second
     // var discardCount = this.state.discardCount
     // var whoosh = whoosh
 
     return (
       <View>
-        <View style = {{paddingTop: 35}}>
+        {/* <View style = {{paddingTop: 35}}>
               <Text style = {{fontSize: 30, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", bottom: 20}}>
                 Points: {this.state.points}       Discarded: {discardCount}
               </Text>
-        </View>
+        </View> */}
         {/* Gameboard Section */}
         <View>
         <FlatList
@@ -443,7 +467,7 @@ gameOver(){
                   var index1 = item.id
                   var val2 = topSection[index1].value
 
-                  if(flag){
+                  if(flag && flag2){
                     // this.slideValue(index2)
                     let cloneSum = JSON.parse(JSON.stringify(this.state.sumValue))
                     
@@ -519,11 +543,11 @@ gameOver(){
                         //If the selected value from the "Random Section" is equal to the existing number on the Gameboard
                       if(this.state.sumValue == parseInt(val2)){
                         this.slideValue(index2)
-
+                        // console.log(second, "second")
                         var sum2 = this.state.sumValue + parseInt(val2)
                         topSection[index1].value = sum2
                         points = points + 1
-                        this.setState({sumValue: sum2}, () => {
+                        this.setState({sumValue: sum2, second: this.state.second + 5}, () => {
                           item.src =  this.banglaConverter(sum2)
                           this.setState({uri: item.src, points: points})
                         })
@@ -560,6 +584,18 @@ gameOver(){
         />
     </View>
 
+    <View>  
+      {/* <CountDown
+            until={10}
+            size={30}
+            onFinish={() => alert('Finished')}
+            digitStyle={{backgroundColor: '#FFF'}}
+            digitTxtStyle={{color: '#1CC625'}}
+            timeToShow={['M', 'S']}
+            timeLabels={{m: 'MM', s: 'SS'}}
+          /> */}
+          <Text>{this.state.second}</Text>
+    </View>
 
       {/* Random Number generator section */}
        <View style = {{paddingTop: 60}}>
@@ -568,9 +604,15 @@ gameOver(){
           renderItem={({ item }) => (
             <View style={styles.item2}>
                 <TouchableOpacity onPress={() => {
+                  
                   var index = item.id
                     var val1 = updateCount[index].value
                     if(!flag ){
+                      if(!flag2){
+                        this.onStart()
+                        this.setState({flag2: true})
+                      }
+                      
                       if(index == 1){
                         this.checkSum()
                         console.log("Final Points: ",points)
