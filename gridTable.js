@@ -13,7 +13,7 @@ export default class GridTable extends Component {
   // this.randCard2 = this.randCard2.bind(this);
     this.state = {
       dataSource: {},
-      randSource: {}, updateCount: [], topSection: [], sumValue: 0, flag: false, index2: 0, points: 0, second: 15, flag2: false
+      randSource: {}, updateCount: [], topSection: [], sumValue: 0, flag: false, index2: 0, points: 0, second: 30, flag2: false
     };
   }
 
@@ -451,10 +451,10 @@ gameOver(){
       <View>
         <View style = {{paddingTop: 35}}>
               <Text style = {{fontSize: 30, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", bottom: 20}}>
-                Points: {this.state.points}       Discarded: {discardCount}          
+              পয়েন্ট: {this.state.points}       বাতিল: {discardCount}          
               </Text>
               <Text style = {{fontSize: 30, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", top: -10}}>
-                Timer: {this.state.second}
+              সময়: {this.state.second}
                 </Text>
         </View>
         {/* Gameboard Section */}
