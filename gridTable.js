@@ -449,13 +449,16 @@ gameOver(){
 
     return (
       <View>
-        {/* <View style = {{paddingTop: 35}}>
+        <View style = {{paddingTop: 35}}>
               <Text style = {{fontSize: 30, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", bottom: 20}}>
-                Points: {this.state.points}       Discarded: {discardCount}
+                Points: {this.state.points}       Discarded: {discardCount}          
               </Text>
-        </View> */}
+              <Text style = {{fontSize: 30, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", top: -10}}>
+                Timer: {this.state.second}
+                </Text>
+        </View>
         {/* Gameboard Section */}
-        <View>
+        <View style = {{top: -10}}>
         <FlatList
           data={this.state.dataSource}
           renderItem={({ item }) => (
@@ -584,7 +587,7 @@ gameOver(){
         />
     </View>
 
-    <View>  
+    {/* <View>   */}
       {/* <CountDown
             until={10}
             size={30}
@@ -594,11 +597,10 @@ gameOver(){
             timeToShow={['M', 'S']}
             timeLabels={{m: 'MM', s: 'SS'}}
           /> */}
-          <Text>{this.state.second}</Text>
-    </View>
+    {/* </View> */}
 
       {/* Random Number generator section */}
-       <View style = {{paddingTop: 60}}>
+       <View style = {{paddingTop: 60, top: -40}}>
       <FlatList
           data={this.state.randSource}
           renderItem={({ item }) => (
@@ -697,4 +699,13 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').width / 4, // approximate a square
     paddingTop: 0
   },
+  secondText: {
+    paddingTop: 15,
+    fontSize: 30, 
+    fontWeight: "bold", 
+    // alignItems: "center", 
+    textAlign: "center", 
+    textAlignVertical: "center", 
+    // bottom: 20
+  }
 });
