@@ -7,6 +7,8 @@ import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
 //import all the components we will need
 let randItem, items
 var RandomNumber, power, discardCount = 0
+const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
+
 export default class GridTable extends Component {
   constructor() {
     super();
@@ -455,8 +457,8 @@ bannerError(e){
       <View>
         {/* <BannerAd unitId={TestIds.BANNER} /> */}
         <BannerAd
-      unitId={"ca-app-pub-1636817600873869/9011585705"}
-      size={BannerAdSize.FULL_BANNER}
+      unitId={adUnitId}
+      size={BannerAdSize.BANNER}
       requestOptions={{
         requestNonPersonalizedAdsOnly: true,
       }}
