@@ -1,13 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component,  useEffect, useState  } from 'react';
 import {StyleSheet, View, FlatList, ActivityIndicator, Image, TouchableOpacity, Alert, Button, Text, Dimensions} from 'react-native';
 import CountDown from 'react-native-countdown-component';
-import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
+import { BannerAd, BannerAdSize, TestIds, InterstitialAd, AdEventType } from '@react-native-firebase/admob';
 
 
 //import all the components we will need
 let randItem, items
 var RandomNumber, power, discardCount = 0
 const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
+const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
+  requestNonPersonalizedAdsOnly: true,
+  keywords: ['fashion', 'clothing'],
+});
+
 
 export default class GridTable extends Component {
   constructor() {
@@ -19,8 +24,10 @@ export default class GridTable extends Component {
       dataSource: {},
       randSource: {}, updateCount: [], topSection: [], sumValue: 0, flag: false, index2: 0, points: 0, second: 30, flag2: false
     };
+    
   }
 
+  
   _interval : any;
   
 onStart = () => {
@@ -47,9 +54,7 @@ onStart = () => {
     topSection = {value: ''}
     // RandomNumber = Math.floor(Math.random() * 16) + 1 ;
     
-    
-
-
+    // this.advert
     items = Array.apply(null, Array(16)).map((v, i) => {
       let topSection = this.state.topSection
         // if((i + 1) % 2 == 0){
@@ -112,6 +117,8 @@ onStart = () => {
     });
   }
   
+  
+
   sound(){
 
 // Import the react-native-sound module
@@ -441,6 +448,31 @@ gameOver(){
 bannerError(e){
   alert(e);
 }
+
+advert(){
+  // const [loaded, setLoaded] = useState(false);
+
+    useEffect(() => {
+      const eventListener = interstitial.onAdEvent(type => {
+        if (type === AdEventType.LOADED) {
+          setLoaded(true);
+        }
+      });
+  
+      // Start loading the interstitial straight away
+      interstitial.load();
+  
+      // Unsubscribe from events on unmount
+      return () => {
+        eventListener();
+      };
+    }, []);
+  
+    // No advert ready to show yet
+    if (!loaded) {
+      return null;
+    }
+}
   render() {
     let topSection = this.state.topSection
     let updateCount = this.state.updateCount
@@ -453,6 +485,29 @@ bannerError(e){
     // var discardCount = this.state.discardCount
     // var whoosh = whoosh
 
+    // const [loaded, setLoaded] = useState(false);
+
+    // useEffect(() => {
+    //   const eventListener = interstitial.onAdEvent(type => {
+    //     if (type === AdEventType.LOADED) {
+    //       setLoaded(true);
+    //     }
+    //   });
+  
+    //   // Start loading the interstitial straight away
+    //   interstitial.load();
+  
+    //   // Unsubscribe from events on unmount
+    //   return () => {
+    //     eventListener();
+    //   };
+    // }, []);
+  
+    // // No advert ready to show yet
+    // if (!loaded) {
+    //   return null;
+    // }
+    
     return (
       <View>
         {/* <BannerAd unitId={TestIds.BANNER} /> */}
@@ -629,6 +684,7 @@ bannerError(e){
                     var val1 = updateCount[index].value
                     if(!flag ){
                       if(!flag2){
+                        // interstitial.show();
                         this.onStart()
                         this.setState({flag2: true})
                       }
