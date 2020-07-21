@@ -14,11 +14,30 @@ class HomeScreen extends React.Component {
     );
   }
 }
-
-const AppNavigator = createStackNavigator({
-  Home: {
-    screen: GridTable,
+const RootStack = createStackNavigator(
+  {
+    
+    Grid: GridTable,
+    Basic: BasicTable
+    
+    
   },
-});
+  {
+    initialRouteName: 'Grid',
+  }
+);
+const AppContainer = createAppContainer(RootStack);
 
-export default createAppContainer(AppNavigator);
+// const AppNavigator = createStackNavigator({
+//   Home: {
+//     screen: GridTable,
+//   },
+// });
+
+export default class App extends React.Component {
+  render() {
+    return (
+      <AppContainer />
+    );
+  }
+}

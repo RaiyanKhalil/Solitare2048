@@ -1,54 +1,27 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
+import { createStackNavigator } from 'react-navigation-stack';
 
-var RandomNumber
+import {StyleSheet, View, FlatList, ActivityIndicator, Image, TouchableOpacity, Alert, Button, Text, Dimensions} from 'react-native';
+// import CountDown from 'react-native-countdown-component';
+// var RandomNumber
 
 class BasicTable extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      HeadTable: ['Head1', 'Head2', 'Head3', 'Head4'],
-      DataTable: [
-        ['1', '2', '3', '4'],
-        ['', '', '7', ''],
-        ['', '', '', ''],
-        ['', '', '', ''],
-        ['', '', '', '']
-      ],
-
-      RandomTable:[ "randomNumber2", "randomNumber1", "Discard"]
-    }
+    
     
   }
-  randCard(){
-    RandomNumber = Math.floor(Math.random() * 2048) + 2 ;
-    if((RandomNumber % 2) == 0){
-      RandomNumber = RandomNumber
-      console.log(RandomNumber, 'EVEN')
-    }
-    else{
-      console.log(RandomNumber, 'ODD')
-      this.randCard()
-    }
 
-  }
-  
-  
   render() {
-    const state = this.state;
-    console.log(this.state.DataTable[1][2])
     return (
-      <View style={styles.container}>
-        <Table borderStyle={{borderWidth: 1, borderColor: '#ffa1d2'}}>
-          <Row data={state.HeadTable} style={styles.HeadStyle} textStyle={styles.TableText}/>
-          <Rows data={state.DataTable} textStyle={styles.TableText}/>
-        </Table>
-        <Table borderStyle={{borderWidth: 1, borderColor: '#ffa1d2'}}>
-            <Row data={state.RandomTable} style={styles.HeadStyle} textStyle={styles.TableText}/> 
-        </Table>
-        
-      </View>
+     <View>
+       <Text>HomeScreen</Text>
+
+       <TouchableOpacity><Text>Time Trial</Text></TouchableOpacity>
+       <Button
+        title="Go to Details"
+      />
+     </View>
     )
   }
 

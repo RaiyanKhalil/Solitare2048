@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {StyleSheet, View, FlatList, ActivityIndicator, Image, TouchableOpacity, Alert, Button, Text, Dimensions} from 'react-native';
 import CountDown from 'react-native-countdown-component';
+import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
+
 
 //import all the components we will need
 let randItem, items
@@ -434,7 +436,9 @@ gameOver(){
   }
 }
 
-
+bannerError(e){
+  alert(e);
+}
   render() {
     let topSection = this.state.topSection
     let updateCount = this.state.updateCount
@@ -449,11 +453,23 @@ gameOver(){
 
     return (
       <View>
+        {/* <BannerAd unitId={TestIds.BANNER} /> */}
+        <BannerAd
+      unitId={"ca-app-pub-1636817600873869/9011585705"}
+      size={BannerAdSize.FULL_BANNER}
+      requestOptions={{
+        requestNonPersonalizedAdsOnly: true,
+      }}
+      // bannerSize = "banner"
+      // unitID = "ca-app-pub-1636817600873869/9011585705"
+      // testDeviceID = "8UEDU18313000310" 
+      // onDidFailToReceiveAdWithError = { (e) => this.bannerError(e) }
+    />
         <View style = {{paddingTop: 35}}>
-              <Text style = {{fontSize: 30, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", bottom: 20}}>
+              <Text style = {{fontSize: 25, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", bottom: 20}}>
               পয়েন্ট: {this.state.points}       বাতিল: {discardCount}          
               </Text>
-              <Text style = {{fontSize: 30, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", top: -10}}>
+              <Text style = {{fontSize: 25, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", top: -10}}>
               সময়: {this.state.second}
                 </Text>
         </View>
