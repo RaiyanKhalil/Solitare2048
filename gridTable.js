@@ -659,6 +659,10 @@ bannerError(e){
                   }
                   if(this.gameOver() && discardCount > 3){
                     // <Ad />
+                    this.setState({second: 0}, () => {
+                      clearInterval(this._interval);
+                    })
+                    
                     {interstitial.show()}
                     Alert.alert("GAME OVER")
                   }
