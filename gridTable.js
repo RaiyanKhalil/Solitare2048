@@ -544,8 +544,8 @@ bannerError(e){
     />
     
         <View style = {{paddingTop: 35}}>
-              <Text style = {{fontSize: 25, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", bottom: 20}}>
-              পয়েন্ট: {this.state.points}     সময়: {this.state.second}     বাতিল: {discardCount}          
+              <Text style = {{fontSize: 23, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", bottom: 20}}>
+              পয়েন্ট: {this.state.points}    সময়: {this.state.second}    বাতিল: {discardCount}          
               </Text>
               {/* <Text style = {{fontSize: 25, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", top: -30}}>
               সময়: {this.state.second}
