@@ -660,6 +660,8 @@ bannerError(e){
                   }
                   if(this.gameOver() && discardCount > 3){
                     // <Ad />
+                    //When game is over time is set to ZERO so that time function (onStart) doesn't keep running
+                    //Removing this setState section will cause the AD to render twice, as the show Ad function is also called in the time function
                     this.setState({second: 0}, () => {
                       clearInterval(this._interval);
                     })
