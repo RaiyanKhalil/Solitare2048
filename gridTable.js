@@ -7,13 +7,51 @@ import { BannerAd, BannerAdSize, TestIds, InterstitialAd, AdEventType } from '@r
 //import all the components we will need
 let randItem, items
 var RandomNumber, power, discardCount = 0
-const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
+const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
+
 const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
   requestNonPersonalizedAdsOnly: true,
   keywords: ['fashion', 'clothing'],
 });
 
+function Ad() {
+  const [loaded, setLoaded] = useState(false);
 
+  useEffect(() => {
+    const eventListener = interstitial.onAdEvent(type => {
+      if (type === AdEventType.LOADED) {
+        setLoaded(true);
+      }
+    });
+
+    // Start loading the interstitial straight away
+    // interstitial.load();
+
+    // Unsubscribe from events on unmount
+    return () => {
+      eventListener();
+    };
+  }, []);
+
+  // No advert ready to show yet
+  if (!loaded) {
+    return null;
+  }
+
+  return (
+    <View>
+      {interstitial.show()}
+    </View>
+  )
+  // return (
+  //   <Button
+  //     title="Show Interstitial"
+  //     onPress={() => {
+  //       interstitial.show();
+  //     }}
+  //   />
+  // );
+}
 export default class GridTable extends Component {
   constructor() {
     super();
@@ -44,7 +82,10 @@ onStart = () => {
       });
       // this.setState({flag: true})
       clearInterval(this._interval);
-      Alert.alert("Time Over")
+      {interstitial.show()}
+      // Alert.alert("Time Over");
+      // <Ad />
+
       }
   }, 1000);
 }
@@ -53,7 +94,8 @@ onStart = () => {
     updateCount = {value: ''}
     topSection = {value: ''}
     // RandomNumber = Math.floor(Math.random() * 16) + 1 ;
-    
+    interstitial.load();
+
     // this.advert
     items = Array.apply(null, Array(16)).map((v, i) => {
       let topSection = this.state.topSection
@@ -449,30 +491,9 @@ bannerError(e){
   alert(e);
 }
 
-advert(){
-  // const [loaded, setLoaded] = useState(false);
 
-    useEffect(() => {
-      const eventListener = interstitial.onAdEvent(type => {
-        if (type === AdEventType.LOADED) {
-          setLoaded(true);
-        }
-      });
-  
-      // Start loading the interstitial straight away
-      interstitial.load();
-  
-      // Unsubscribe from events on unmount
-      return () => {
-        eventListener();
-      };
-    }, []);
-  
-    // No advert ready to show yet
-    if (!loaded) {
-      return null;
-    }
-}
+
+
   render() {
     let topSection = this.state.topSection
     let updateCount = this.state.updateCount
@@ -510,25 +531,24 @@ advert(){
     
     return (
       <View>
+        {/* <Ad /> */}
         {/* <BannerAd unitId={TestIds.BANNER} /> */}
-        <BannerAd
+      <BannerAd
       unitId={adUnitId}
       size={BannerAdSize.BANNER}
       requestOptions={{
-        requestNonPersonalizedAdsOnly: true,
-      }}
-      // bannerSize = "banner"
-      // unitID = "ca-app-pub-1636817600873869/9011585705"
-      // testDeviceID = "8UEDU18313000310" 
-      // onDidFailToReceiveAdWithError = { (e) => this.bannerError(e) }
+      requestNonPersonalizedAdsOnly: true,
+      
+    }}
     />
+    
         <View style = {{paddingTop: 35}}>
               <Text style = {{fontSize: 25, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", bottom: 20}}>
-              পয়েন্ট: {this.state.points}       বাতিল: {discardCount}          
+              পয়েন্ট: {this.state.points}     সময়: {this.state.second}     বাতিল: {discardCount}          
               </Text>
-              <Text style = {{fontSize: 25, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", top: -10}}>
+              {/* <Text style = {{fontSize: 25, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", top: -30}}>
               সময়: {this.state.second}
-                </Text>
+                </Text> */}
         </View>
         {/* Gameboard Section */}
         <View style = {{top: -10}}>
@@ -638,6 +658,8 @@ advert(){
                     }
                   }
                   if(this.gameOver() && discardCount > 3){
+                    // <Ad />
+                    {interstitial.show()}
                     Alert.alert("GAME OVER")
                   }
                 //   if(item.src == 2){item.src = "২"
@@ -659,7 +681,7 @@ advert(){
           keyExtractor={(item, index) => index.toString()}
         />
     </View>
-
+        {/* <Advert /> */}
     {/* <View>   */}
       {/* <CountDown
             until={10}
@@ -673,7 +695,7 @@ advert(){
     {/* </View> */}
 
       {/* Random Number generator section */}
-       <View style = {{paddingTop: 60, top: -40}}>
+       <View style = {{paddingTop: 60, top: -45}}>
       <FlatList
           data={this.state.randSource}
           renderItem={({ item }) => (
@@ -684,11 +706,12 @@ advert(){
                     var val1 = updateCount[index].value
                     if(!flag ){
                       if(!flag2){
-                        // interstitial.show();
                         this.onStart()
                         this.setState({flag2: true})
                       }
+                      // <Ad />
                       
+                      // interstitial.show()
                       if(index == 1){
                         this.checkSum()
                         console.log("Final Points: ",points)
