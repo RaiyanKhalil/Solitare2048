@@ -8,6 +8,7 @@ import { BannerAd, BannerAdSize, TestIds, InterstitialAd, AdEventType } from '@r
 let randItem, items
 var RandomNumber, power, discardCount = 0
 const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
+const adUnitId2 = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
 
 const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
   requestNonPersonalizedAdsOnly: true,
@@ -534,7 +535,7 @@ bannerError(e){
         {/* <Ad /> */}
         {/* <BannerAd unitId={TestIds.BANNER} /> */}
       <BannerAd
-      unitId={adUnitId}
+      unitId={adUnitId2}
       size={BannerAdSize.BANNER}
       requestOptions={{
       requestNonPersonalizedAdsOnly: true,
