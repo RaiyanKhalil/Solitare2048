@@ -14,7 +14,10 @@ import { InterstitialAd, AdEventType, TestIds } from '@react-native-firebase/adm
 class BasicTable extends Component {
 
   static navigationOptions = {
-    title: "Home",
+    headerTitleStyle: { 
+      textAlign:"center", 
+      flex:1  },
+    title: "২০৪৮",
   }
 
   constructor(props) {

@@ -68,7 +68,10 @@ export default class GridTable extends Component {
 
   static navigationOptions = ({navigation}) => {
     return{
-      title: navigation.getParam('name')
+      headerTitleStyle: { 
+        textAlign:"center", 
+        flex:1  },
+      title: "২০৪৮"
     }
   }
   

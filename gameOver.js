@@ -12,7 +12,11 @@ const adUnitId2 = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyy
 class GameOver extends Component {
 
   static navigationOptions = {
+    headerTitleStyle: { 
+        textAlign:"center", 
+        flex:1  },    
     title: "Game Over",
+    headerLeft: null
   }
 
   constructor(props) {
