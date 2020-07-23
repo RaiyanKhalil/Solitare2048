@@ -4,6 +4,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import BasicTable from './basicTable';
 import GridTable from './gridTable'
+import GameOver from './gameOver'
 
 class HomeScreen extends React.Component {
   render() {
@@ -17,13 +18,14 @@ class HomeScreen extends React.Component {
 const RootStack = createStackNavigator(
   {
     
-    Grid: GridTable,
-    Basic: BasicTable
+    Game: GridTable,
+    Basic: BasicTable,
+    Over: GameOver
     
     
   },
   {
-    initialRouteName: 'Grid',
+    initialRouteName: 'Basic',
   }
 );
 const AppContainer = createAppContainer(RootStack);

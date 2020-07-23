@@ -61,16 +61,22 @@ export default class GridTable extends Component {
   // this.randCard2 = this.randCard2.bind(this);
     this.state = {
       dataSource: {},
-      randSource: {}, updateCount: [], topSection: [], sumValue: 0, flag: false, index2: 0, points: 0, second: 30, flag2: false
+      randSource: {}, updateCount: [], topSection: [], sumValue: 0, flag: false, index2: 0, points: 0, second: 5, flag2: false
     };
     
   }
 
+  static navigationOptions = ({navigation}) => {
+    return{
+      title: navigation.getParam('name')
+    }
+  }
   
   _interval : any;
   
 onStart = () => {
   // var flag = this.state.flag
+  const {navigate, state} = this.props.navigation
 
      this._interval = setInterval(() => {
       this.setState({
@@ -83,7 +89,11 @@ onStart = () => {
       });
       // this.setState({flag: true})
       clearInterval(this._interval);
+      {navigate(
+        "Over" , {points: this.state.points}
+       )}
       {interstitial.show()}
+      
       // Alert.alert("Time Over");
       // <Ad />
 
@@ -504,6 +514,8 @@ bannerError(e){
     var index2 = this.state.index2
     var points = this.state.points
     var second = this.state.second
+
+    const {navigate, state} = this.props.navigation
     // var discardCount = this.state.discardCount
     // var whoosh = whoosh
 
@@ -542,6 +554,13 @@ bannerError(e){
       
     }}
     />
+    <Button
+        title="Go to Details"
+        onPress={() => navigate(
+         "Over" , {points: this.state.points}
+        )}
+      />
+    <Text>{state.params.name}</Text>
     
         <View style = {{paddingTop: 35}}>
               <Text style = {{fontSize: 23, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", bottom: 20}}>
@@ -665,9 +684,16 @@ bannerError(e){
                     this.setState({second: 0}, () => {
                       clearInterval(this._interval);
                     })
+                    // {this.checkSum(), () => {
+                      if(this.gameOver()){
+                        {interstitial.show()}
+                        {navigate(
+                          "Over" , {points: this.state.points}
+                         )}
+                      }
+                    // }}
                     
-                    {interstitial.show()}
-                    Alert.alert("GAME OVER")
+                    // Alert.alert("GAME OVER")
                   }
                 //   if(item.src == 2){item.src = "২"
                 // this.setState({uri: item.src})}

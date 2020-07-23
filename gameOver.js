@@ -11,10 +11,10 @@ import { InterstitialAd, AdEventType, TestIds } from '@react-native-firebase/adm
 
 
 
-class BasicTable extends Component {
+class GameOver extends Component {
 
   static navigationOptions = {
-    title: "Home",
+    title: "Game Over",
   }
 
   constructor(props) {
@@ -28,19 +28,20 @@ class BasicTable extends Component {
   }
   render() {
 
-    const {navigate} = this.props.navigation
+    const {navigate, state} = this.props.navigation
 
     return (
      <View>
-       <Text>HomeScreen</Text>
+       <Text>Game Over</Text>
+    <Text>Points: {state.params.points}</Text>
       {/* <App /> */}
-       <TouchableOpacity><Text>Time Trial</Text></TouchableOpacity>
+       {/* <TouchableOpacity><Text>Time Trial</Text></TouchableOpacity>
        <Button
         title="Go to Details"
-        onPress={() => navigate(
-         "Game" , {name: "Jane"}
+        onPress={() => navigate( 
+         "Grid" , {name: "Jane"}
         )}
-      />
+      /> */}
      </View>
     )
   }
@@ -64,4 +65,4 @@ const styles = StyleSheet.create({
     }
   });
 
-  export default BasicTable
+  export default GameOver
