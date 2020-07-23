@@ -34,11 +34,11 @@ class BasicTable extends Component {
      <View>
        <Text>HomeScreen</Text>
       {/* <App /> */}
-       <TouchableOpacity><Text>Time Trial</Text></TouchableOpacity>
+       {/* <TouchableOpacity><Text>Time Trial</Text></TouchableOpacity> */}
        <Button
         title="Go to Details"
         onPress={() => navigate(
-         "Game" , {name: "Jane"}
+         "Game" , {name: "2048"}
         )}
       />
      </View>

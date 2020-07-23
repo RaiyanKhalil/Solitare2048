@@ -61,7 +61,7 @@ export default class GridTable extends Component {
   // this.randCard2 = this.randCard2.bind(this);
     this.state = {
       dataSource: {},
-      randSource: {}, updateCount: [], topSection: [], sumValue: 0, flag: false, index2: 0, points: 0, second: 5, flag2: false
+      randSource: {}, updateCount: [], topSection: [], sumValue: 0, flag: false, index2: 0, points: 0, second: 30, flag2: false
     };
     
   }
@@ -77,7 +77,7 @@ export default class GridTable extends Component {
 onStart = () => {
   // var flag = this.state.flag
   const {navigate, state} = this.props.navigation
-
+  var points = this.state.points
      this._interval = setInterval(() => {
       this.setState({
         second: this.state.second - 1,
@@ -89,9 +89,18 @@ onStart = () => {
       });
       // this.setState({flag: true})
       clearInterval(this._interval);
-      {navigate(
-        "Over" , {points: this.state.points}
-       )}
+      Alert.alert(
+        'খেলা শেষ',
+        'আপনার পয়েন্টস: ' + JSON.stringify(points),
+        [
+          {text: 'CONTINUE', onPress: () => navigate(
+            "Over" , {points: this.state.points}
+           )},
+    
+          // {text: 'বন্ধু', onPress: () => this.props.navigation.navigate('NewKeyboard', {reload:this.props.navigation.getParam("reload"), gameName: this.state.text, value: this.state.gametype,bot:false})}
+    
+        ],
+        { cancelable: false })
       {interstitial.show()}
       
       // Alert.alert("Time Over");
@@ -502,7 +511,24 @@ bannerError(e){
   alert(e);
 }
 
+gameOverAlert(){
+  const {navigate, state} = this.props.navigation
+  var points = this.state.points
 
+  Alert.alert(
+    'খেলা শেষ',
+    'আপনার পয়েন্টস: ' + JSON.stringify(points),
+    [
+      {text: 'CONTINUE', onPress: () => navigate(
+        "Over" , {points: this.state.points}
+       )},
+
+      // {text: 'বন্ধু', onPress: () => this.props.navigation.navigate('NewKeyboard', {reload:this.props.navigation.getParam("reload"), gameName: this.state.text, value: this.state.gametype,bot:false})}
+
+    ],
+    { cancelable: false })
+    {interstitial.show()}
+}
 
 
   render() {
@@ -516,31 +542,6 @@ bannerError(e){
     var second = this.state.second
 
     const {navigate, state} = this.props.navigation
-    // var discardCount = this.state.discardCount
-    // var whoosh = whoosh
-
-    // const [loaded, setLoaded] = useState(false);
-
-    // useEffect(() => {
-    //   const eventListener = interstitial.onAdEvent(type => {
-    //     if (type === AdEventType.LOADED) {
-    //       setLoaded(true);
-    //     }
-    //   });
-  
-    //   // Start loading the interstitial straight away
-    //   interstitial.load();
-  
-    //   // Unsubscribe from events on unmount
-    //   return () => {
-    //     eventListener();
-    //   };
-    // }, []);
-  
-    // // No advert ready to show yet
-    // if (!loaded) {
-    //   return null;
-    // }
     
     return (
       <View>
@@ -554,17 +555,10 @@ bannerError(e){
       
     }}
     />
-    <Button
-        title="Go to Details"
-        onPress={() => navigate(
-         "Over" , {points: this.state.points}
-        )}
-      />
-    <Text>{state.params.name}</Text>
-    
+       
         <View style = {{paddingTop: 35}}>
               <Text style = {{fontSize: 23, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", bottom: 20}}>
-              পয়েন্ট: {this.state.points}    সময়: {this.state.second}    বাতিল: {discardCount}          
+              পয়েন্ট: {this.state.points}   সময়: {this.state.second}    বাতিল: {discardCount}          
               </Text>
               {/* <Text style = {{fontSize: 25, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", top: -30}}>
               সময়: {this.state.second}
@@ -681,17 +675,16 @@ bannerError(e){
                     // <Ad />
                     //When game is over time is set to ZERO so that time function (onStart) doesn't keep running
                     //Removing this setState section will cause the AD to render twice, as the show Ad function is also called in the time function
-                    this.setState({second: 0}, () => {
-                      clearInterval(this._interval);
-                    })
-                    // {this.checkSum(), () => {
-                      if(this.gameOver()){
-                        {interstitial.show()}
-                        {navigate(
-                          "Over" , {points: this.state.points}
-                         )}
-                      }
-                    // }}
+                        this.setState({second: 0}, () => {
+                          clearInterval(this._interval);
+                        })
+                        //Shows Ad and Navigates to Game Over Page
+                        this.gameOverAlert()
+                        // {interstitial.show()}
+                        // {navigate(
+                        //   "Over" , {points: this.state.points}
+                        //  )}
+                      
                     
                     // Alert.alert("GAME OVER")
                   }
