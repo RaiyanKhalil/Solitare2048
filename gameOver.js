@@ -5,11 +5,9 @@ import {StyleSheet, View, FlatList, ActivityIndicator, Image, TouchableOpacity, 
 // import CountDown from 'react-native-countdown-component';
 // var RandomNumber
 
-import { InterstitialAd, AdEventType, TestIds } from '@react-native-firebase/admob';
+import { BannerAd, BannerAdSize, TestIds, InterstitialAd, AdEventType } from '@react-native-firebase/admob';
 
-
-
-
+const adUnitId2 = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
 
 class GameOver extends Component {
 
@@ -32,6 +30,14 @@ class GameOver extends Component {
 
     return (
      <View>
+         <BannerAd
+      unitId={adUnitId2}
+      size={BannerAdSize.BANNER}
+      requestOptions={{
+      requestNonPersonalizedAdsOnly: true,
+      
+    }}
+    />
        <Text>Game Over</Text>
     <Text>Points: {state.params.points}</Text>
       {/* <App /> */}

@@ -38,7 +38,7 @@ class BasicTable extends Component {
        <Button
         title="Go to Details"
         onPress={() => navigate(
-         "Game" , {name: "2048"}
+         "Game" , {name: "২০৪৮"}
         )}
       />
      </View>
