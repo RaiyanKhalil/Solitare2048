@@ -70,8 +70,13 @@ export default class GridTable extends Component {
     return{
       headerTitleStyle: { 
         textAlign:"center", 
-        flex:1  },
-      title: "২০৪৮"
+        flex:1 
+      },
+      headerStyle: {
+        backgroundColor: '#ADFF2F',
+      },
+      title: "২০৪৮",
+      headerLeft: null
     }
   }
   
@@ -809,7 +814,7 @@ const styles = StyleSheet.create({
     fontSize: 50
   },
   item: {
-    backgroundColor: '#FF4500',
+    backgroundColor: '#9ACD32',
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,

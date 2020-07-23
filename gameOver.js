@@ -14,7 +14,11 @@ class GameOver extends Component {
   static navigationOptions = {
     headerTitleStyle: { 
         textAlign:"center", 
-        flex:1  },    
+        flex:1,
+        },
+    headerStyle: {
+        backgroundColor: '#ADFF2F',
+        },    
     title: "Game Over",
     headerLeft: null
   }
