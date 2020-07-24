@@ -19,7 +19,7 @@ class BasicTable extends Component {
       flex:1,
       },
       headerStyle: {
-        backgroundColor: '#ADFF2F',
+        backgroundColor: '#C71585',
       },
     title: "২০৪৮",
   }
@@ -39,15 +39,19 @@ class BasicTable extends Component {
 
     return (
      <View>
-       <Text>HomeScreen</Text>
+       {/* <Text>HomeScreen</Text> */}
       {/* <App /> */}
        {/* <TouchableOpacity><Text>Time Trial</Text></TouchableOpacity> */}
-       <Button
-        title="Go to Details"
+      <View style = {styles.playContainer}>
+      <TouchableOpacity
+        style = {styles.playButton}
         onPress={() => navigate(
          "Game" 
         )}
-      />
+      ><Text style = {styles.playText}>PLAY</Text>
+      </TouchableOpacity>
+      </View>
+       
      </View>  
     )
   }
@@ -68,6 +72,21 @@ const styles = StyleSheet.create({
     },
     TableText: { 
       margin: 10
+    },
+    playButton:{
+      height: 100,
+      width: 140,
+      backgroundColor: "#000000",
+      justifyContent: "center"
+    },
+    playContainer:{
+      paddingTop: 150,
+      paddingLeft: 120,
+    },
+    playText:{
+      color: "#ffffff",
+      fontSize: 30,
+      textAlign: "center",
     }
   });
 

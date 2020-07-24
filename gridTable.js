@@ -73,7 +73,7 @@ export default class GridTable extends Component {
         flex:1 
       },
       headerStyle: {
-        backgroundColor: '#ADFF2F',
+        backgroundColor: '#C71585',
       },
       title: "২০৪৮",
       headerLeft: null
@@ -704,7 +704,7 @@ gameOverAlert(){
                       this.setState({sumValue: cleanSum, flag: false, index2: cleanSum})
                     }
                   }
-                  if(this.gameOver() && discardCount == 0 && addCount < 4){
+                  if(this.gameOver() && discardCount == 0){
                     // <Ad />
                     //When game is over time is set to ZERO so that time function (onStart) doesn't keep running
                     //This setState section will prevent the AD to render twice, as the show Ad function is also called in the time function
@@ -839,7 +839,7 @@ const styles = StyleSheet.create({
     fontSize: 50
   },
   item: {
-    backgroundColor: '#9ACD32',
+    backgroundColor: '#FFB6C1',
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,

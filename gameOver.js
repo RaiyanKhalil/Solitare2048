@@ -17,7 +17,7 @@ class GameOver extends Component {
         flex:1,
         },
     headerStyle: {
-        backgroundColor: '#ADFF2F',
+        backgroundColor: '#C71585',
         },    
     title: "Game Over",
     headerLeft: null
@@ -54,12 +54,12 @@ class GameOver extends Component {
          "Basic" 
         )}
       />
-      <Button
+      {/* <Button
         title="PLAY AGAIN"
         onPress={() => navigate(
          "Game" 
         )}
-      />
+      /> */}
       {/* <App /> */}
        {/* <TouchableOpacity><Text>Time Trial</Text></TouchableOpacity>
        <Button
