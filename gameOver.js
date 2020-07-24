@@ -47,13 +47,17 @@ class GameOver extends Component {
     }}
     />
        <Text>Game Over</Text>
-    <Text>Points: {state.params.points}</Text>
-    <Button
-        title="Home"
+    <Text style = {{fontSize: 30, textAlign: "center"}}>Points: {state.params.points}</Text>
+    <View style = {styles.homeButtonContainer}>
+    <TouchableOpacity
+        style = {styles.homeButton}
         onPress={() => navigate(
          "Basic" 
         )}
-      />
+      ><Text style = {styles.homeText}>HOME</Text>
+      </TouchableOpacity>
+    </View>
+    
       {/* <Button
         title="PLAY AGAIN"
         onPress={() => navigate(
@@ -88,6 +92,21 @@ const styles = StyleSheet.create({
     },
     TableText: { 
       margin: 10
+    },
+    homeButton:{
+      height: 100,
+      width: 140,
+      backgroundColor: "#000000",
+      justifyContent: "center"
+    },
+    homeButtonContainer:{
+      paddingTop: 150,
+      paddingLeft: 120,
+    },
+    homeText:{
+      color: "#ffffff",
+      fontSize: 30,
+      textAlign: "center",
     }
   });
 

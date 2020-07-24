@@ -119,11 +119,15 @@ onStart = () => {
 }
   componentDidMount() {
     var that = this;
+    var second = this.state.second
+    var points = this.state.points
+    // var discardCount = 4
     updateCount = {value: ''}
     topSection = {value: ''}
     // RandomNumber = Math.floor(Math.random() * 16) + 1 ;
     interstitial.load();
 
+    discardCount = 4
     // this.advert
     items = Array.apply(null, Array(16)).map((v, i) => {
       let topSection = this.state.topSection
