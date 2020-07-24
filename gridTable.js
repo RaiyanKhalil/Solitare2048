@@ -99,7 +99,7 @@ onStart = () => {
       clearInterval(this._interval);
       Alert.alert(
         'খেলা শেষ',
-        'আপনার পয়েন্টস: ' + JSON.stringify(points),
+        ' ',
         [
           {text: 'CONTINUE', onPress: () => navigate(
             "Over" , {points: this.state.points}
@@ -419,9 +419,11 @@ whoosh.release()
             var newSource =  this.banglaConverter(newSum)
 
             addCount = addCount + 1
-            if(addCount == 4 && discardCount < 4){
+            console.log(addCount, "ADD COUNT")
+            if(addCount >= 4 && discardCount < 4){
               discardCount = discardCount + 1
               addCount = 0
+              console.log(addCount, 'should be zero')
             }
 
             
@@ -448,9 +450,11 @@ whoosh.release()
             var newSource =  this.banglaConverter(newSum)
     
             addCount = addCount + 1
-            if(addCount == 4 && discardCount < 4){
+            console.log(addCount, "ADD COUNT")
+            if(addCount >= 4 && discardCount < 4){
               discardCount = discardCount + 1
               addCount = 0
+              console.log(addCount, 'should be zero')
             }
 
             topSection[j - 4].value = newSum
@@ -477,9 +481,11 @@ whoosh.release()
             var newSource =  this.banglaConverter(newSum)
     
             addCount = addCount + 1
-            if(addCount == 4 && discardCount < 4){
+            console.log(addCount, "ADD COUNT")
+            if(addCount >= 4 && discardCount < 4){
               discardCount = discardCount + 1
               addCount = 0
+              console.log(addCount, 'should be zero')
             }
 
             topSection[j - 4].value = newSum
@@ -547,7 +553,7 @@ gameOverAlert(){
 
   Alert.alert(
     'খেলা শেষ',
-    'আপনার পয়েন্টস: ' + JSON.stringify(points),
+    ' ',
     [
       {text: 'CONTINUE', onPress: () => navigate(
         "Over" , {points: this.state.points}
@@ -686,9 +692,11 @@ gameOverAlert(){
                         // console.log(second, "second")
 
                         addCount = addCount + 1
-            if(addCount == 5 && discardCount < 4){
+                        console.log(addCount, "ADD COUNT")
+            if(addCount >= 4 && discardCount < 4){
               discardCount = discardCount + 1
               addCount = 0
+              console.log(addCount, 'should be zero')
             }
 
                         var sum2 = this.state.sumValue + parseInt(val2)
