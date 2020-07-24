@@ -48,6 +48,18 @@ class GameOver extends Component {
     />
        <Text>Game Over</Text>
     <Text>Points: {state.params.points}</Text>
+    <Button
+        title="Home"
+        onPress={() => navigate(
+         "Basic" 
+        )}
+      />
+      <Button
+        title="PLAY AGAIN"
+        onPress={() => navigate(
+         "Game" 
+        )}
+      />
       {/* <App /> */}
        {/* <TouchableOpacity><Text>Time Trial</Text></TouchableOpacity>
        <Button

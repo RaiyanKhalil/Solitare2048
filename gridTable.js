@@ -6,7 +6,7 @@ import { BannerAd, BannerAdSize, TestIds, InterstitialAd, AdEventType } from '@r
 
 //import all the components we will need
 let randItem, items
-var RandomNumber, power, discardCount = 0
+var RandomNumber, power, discardCount = 4, addCount = 0
 const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
 const adUnitId2 = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
 
@@ -412,9 +412,15 @@ whoosh.release()
         if(items[j - 4].src != initialSource){
           if(topSection[j - 4].value == topSection[j].value){
             newSum = topSection[j].value + topSection[j - 4].value
-            //console.log(newSum, "New Sum")
             var newSource =  this.banglaConverter(newSum)
-    
+
+            addCount = addCount + 1
+            if(addCount == 4 && discardCount < 4){
+              discardCount = discardCount + 1
+              addCount = 0
+            }
+
+            
             topSection[j - 4].value = newSum
             items[j - 4].src = newSource
     
@@ -437,6 +443,12 @@ whoosh.release()
             //console.log(newSum, "New Sum")
             var newSource =  this.banglaConverter(newSum)
     
+            addCount = addCount + 1
+            if(addCount == 4 && discardCount < 4){
+              discardCount = discardCount + 1
+              addCount = 0
+            }
+
             topSection[j - 4].value = newSum
             items[j - 4].src = newSource
     
@@ -460,6 +472,12 @@ whoosh.release()
             //console.log(newSum, "New Sum")
             var newSource =  this.banglaConverter(newSum)
     
+            addCount = addCount + 1
+            if(addCount == 4 && discardCount < 4){
+              discardCount = discardCount + 1
+              addCount = 0
+            }
+
             topSection[j - 4].value = newSum
             items[j - 4].src = newSource
     
@@ -489,7 +507,7 @@ updateCount[0].value = powerOf2
 randItem[1].src = randItem[0].src
 randItem[0].src = this.banglaConverter(powerOf2)
 
-discardCount = discardCount + 1
+discardCount = discardCount - 1
 // Alert.alert(JSON.stringify(this.state.discardCount))
 this.setState({uri: randItem[0].src})
 }
@@ -662,6 +680,13 @@ gameOverAlert(){
                       if(this.state.sumValue == parseInt(val2)){
                         this.slideValue(index2)
                         // console.log(second, "second")
+
+                        addCount = addCount + 1
+            if(addCount == 5 && discardCount < 4){
+              discardCount = discardCount + 1
+              addCount = 0
+            }
+
                         var sum2 = this.state.sumValue + parseInt(val2)
                         topSection[index1].value = sum2
                         points = points + 1
@@ -679,10 +704,10 @@ gameOverAlert(){
                       this.setState({sumValue: cleanSum, flag: false, index2: cleanSum})
                     }
                   }
-                  if(this.gameOver() && discardCount > 3){
+                  if(this.gameOver() && discardCount == 0 && addCount < 4){
                     // <Ad />
                     //When game is over time is set to ZERO so that time function (onStart) doesn't keep running
-                    //Removing this setState section will cause the AD to render twice, as the show Ad function is also called in the time function
+                    //This setState section will prevent the AD to render twice, as the show Ad function is also called in the time function
                         this.setState({second: 0}, () => {
                           clearInterval(this._interval);
                         })
@@ -765,10 +790,10 @@ gameOverAlert(){
                 onLongPress= {() => {
                   // var jsonDiscardCount = JSON.stringify(discardCount)
                   this.setState({flag: false, sumValue: 0, index2 : 0})
-                  if(item.id == 1 && discardCount <= 3){
+                  if(item.id == 1 && discardCount > 0){
                     this.discard()
                   }
-                  else if(discardCount > 3){
+                  else if(discardCount == 0){
                     Alert.alert("DISCARD LIMIT HAS BEEN REACHED")
                     // this.gameOver()
                   }
