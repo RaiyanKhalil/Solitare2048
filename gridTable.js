@@ -418,12 +418,15 @@ whoosh.release()
             newSum = topSection[j].value + topSection[j - 4].value
             var newSource =  this.banglaConverter(newSum)
 
-            addCount = addCount + 1
-            console.log(addCount, "ADD COUNT")
-            if(addCount >= 4 && discardCount < 4){
-              discardCount = discardCount + 1
-              addCount = 0
-              console.log(addCount, 'should be zero')
+            // addCount = addCount + 1
+            // console.log(addCount, "ADD COUNT")
+            if(discardCount < 4){
+              addCount = addCount + 1
+              if(addCount >= 4){
+                discardCount = discardCount + 1
+                addCount = 0
+                console.log(addCount, 'should be zero')
+              }
             }
 
             
@@ -449,12 +452,20 @@ whoosh.release()
             //console.log(newSum, "New Sum")
             var newSource =  this.banglaConverter(newSum)
     
-            addCount = addCount + 1
-            console.log(addCount, "ADD COUNT")
-            if(addCount >= 4 && discardCount < 4){
-              discardCount = discardCount + 1
-              addCount = 0
-              console.log(addCount, 'should be zero')
+            // addCount = addCount + 1
+            // console.log(addCount, "ADD COUNT")
+            // if(addCount >= 4 && discardCount < 4){
+            //   discardCount = discardCount + 1
+            //   addCount = 0
+            //   console.log(addCount, 'should be zero')
+            // }
+            if(discardCount < 4){
+              addCount = addCount + 1
+              if(addCount >= 4){
+                discardCount = discardCount + 1
+                addCount = 0
+                console.log(addCount, 'should be zero')
+              }
             }
 
             topSection[j - 4].value = newSum
@@ -480,12 +491,20 @@ whoosh.release()
             //console.log(newSum, "New Sum")
             var newSource =  this.banglaConverter(newSum)
     
-            addCount = addCount + 1
-            console.log(addCount, "ADD COUNT")
-            if(addCount >= 4 && discardCount < 4){
-              discardCount = discardCount + 1
-              addCount = 0
-              console.log(addCount, 'should be zero')
+            // addCount = addCount + 1
+            // console.log(addCount, "ADD COUNT")
+            // if(addCount >= 4 && discardCount < 4){
+            //   discardCount = discardCount + 1
+            //   addCount = 0
+            //   console.log(addCount, 'should be zero')
+            // }
+            if(discardCount < 4){
+              addCount = addCount + 1
+              if(addCount >= 4){
+                discardCount = discardCount + 1
+                addCount = 0
+                console.log(addCount, 'should be zero')
+              }
             }
 
             topSection[j - 4].value = newSum
@@ -691,13 +710,21 @@ gameOverAlert(){
                         this.slideValue(index2)
                         // console.log(second, "second")
 
-                        addCount = addCount + 1
-                        console.log(addCount, "ADD COUNT")
-            if(addCount >= 4 && discardCount < 4){
-              discardCount = discardCount + 1
-              addCount = 0
-              console.log(addCount, 'should be zero')
-            }
+            //             addCount = addCount + 1
+            //             console.log(addCount, "ADD COUNT")
+            // if(addCount >= 4 && discardCount < 4){
+            //   discardCount = discardCount + 1
+            //   addCount = 0
+            //   console.log(addCount, 'should be zero')
+            // }
+                        if(discardCount < 4){
+                          addCount = addCount + 1
+                          if(addCount >= 4){
+                            discardCount = discardCount + 1
+                            addCount = 0
+                            console.log(addCount, 'should be zero')
+                          }
+                        }
 
                         var sum2 = this.state.sumValue + parseInt(val2)
                         topSection[index1].value = sum2
