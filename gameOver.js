@@ -46,7 +46,7 @@ class GameOver extends Component {
       
     }}
     />
-       <Text>Game Over</Text>
+       {/* <Text>Game Over</Text> */}
     <Text style = {{fontSize: 30, textAlign: "center"}}>Points: {state.params.points}</Text>
     <View style = {styles.homeButtonContainer}>
     <TouchableOpacity

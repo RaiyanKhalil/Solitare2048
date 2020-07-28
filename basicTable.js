@@ -14,14 +14,14 @@ import { InterstitialAd, AdEventType, TestIds } from '@react-native-firebase/adm
 class BasicTable extends Component {
 
   static navigationOptions = {
-    headerTitleStyle: { 
-      textAlign:"center", 
-      flex:1,
-      },
+    // headerTitleStyle: { 
+    //   textAlign:"center", 
+    //   flex:1,
+    //   },
       headerStyle: {
         backgroundColor: '#C71585',
       },
-    title: "২০৪৮",
+    // title: "২০৪৮",
   }
 
   constructor(props) {
@@ -38,10 +38,21 @@ class BasicTable extends Component {
     const {navigate} = this.props.navigation
 
     return (
-     <View>
+     <View style = {{paddingTop: 50}}>
        {/* <Text>HomeScreen</Text> */}
       {/* <App /> */}
-       {/* <TouchableOpacity><Text>Time Trial</Text></TouchableOpacity> */}
+      {/* <Text style = {{fontSize: 90, fontStyle: 'italic', textAlign: "center", paddingTop: 60}}>২০৪৮</Text> */}
+      <View style={{
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+      }}>
+        <View style={styles.titleContainer}><Text style = {{fontSize: 50,  textAlign: "center"}}>২</Text></View>
+        <View style={styles.titleContainer}><Text style = {{fontSize: 50,  textAlign: "center"}}>০</Text></View>
+        <View style={styles.titleContainer}><Text style = {{fontSize: 50,  textAlign: "center"}}>৪</Text></View>
+        <View style={styles.titleContainer}><Text style = {{fontSize: 50,  textAlign: "center"}}>৮</Text></View>
+
+      </View>
       <View style = {styles.playContainer}>
       <TouchableOpacity
         style = {styles.playButton}
@@ -74,19 +85,28 @@ const styles = StyleSheet.create({
       margin: 10
     },
     playButton:{
-      height: 100,
+      height: 90,
       width: 140,
       backgroundColor: "#000000",
       justifyContent: "center"
     },
     playContainer:{
-      paddingTop: 150,
+      paddingTop: 200,
       paddingLeft: 120,
     },
     playText:{
       color: "#ffffff",
       fontSize: 30,
       textAlign: "center",
+    },
+    titleContainer: {
+      margin: 1,
+      backgroundColor: '#FFB6C1',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: 85, 
+      height: 85,
+
     }
   });
 
