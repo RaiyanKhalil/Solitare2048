@@ -821,6 +821,18 @@ gameOverAlert(){
                       }
                    
                   }
+                  if(discardCount == 0){
+                    if(this.gameOver()){
+                      // <Ad />
+                      //When game is over time is set to ZERO so that time function (onStart) doesn't keep running
+                      //This setState section will prevent the AD to render twice, as the show Ad function is also called in the time function
+                          this.setState({second: 0}, () => {
+                            clearInterval(this._interval);
+                          })
+                          this.gameOverAlert()
+                          
+                    }
+                  }
                   
 
                   // })
@@ -833,9 +845,27 @@ gameOverAlert(){
                     this.discard()
                   }
                   else if(discardCount == 0){
-                    Alert.alert("DISCARD LIMIT HAS BEEN REACHED")
+                    Alert.alert("DISCARD LIMIT HAS REACHED")
+                    if(this.gameOver()){
+                      // <Ad />
+                      //When game is over time is set to ZERO so that time function (onStart) doesn't keep running
+                      //This setState section will prevent the AD to render twice, as the show Ad function is also called in the time function
+                          this.setState({second: 0}, () => {
+                            clearInterval(this._interval);
+                          })
+                          //Shows Ad and Navigates to Game Over Page
+                          this.gameOverAlert()
+                          // {interstitial.show()}
+                          // {navigate(
+                          //   "Over" , {points: this.state.points}
+                          //  )}
+                        
+                      
+                      // Alert.alert("GAME OVER")
+                    }
                     // this.gameOver()
                   }
+                  
                   // else if(this.gameOver()){
                   //   Alert.alert("GAME OVER")
                   // }
