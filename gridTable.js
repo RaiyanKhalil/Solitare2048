@@ -176,7 +176,6 @@ onStart = () => {
                   //  console.log('২')
                   //   // var powerBangla = '২'
                   // }
-                  // //console.log(updateCount)
                   if(i == 1){
                     return { id: i, src: this.banglaConverter(power) };
                   }
@@ -416,6 +415,10 @@ whoosh.release()
         if(items[j - 4].src != initialSource){
           if(topSection[j - 4].value == topSection[j].value){
             newSum = topSection[j].value + topSection[j - 4].value
+            //To set the max limit to 2048
+            if(newSum > 2048){
+              newSum = 2048
+            }
             var newSource =  this.banglaConverter(newSum)
 
             // addCount = addCount + 1
@@ -449,6 +452,10 @@ whoosh.release()
         if(items[j - 4].src != initialSource){
           if(topSection[j - 4].value == topSection[j].value){
             newSum = topSection[j].value + topSection[j - 4].value
+            //To set the max limit to 2048
+            if(newSum > 2048){
+              newSum = 2048
+            }
             //console.log(newSum, "New Sum")
             var newSource =  this.banglaConverter(newSum)
     
@@ -488,7 +495,10 @@ whoosh.release()
         if(items[j - 4].src != initialSource){
           if(topSection[j - 4].value == topSection[j].value){
             newSum = topSection[j].value + topSection[j - 4].value
-            //console.log(newSum, "New Sum")
+            //To set the max limit to 2048
+            if(newSum > 2048){
+              newSum = 2048
+            }
             var newSource =  this.banglaConverter(newSum)
     
             // addCount = addCount + 1
@@ -727,6 +737,9 @@ gameOverAlert(){
                         }
 
                         var sum2 = this.state.sumValue + parseInt(val2)
+                        if(sum2 > 2048){
+                          sum2 = 2048
+                        }
                         topSection[index1].value = sum2
                         points = points + 1
                         this.setState({sumValue: sum2, second: this.state.second + 5}, () => {
