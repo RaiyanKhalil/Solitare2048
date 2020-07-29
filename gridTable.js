@@ -637,6 +637,7 @@ gameOverAlert(){
             <View style={styles.item}>
                 <TouchableOpacity onPress = {() => {
                   this.sound()
+                  this.checkSum()
                   var initialSource = ( "                        ")
                   var cleanSum = 0
                   var index1 = item.id
@@ -824,7 +825,7 @@ gameOverAlert(){
                       
                       // interstitial.show()
                       if(index == 1){
-                        this.checkSum()
+                        // this.checkSum()
                         console.log("Final Points: ",points)
                           var sum = this.state.sumValue + parseInt(val1)
                           var passIndex = this.state.index2 + index
