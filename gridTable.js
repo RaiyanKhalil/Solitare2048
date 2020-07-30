@@ -416,7 +416,7 @@ whoosh.release()
     var newSum = 0
     var second = this.state.second
     var index2 = this.state.index2
-    console.log("CHECK SUM")
+    // console.log("CHECK SUM")
     
     for(var j = 4; j <= 15; j++){
       //console.log(items.length)
@@ -648,7 +648,7 @@ gameOverAlert(){
             <View style={styles.item}>
                 <TouchableOpacity onPress = {() => {
                   this.sound()
-                  this.checkSum()
+                  // this.checkSum()
                   var initialSource = ( "                        ")
                   var cleanSum = 0
                   var index1 = item.id
@@ -721,7 +721,7 @@ gameOverAlert(){
                           this.setState({sumValue: cleanSum, flag: false}) 
                         }
                       }
-                      this.checkSum(cloneSum, item.id, sumValue)
+                      // this.checkSum(cloneSum, item.id, sumValue)
                     }
                     else{
                       // this.slideValue(index2)
@@ -837,7 +837,7 @@ gameOverAlert(){
                       
                       // interstitial.show()
                       if(index == 1){
-                        this.checkSum()
+                        // this.checkSum()
                         console.log("Final Points: ",points)
                           var sum = this.state.sumValue + parseInt(val1)
                           var passIndex = this.state.index2 + index
