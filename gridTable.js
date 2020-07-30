@@ -87,6 +87,7 @@ onStart = () => {
   const {navigate, state} = this.props.navigation
   var points = this.state.points
      this._interval = setInterval(() => {
+       this.checkSum()
       this.setState({
         second: this.state.second - 1,
         
@@ -324,6 +325,7 @@ whoosh.release()
 
     var source =  this.banglaConverter(sValue)
     var initialSource = "                        "
+    var index2 = this.state.index2
     // var flag = this.state.flag
 
     if(i == 0 || i == 1 || i == 2 || i == 3){
@@ -336,12 +338,14 @@ whoosh.release()
             items[i + 12].src = source
             topSection[i + 12].value = sValue 
             this.setState({ uri: source})
+            this.slideValue(index2)
           }
         }
         else{
           items[i + 8].src = source 
           topSection[i + 8].value = sValue 
           this.setState({ uri: source})
+          this.slideValue(index2)
         }
         
       }
@@ -349,6 +353,7 @@ whoosh.release()
         items[i + 4].src = source 
         topSection[i + 4].value = sValue 
         this.setState({ uri: source})
+        this.slideValue(index2)
       }
     }
     else if(i == 4 || i == 5 || i == 6 || i == 7){
@@ -360,12 +365,14 @@ whoosh.release()
             items[i + 8].src = source 
             topSection[i + 8].value = sValue 
             this.setState({ uri: source})
+            this.slideValue(index2)
           }
         }
         else{
           items[i + 4].src = source 
           topSection[i + 4].value = sValue 
           this.setState({ uri: source})
+          this.slideValue(index2)
         }
     }
     else if(i == 8 || i == 9 || i == 10 || i == 11){
@@ -375,6 +382,7 @@ whoosh.release()
         items[i + 4].src = source 
         topSection[i + 4].value = sValue 
         this.setState({ uri: source})
+        this.slideValue(index2)
       }
     }
     else if(i == 12 || i == 13 || i == 14 || i == 15){
@@ -407,6 +415,7 @@ whoosh.release()
     var initialSource = "                        "
     var newSum = 0
     var second = this.state.second
+    var index2 = this.state.index2
     console.log("CHECK SUM")
     
     for(var j = 4; j <= 15; j++){
@@ -420,7 +429,7 @@ whoosh.release()
               newSum = 2048
             }
             var newSource =  this.banglaConverter(newSum)
-
+            // this.slideValue(index2)
             // addCount = addCount + 1
             // console.log(addCount, "ADD COUNT")
             if(discardCount < 4){
@@ -458,7 +467,8 @@ whoosh.release()
             }
             //console.log(newSum, "New Sum")
             var newSource =  this.banglaConverter(newSum)
-    
+            // this.slideValue(index2)
+
             // addCount = addCount + 1
             // console.log(addCount, "ADD COUNT")
             // if(addCount >= 4 && discardCount < 4){
@@ -500,7 +510,8 @@ whoosh.release()
               newSum = 2048
             }
             var newSource =  this.banglaConverter(newSum)
-    
+            // this.slideValue(index2)
+
             // addCount = addCount + 1
             // console.log(addCount, "ADD COUNT")
             // if(addCount >= 4 && discardCount < 4){
@@ -713,6 +724,7 @@ gameOverAlert(){
                       this.checkSum(cloneSum, item.id, sumValue)
                     }
                     else{
+                      // this.slideValue(index2)
                       //Checks if the box below is empty OR if the index is within the range of 12 and 15
                       if(topSection[index1 + 4] == initialSource || (index1 >= 12 && index1 <= 15)){
                         
