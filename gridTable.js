@@ -828,6 +828,7 @@ gameOverAlert(){
                   
                   var index = item.id
                     var val1 = updateCount[index].value
+                    if(index == 1){
                     if(!flag ){
                       if(!flag2){
                         this.onStart()
@@ -836,7 +837,7 @@ gameOverAlert(){
                       // <Ad />
                       
                       // interstitial.show()
-                      if(index == 1){
+                      
                         // this.checkSum()
                         console.log("Final Points: ",points)
                           var sum = this.state.sumValue + parseInt(val1)
