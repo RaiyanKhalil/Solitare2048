@@ -625,7 +625,7 @@ gameOverAlert(){
         {/* <BannerAd unitId={TestIds.BANNER} /> */}
       <BannerAd
       unitId={adUnitId2}
-      size={BannerAdSize.BANNER}
+      size={BannerAdSize.SMART_BANNER}
       requestOptions={{
       requestNonPersonalizedAdsOnly: true,
       
