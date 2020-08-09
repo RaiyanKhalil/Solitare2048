@@ -614,6 +614,30 @@ gameOverAlert(){
     {interstitial.show()}
 }
 
+getTextStyle(id) {
+  if(id == 1) {
+   return {
+    backgroundColor: '#000000',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    margin: 3,
+    height: Dimensions.get('window').width / 4, // approximate a square
+    paddingTop: 0
+  }
+  } else {
+    return {
+      backgroundColor: '#C0C0C0',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flex: 1,
+      margin: 3,
+      height: Dimensions.get('window').width / 4, // approximate a square
+      paddingTop: 0
+    }
+  }
+ }
+
 
   render() {
     let topSection = this.state.topSection
@@ -831,7 +855,7 @@ gameOverAlert(){
       <FlatList
           data={this.state.randSource}
           renderItem={({ item }) => (
-            <View style={styles.item2}>
+            <View style={this.getTextStyle(item.id)}>
                 <TouchableOpacity onPress={() => {
                   
                   var index = item.id
@@ -919,6 +943,7 @@ gameOverAlert(){
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   MainContainer: {
