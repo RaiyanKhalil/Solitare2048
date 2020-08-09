@@ -1,5 +1,5 @@
 import React, { Component,  useEffect, useState  } from 'react';
-import {StyleSheet, View, FlatList, ActivityIndicator, Image, TouchableOpacity, Alert, Button, Text, Dimensions} from 'react-native';
+import {StyleSheet, View, FlatList, ActivityIndicator, Image, TouchableOpacity, Alert, Button, Text, Dimensions, BackHandler} from 'react-native';
 import CountDown from 'react-native-countdown-component';
 import { BannerAd, BannerAdSize, TestIds, InterstitialAd, AdEventType } from '@react-native-firebase/admob';
 
@@ -9,6 +9,7 @@ let randItem, items
 var RandomNumber, power, discardCount = 4, addCount = 0
 const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
 const adUnitId2 = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
+// AdSize adSize = new AdSize(300, 50);
 
 const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
   requestNonPersonalizedAdsOnly: true,
@@ -56,6 +57,7 @@ function Ad() {
 export default class GridTable extends Component {
   constructor() {
     super();
+    this.backButtonClick = this.backButtonClick.bind(this);
     
   // this.randCard = this.randCard.bind(this);
   // this.randCard2 = this.randCard2.bind(this);
@@ -127,6 +129,8 @@ onStart = () => {
     topSection = {value: ''}
     // RandomNumber = Math.floor(Math.random() * 16) + 1 ;
     interstitial.load();
+    BackHandler.addEventListener('hardwareBackPress', this.backButtonClick);
+
 
     discardCount = 4
     // this.advert
@@ -191,7 +195,11 @@ onStart = () => {
     });
   }
   
-  
+  backButtonClick(){
+    clearInterval(this._interval);
+    this.props.navigation.popToTop();
+    return true;
+}
 
   sound(){
 
@@ -625,7 +633,7 @@ gameOverAlert(){
         {/* <BannerAd unitId={TestIds.BANNER} /> */}
       <BannerAd
       unitId={adUnitId2}
-      size={BannerAdSize.BANNER}
+      size={BannerAdSize.SMART_BANNER}
       requestOptions={{
       requestNonPersonalizedAdsOnly: true,
       
