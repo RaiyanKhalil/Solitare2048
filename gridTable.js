@@ -851,7 +851,7 @@ getTextStyle(id) {
     {/* </View> */}
 
       {/* Random Number generator section */}
-       <View style = {{paddingTop: 60, top: -45}}>
+       <View style = {{paddingTop: 60, top: -65}}>
       <FlatList
           data={this.state.randSource}
           renderItem={({ item }) => (
