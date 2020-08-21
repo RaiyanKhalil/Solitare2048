@@ -2,7 +2,7 @@ import React, { Component, useState, useEffect } from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
 import Splash from './Splash'
 
-import {StyleSheet, View, FlatList, ActivityIndicator, Image, TouchableOpacity, Alert, Button, Text, Dimensions} from 'react-native';
+import {StyleSheet, View, FlatList, ActivityIndicator, Image, TouchableOpacity, Alert, Button, Text, BackHandler} from 'react-native';
 // import CountDown from 'react-native-countdown-component';
 // var RandomNumber
 
@@ -37,19 +37,24 @@ class BasicTable extends Component {
       headerStyle: {
         backgroundColor: '#C71585',
       },
-    // title: "২০৪৮",
-  }
+      headerLeft: null  }
 
   constructor(props) {
     super(props);
-    
+    this.backButtonClick = this.backButtonClick.bind(this);
     
   }
    
 
   componentDidMount(){
+    BackHandler.addEventListener('hardwareBackPress', this.backButtonClick);
 
   }
+  backButtonClick(){
+    this.props.navigation.navigate('Basic');
+    return true;
+}
+
   render() {
     // <Splash />
     const {navigate} = this.props.navigation
