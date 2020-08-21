@@ -37,7 +37,7 @@ class GameOver extends Component {
   //   BackHandler.removeEventListener('hardwareBackPress', this.backButtonClick);
   // }
   backButtonClick(){
-    this.props.navigation.popToTop();
+    this.props.navigation.navigate('Basic');
     return true;
 }
 

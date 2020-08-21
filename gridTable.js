@@ -197,7 +197,7 @@ onStart = () => {
   
   backButtonClick(){
     clearInterval(this._interval);
-    this.props.navigation.popToTop();
+    this.props.navigation.navigate('Basic');
     return true;
 }
 

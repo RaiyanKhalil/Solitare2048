@@ -1,5 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
+import Splash from './Splash'
 
 import {StyleSheet, View, FlatList, ActivityIndicator, Image, TouchableOpacity, Alert, Button, Text, Dimensions} from 'react-native';
 // import CountDown from 'react-native-countdown-component';
@@ -7,10 +8,25 @@ import {StyleSheet, View, FlatList, ActivityIndicator, Image, TouchableOpacity, 
 
 import { InterstitialAd, AdEventType, TestIds } from '@react-native-firebase/admob';
 
+// const Splash = ({
+//   navigation,
+// }) => {
+//   useEffect(() => {
+//     console.log("OKAY")
+//     setTimeout(() => {
+//       navigation.navigate('Basic')
+//     }, 2000)
+//   }, [])
+
+//   return(
+//   <View style ={styles.home}>
+//     <Image source = {require('./Assets/logo.png')} resizeMode = "contain" style ={{width: 200}}></Image>
+//   </View>
+//   );
+// }
 
 
-
-
+  
 class BasicTable extends Component {
 
   static navigationOptions = {
@@ -29,16 +45,19 @@ class BasicTable extends Component {
     
     
   }
+   
 
   componentDidMount(){
 
   }
   render() {
-
+    // <Splash />
     const {navigate} = this.props.navigation
 
     return (
+      // <Splash />
      <View style = {{paddingTop: 50}}>
+      
        {/* <Text>HomeScreen</Text> */}
       {/* <App /> */}
       {/* <Text style = {{fontSize: 90, fontStyle: 'italic', textAlign: "center", paddingTop: 60}}>২০৪৮</Text> */}
@@ -107,6 +126,11 @@ const styles = StyleSheet.create({
       width: 85, 
       height: 85,
 
+    },
+    home:{
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center"
     }
   });
 
