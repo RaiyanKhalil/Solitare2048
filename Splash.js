@@ -18,7 +18,7 @@ const Splash = ({
   
     return(
     <View style ={styles.home}>
-      <Image source = {require('./Assets/logo.png')} resizeMode = "contain" style ={{width: 200}}></Image>
+      <Image source = {require('./Assets/logo.png')} resizeMode = "contain" style ={{width: 400}}></Image>
     </View>
     );
   }

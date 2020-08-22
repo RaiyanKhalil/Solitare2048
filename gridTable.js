@@ -75,7 +75,7 @@ export default class GridTable extends Component {
         flex:1 
       },
       headerStyle: {
-        backgroundColor: '#C71585',
+        backgroundColor: '#FFFFFF',
       },
       title: "২০৪৮",
       headerLeft: null
@@ -623,7 +623,8 @@ getTextStyle(id) {
     flex: 1,
     margin: 3,
     height: Dimensions.get('window').width / 4, // approximate a square
-    paddingTop: 0
+    paddingTop: 0,
+    borderRadius: 30
   }
   } else {
     return {
@@ -633,7 +634,8 @@ getTextStyle(id) {
       flex: 1,
       margin: 3,
       height: Dimensions.get('window').width / 4, // approximate a square
-      paddingTop: 0
+      paddingTop: 0,
+      borderRadius: 30
     }
   }
  }
@@ -973,7 +975,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
     margin: 1,
-    height: Dimensions.get('window').width / 4, // approximate a square
+    height: Dimensions.get('window').width / 4, // approximate a square,
+    borderRadius: 6
   },
   item2: {
     backgroundColor: '#000000',

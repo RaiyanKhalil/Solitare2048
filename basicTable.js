@@ -35,7 +35,7 @@ class BasicTable extends Component {
     //   flex:1,
     //   },
       headerStyle: {
-        backgroundColor: '#C71585',
+        backgroundColor: '#FFFFFF',
       },
       headerLeft: null  }
 
@@ -71,10 +71,13 @@ class BasicTable extends Component {
         flexDirection: 'row',
         justifyContent: 'center',
       }}>
-        <View style={styles.titleContainer}><Text style = {{fontSize: 50,  textAlign: "center"}}>২</Text></View>
+        <View style ={styles.home}>
+      <     Image source = {require('./Assets/logo.png')} resizeMode = "contain" style ={{width: 300}}></Image>
+        </View>
+        {/* <View style={styles.titleContainer}><Text style = {{fontSize: 50,  textAlign: "center"}}>২</Text></View>
         <View style={styles.titleContainer}><Text style = {{fontSize: 50,  textAlign: "center"}}>০</Text></View>
         <View style={styles.titleContainer}><Text style = {{fontSize: 50,  textAlign: "center"}}>৪</Text></View>
-        <View style={styles.titleContainer}><Text style = {{fontSize: 50,  textAlign: "center"}}>৮</Text></View>
+        <View style={styles.titleContainer}><Text style = {{fontSize: 50,  textAlign: "center"}}>৮</Text></View> */}
 
       </View>
       <View style = {styles.playContainer}>
@@ -83,7 +86,7 @@ class BasicTable extends Component {
         onPress={() => navigate(
          "Game" 
         )}
-      ><Text style = {styles.playText}>PLAY</Text>
+      ><Text style = {styles.playText}>খেলুন</Text>
       </TouchableOpacity>
       </View>
        
@@ -103,7 +106,7 @@ const styles = StyleSheet.create({
     HeadStyle: { 
       height: 50,
       alignContent: "center",
-      backgroundColor: '#ffe0f0'
+      backgroundColor: '#000000'
     },
     TableText: { 
       margin: 10
@@ -112,11 +115,12 @@ const styles = StyleSheet.create({
       height: 90,
       width: 140,
       backgroundColor: "#000000",
-      justifyContent: "center"
+      justifyContent: "center",
+      borderRadius: 30
     },
     playContainer:{
       paddingTop: 200,
-      paddingLeft: 120,
+      alignItems: "center"
     },
     playText:{
       color: "#ffffff",
@@ -135,7 +139,9 @@ const styles = StyleSheet.create({
     home:{
       flex: 1,
       justifyContent: "center",
-      alignItems: "center"
+      alignItems: "center",
+      paddingTop: 75
+
     }
   });
 

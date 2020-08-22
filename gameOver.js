@@ -17,7 +17,7 @@ class GameOver extends Component {
         flex:1,
         },
     headerStyle: {
-        backgroundColor: '#C71585',
+        backgroundColor: '#FFFFFF',
         },    
     title: "Game Over",
     headerLeft: null
@@ -106,7 +106,8 @@ const styles = StyleSheet.create({
       height: 100,
       width: 140,
       backgroundColor: "#000000",
-      justifyContent: "center"
+      justifyContent: "center",
+      borderRadius: 30
     },
     homeButtonContainer:{
       paddingTop: 150,
