@@ -72,7 +72,7 @@ class BasicTable extends Component {
         justifyContent: 'center',
       }}>
         <View style ={styles.home}>
-      <     Image source = {require('./Assets/logo.png')} resizeMode = "contain" style ={{width: 300}}></Image>
+          <Image source = {require('./Assets/logo.png')} resizeMode = "contain" style ={{width: 300}}></Image>
         </View>
         {/* <View style={styles.titleContainer}><Text style = {{fontSize: 50,  textAlign: "center"}}>২</Text></View>
         <View style={styles.titleContainer}><Text style = {{fontSize: 50,  textAlign: "center"}}>০</Text></View>
@@ -81,12 +81,16 @@ class BasicTable extends Component {
 
       </View>
       <View style = {styles.playContainer}>
+      <Text style = {styles.playText}>খেলুন</Text>
       <TouchableOpacity
         style = {styles.playButton}
         onPress={() => navigate(
          "Game" 
         )}
-      ><Text style = {styles.playText}>খেলুন</Text>
+      >
+        
+        <Image source = {require('./Assets/play.png')} resizeMode = "contain" style ={{width: 300}}></Image>
+
       </TouchableOpacity>
       </View>
        
@@ -112,20 +116,36 @@ const styles = StyleSheet.create({
       margin: 10
     },
     playButton:{
-      height: 90,
-      width: 140,
-      backgroundColor: "#000000",
-      justifyContent: "center",
-      borderRadius: 30
+      // height: 90,
+      // width: 140,
+      // backgroundColor: "#000000",
+      // justifyContent: "center",
+      // borderRadius: 30,
+      // width: 0,
+    // height: 0,
+    // backgroundColor: 'transparent',
+    // borderStyle: 'solid',
+    // borderLeftWidth: 70,
+    // borderRightWidth: 70,
+    // borderBottomWidth: 120,
+    // borderLeftColor: 'transparent',
+    // borderRightColor: 'transparent',
+    // borderBottomColor: '#000000',
+    
+      // transform: [
+      //   {rotate: '90deg'}
+      // ]
+      
     },
     playContainer:{
       paddingTop: 200,
       alignItems: "center"
     },
     playText:{
-      color: "#ffffff",
-      fontSize: 30,
+      color: "#000000",
+      fontSize: 50,
       textAlign: "center",
+      // fontWeight: 'bold'
     },
     titleContainer: {
       margin: 1,

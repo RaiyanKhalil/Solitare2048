@@ -58,12 +58,14 @@ class GameOver extends Component {
        {/* <Text>Game Over</Text> */}
     <Text style = {{fontSize: 30, textAlign: "center"}}>Points: {state.params.points}</Text>
     <View style = {styles.homeButtonContainer}>
+    <Text style = {styles.homeText}>হোম</Text>
     <TouchableOpacity
-        style = {styles.homeButton}
+        // style = {styles.homeButton}
         onPress={() => navigate(
          "Basic" 
         )}
-      ><Text style = {styles.homeText}>HOME</Text>
+      >
+        <Image source = {require('./Assets/home.png')} resizeMode = "contain" style ={{justifyContent: "center", alignItems: "center", alignContent: "center",}}></Image>
       </TouchableOpacity>
     </View>
     
@@ -102,21 +104,24 @@ const styles = StyleSheet.create({
     TableText: { 
       margin: 10
     },
-    homeButton:{
-      height: 100,
-      width: 140,
-      backgroundColor: "#000000",
-      justifyContent: "center",
-      borderRadius: 30
-    },
+    // homeButton:{
+    //   // height: 100,
+    //   // width: 140,
+    //   // backgroundColor: "#000000",
+    //   // justifyContent: "center",
+    //   // borderRadius: 30
+    // },
     homeButtonContainer:{
       paddingTop: 150,
-      paddingLeft: 120,
+      // paddingLeft: 120,
+      justifyContent: "center",
+      alignItems: "center"
     },
     homeText:{
-      color: "#ffffff",
-      fontSize: 30,
+      color: "#000000",
+      fontSize: 40,
       textAlign: "center",
+      
     }
   });
 
