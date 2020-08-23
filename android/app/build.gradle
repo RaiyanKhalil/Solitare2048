@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.banglascrabble"
+        applicationId "com.reikriya.dui"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

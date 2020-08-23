@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:389753765526:android:29554e081220424cc28cb7",
         "android_client_info": {
-          "package_name": "com.banglascrabble"
+          "package_name": "com.reikriya.dui"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "389753765526-a5c6og3252qf8suauj4t4vkuc4rhvv71.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.banglascrabble",
+            "package_name": "com.reikriya.dui",
             "certificate_hash": "84c38a62f70cbcba6295b9ee0f67186dd3c18002"
           }
         },

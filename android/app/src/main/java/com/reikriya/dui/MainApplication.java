@@ -1,4 +1,4 @@
-package com.banglascrabble;
+package com.reikriya.dui;
 
 import android.app.Application;
 import android.content.Context;

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.banglascrabble">
+  package="com.reikriya.dui">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
