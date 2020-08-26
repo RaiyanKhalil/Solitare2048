@@ -26,7 +26,7 @@ import { InterstitialAd, AdEventType, TestIds } from '@react-native-firebase/adm
 // }
 
 
-  
+
 class BasicTable extends Component {
 
   static navigationOptions = {
@@ -37,7 +37,17 @@ class BasicTable extends Component {
       headerStyle: {
         backgroundColor: '#FFFFFF',
       },
-      headerLeft: null  }
+      headerLeft: null,
+    headerRight: (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', }}>
+      <TouchableOpacity
+      onPress={() => {navigation.navigate("info")}}>
+        <Image
+          // style={styles.imageForHomeHeader}
+          source={require('./Assets/rules2.png')}
+        />
+        </TouchableOpacity>
+      </View>    )  }
 
   constructor(props) {
     super(props);
