@@ -11,7 +11,7 @@ render(){
 
     return(
         <View>
-            <View style={{ paddingLeft: 30}}>
+            <View style={{ paddingLeft: 30, borderColor: '#000000', borderWidth: 5,}}>
                   <Image
                     // source={require('./Assets/load2.gif')}
                     source={require('./Assets/load.gif')}
@@ -30,7 +30,7 @@ render(){
                    
                   }
                   >
-                    <Text style = {{color: '#FFFFFF', fontSize: 40, }}>Next</Text>
+                    <Text style = {{color: '#FFFFFF', fontSize: 40, }}>CONTINUE</Text>
                   </TouchableOpacity>
                   </View>
                   
@@ -91,6 +91,6 @@ const styles = StyleSheet.create({
     padding: 10
   },
   view: {
-    paddingTop: 35
+    paddingTop: 27
   }
 });
