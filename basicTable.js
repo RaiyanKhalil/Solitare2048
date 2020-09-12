@@ -94,9 +94,31 @@ class BasicTable extends Component {
       <Text style = {styles.playText}>খেলুন</Text>
       <TouchableOpacity
         style = {styles.playButton}
-        onPress={() => navigate(
-         "Game" 
-        )}
+        onPress={() => {
+          const { navigate, state } = this.props.navigation
+          Alert.alert(
+            'DO YOU WANT TO WATCH THE TUTORIAL?',
+            ' ',
+            [
+              {
+                text: 'Yes', onPress: () => 
+                navigate(
+                  "info"
+                )
+
+              },
+              {
+                text: 'No', onPress: () => navigate(
+                  "Game"
+                )
+              },
+      
+              // {text: 'বন্ধু', onPress: () => this.props.navigation.navigate('NewKeyboard', {reload:this.props.navigation.getParam("reload"), gameName: this.state.text, value: this.state.gametype,bot:false})}
+      
+            ],
+            { cancelable: false })
+        }
+        }
       >
         
         <Image source = {require('./Assets/play.png')} resizeMode = "contain" style ={{width: 300}}></Image>
