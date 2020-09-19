@@ -630,7 +630,31 @@ export default class GridTable extends Component {
         paddingTop: 0,
         borderRadius: 30
       }
-    } else {
+    } else if(id == 0){
+      return {
+        backgroundColor: '#C0C0C0',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1,
+        margin: 3,
+        height: Dimensions.get('window').width / 4, // approximate a square
+        paddingTop: 0,
+        borderRadius: 30
+      }
+    }
+    else if(id == 2){
+      return {
+        backgroundColor: '#FFFF00',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1,
+        margin: 3,
+        height: Dimensions.get('window').width / 4, // approximate a square
+        paddingTop: 0,
+        borderRadius: 30
+      }
+    }
+    else if(id == 3){
       return {
         backgroundColor: '#C0C0C0',
         alignItems: 'center',
@@ -956,7 +980,12 @@ export default class GridTable extends Component {
                   // })
 
                 }}
+                onPressOut  = {() => {
+                 this.getTextStyle(3)
+                }
+              }
                   onLongPress={() => {
+                    this.getTextStyle(4)
                     // var jsonDiscardCount = JSON.stringify(discardCount)
                     this.setState({ flag: false, sumValue: 0, index2: 0 })
                     if (item.id == 1 && discardCount > 0) {
@@ -1086,5 +1115,15 @@ const styles = StyleSheet.create({
     fontSize: 23, fontWeight: "bold",
     textAlignVertical: "center"
 
+  },
+  item3: {
+        backgroundColor: '#000000',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1,
+        margin: 3,
+        height: Dimensions.get('window').width / 4, // approximate a square
+        paddingTop: 0,
+        borderRadius: 30
   }
 });

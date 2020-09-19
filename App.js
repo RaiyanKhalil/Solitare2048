@@ -6,7 +6,7 @@ import BasicTable from './basicTable';
 import GridTable from './gridTable'
 import GameOver from './gameOver'
 import Splash from './Splash'
-import info from './info'
+import info from './tutorial'
 
 class HomeScreen extends React.Component {
   render() {
