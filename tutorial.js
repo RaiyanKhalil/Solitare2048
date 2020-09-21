@@ -4,7 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import {StyleSheet, View, FlatList, ActivityIndicator, Image, TouchableOpacity, Alert, Button, Text, Dimensions, BackHandler} from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 
-export default class info extends Component {
+export default class tutorial extends Component {
 
 render(){
   const {navigate} = this.props.navigation

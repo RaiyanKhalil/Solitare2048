@@ -6,7 +6,7 @@ import BasicTable from './basicTable';
 import GridTable from './gridTable'
 import GameOver from './gameOver'
 import Splash from './Splash'
-import info from './tutorial'
+import tutorial from './tutorial'
 
 class HomeScreen extends React.Component {
   render() {
@@ -24,7 +24,7 @@ const RootStack = createStackNavigator(
     Basic: BasicTable,
     Over: GameOver,
     Splash: Splash,
-    info: info
+    tutoral: tutorial
     
     
   },
