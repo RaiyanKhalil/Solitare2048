@@ -103,7 +103,7 @@ class BasicTable extends Component {
               {
                 text: 'Yes', onPress: () => 
                 navigate(
-                  "info"
+                  "tutorial"
                 )
 
               },
