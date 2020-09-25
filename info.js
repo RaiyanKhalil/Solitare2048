@@ -11,13 +11,13 @@ export default class info extends Component {
           return(
               <View>
                   <TouchableOpacity>
-                      <View style={styles.view}>
+                      <View>
                       <Text style = {{color: '#000000', fontSize: 30, textAlignVertical: 'center', fontWeight: 'bold', textAlignVertical: "center", }}>CONTINUE</Text>
                       </View>
                   </TouchableOpacity>
-                        <View style ={styles.view}>
+                        <View>
                           <TouchableOpacity
-                            style={styles.button}
+                            
       
                          onPress={() => {
                           navigate(

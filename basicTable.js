@@ -2,7 +2,7 @@ import React, { Component, useState, useEffect } from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
 import Splash from './Splash'
 
-import {StyleSheet, View, FlatList, ActivityIndicator, Image, TouchableOpacity, Alert, Button, Text, BackHandler} from 'react-native';
+import {StyleSheet, View, FlatList, ActivityIndicator, Image, TouchableOpacity, Alert, Button, Text, BackHandler, Modal, TouchableHighlight} from 'react-native';
 // import CountDown from 'react-native-countdown-component';
 // var RandomNumber
 
@@ -27,9 +27,10 @@ import { InterstitialAd, AdEventType, TestIds } from '@react-native-firebase/adm
 
 
 
-class BasicTable extends Component {
+class BasicTable extends Component{
 
-  static navigationOptions = {
+  
+  static navigationOptions = ({navigation}) => ({
     // headerTitleStyle: { 
     //   textAlign:"center", 
     //   flex:1,
@@ -41,20 +42,21 @@ class BasicTable extends Component {
     headerRight: (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', }}>
       <TouchableOpacity
-      onPress={() => {navigation.navigate("info")}}>
+      onPress={() => {  navigation.navigate("info")
+    }}>
         <Image
           // style={styles.imageForHomeHeader}
           source={require('./Assets/rules2.png')}
         />
         </TouchableOpacity>
-      </View>    )  }
+      </View>    )  
+      })
 
-  constructor(props) {
-    super(props);
-    this.backButtonClick = this.backButtonClick.bind(this);
-    
-  }
-   
+  
+      constructor(props) {
+        super(props);
+        this.backButtonClick = this.backButtonClick.bind(this);
+      }
 
   componentDidMount(){
     BackHandler.addEventListener('hardwareBackPress', this.backButtonClick);
@@ -64,10 +66,15 @@ class BasicTable extends Component {
     this.props.navigation.navigate('Basic');
     return true;
 }
+// setModalVisible = (visible) => {
+//   this.setState({ modalVisible: visible });
+// }
 
   render() {
     // <Splash />
     const {navigate} = this.props.navigation
+    // const { modalVisible } = this.state;
+
 
     return (
       // <Splash />
@@ -194,6 +201,42 @@ const styles = StyleSheet.create({
       alignItems: "center",
       paddingTop: 75
 
+    },
+    centeredView: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: 22
+    },
+    modalView: {
+      margin: 20,
+      backgroundColor: "white",
+      borderRadius: 20,
+      padding: 35,
+      alignItems: "center",
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5
+    },
+    openButton: {
+      backgroundColor: "#F194FF",
+      borderRadius: 20,
+      padding: 10,
+      elevation: 2
+    },
+    textStyle: {
+      color: "white",
+      fontWeight: "bold",
+      textAlign: "center"
+    },
+    modalText: {
+      marginBottom: 15,
+      textAlign: "center"
     }
   });
 
