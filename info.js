@@ -20,17 +20,22 @@ class info extends Component {
 
     })
   state = {
-    modalVisible: false
+    modalVisible: false, modalVisible2: false
   };
 
   setModalVisible = (visible) => {
     this.setState({ modalVisible: visible });
   }
 
+  setModalVisible2 = (visible2) => {
+    this.setState({ modalVisible2: visible2 });
+  }
+
   render() {
-    const { modalVisible } = this.state;
+    const { modalVisible, modalVisible2 } = this.state;
     return (
       <View style={styles.centeredView}>
+        {/* Modal for About Us */}
         <Modal
           animationType="slide"
           transparent={true}
@@ -41,10 +46,11 @@ class info extends Component {
         >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-              <Text style={styles.modalText}>Hello World!</Text>
+            <Text style = {{fontSize: 20, fontWeight: 'bold', textDecorationLine: 'underline'}}>About Us</Text>
+              <Text style={styles.modalText}>TechDojo</Text>
 
               <TouchableHighlight
-                style={{ ...styles.openButton, backgroundColor: "#FFB6C1", borderWidth: 5 }}
+                style={{ ...styles.openButton, backgroundColor: "#000000" }}
                 onPress={() => {
                   this.setModalVisible(!modalVisible);
                 }}
@@ -54,6 +60,35 @@ class info extends Component {
             </View>
           </View>
         </Modal>
+        
+        {/* Modal for About Game */}
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible2}
+          //style = {{borderWidth: 10}}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text style = {{fontSize: 20, fontWeight: 'bold', textDecorationLine: 'underline'}}>About Game</Text>
+              <Text style={styles.modalText}>A simple Bangla number game. A brain training game to enhance your Math skills. Start adding similar numbers and become a math Genius.</Text>
+
+              <TouchableHighlight
+                style={{ ...styles.openButton, backgroundColor: "#000000" }}
+                onPress={() => {
+                  this.setModalVisible2(!modalVisible2);
+                }}
+              >
+                <Text style={styles.textStyle2}>Close</Text>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </Modal>
+
+        {/* Button for About Us */}
         <View style = {{ paddingBottom: 50}}>
         <TouchableHighlight
           style={styles.openButton}
@@ -64,11 +99,13 @@ class info extends Component {
           <Text style={styles.textStyle}>About Us</Text>
         </TouchableHighlight>
         </View>
+
+        {/* Button for About Game */}
         <View>
         <TouchableHighlight
           style={styles.openButton}
           onPress={() => {
-            this.setModalVisible(true);
+            this.setModalVisible2(true);
           }}
         >
           <Text style={styles.textStyle}>About Game</Text>
@@ -88,7 +125,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     margin: 20,
-    backgroundColor: "white",
+    backgroundColor: "#FFB6C1",
     borderRadius: 20,
     padding: 35,
     alignItems: "center",
@@ -99,7 +136,8 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5
+    elevation: 5,
+    borderWidth: 5
   },
   openButton: {
     backgroundColor: "#000000",
@@ -117,7 +155,7 @@ const styles = StyleSheet.create({
 
   },
   textStyle2: {
-    color: "black",
+    color: "white",
     fontWeight: "bold",
     textAlign: "center",
     fontSize: 20,
@@ -130,7 +168,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     height: 250,
     width: 250,
-    //textAlignVertical: 'center',
+    textAlignVertical: 'center',
+    fontSize: 20,
   }
 });
 

@@ -16,6 +16,7 @@ const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
   keywords: ['fashion', 'clothing'],
 });
 
+//Ad function
 function Ad() {
   const [loaded, setLoaded] = useState(false);
 
@@ -45,22 +46,12 @@ function Ad() {
       {interstitial.show()}
     </View>
   )
-  // return (
-  //   <Button
-  //     title="Show Interstitial"
-  //     onPress={() => {
-  //       interstitial.show();
-  //     }}
-  //   />
-  // );
 }
 export default class GridTable extends Component {
   constructor() {
     super();
     this.backButtonClick = this.backButtonClick.bind(this);
 
-    // this.randCard = this.randCard.bind(this);
-    // this.randCard2 = this.randCard2.bind(this);
     this.state = {
       dataSource: {},
       randSource: {}, updateCount: [], topSection: [], sumValue: 0, flag: false, index2: 0, points: 0, second: 30, flag2: false
@@ -84,6 +75,7 @@ export default class GridTable extends Component {
 
   _interval: any;
 
+  //Function to start the timer and game on pressing the BLACK box
   onStart = () => {
     // var flag = this.state.flag
     const { navigate, state } = this.props.navigation
@@ -116,8 +108,7 @@ export default class GridTable extends Component {
           { cancelable: false })
         { interstitial.show() }
 
-        // Alert.alert("Time Over");
-        // <Ad />
+       
 
       }
     }, 1000);
@@ -126,7 +117,6 @@ export default class GridTable extends Component {
     var that = this;
     var second = this.state.second
     var points = this.state.points
-    // var discardCount = 4
     updateCount = { value: '' }
     topSection = { value: '' }
     // RandomNumber = Math.floor(Math.random() * 16) + 1 ;
@@ -138,25 +128,12 @@ export default class GridTable extends Component {
     // this.advert
     items = Array.apply(null, Array(16)).map((v, i) => {
       let topSection = this.state.topSection
-      // if((i + 1) % 2 == 0){
-      // if((RandomNumber % 2) == 0){
-      // //console.log(RandomNumber)
+  
       var a = Math.floor(Math.random() * 8) + 1;
-      // while(a < 8){
       power = Math.pow(2, a)
-      // }
-      // var zero = 0
+  
       topSection.push({ value: 0 })
-      // return { id: i, src:  power };
       return { id: i, src: "                        " };
-      // return { id: i, src: '১০২৪' };
-
-
-      // }
-      // }
-      // else{
-      //     return { id: i, src:  '' };
-      // }
 
     });
     that.setState({
@@ -167,22 +144,10 @@ export default class GridTable extends Component {
       var a = Math.floor(Math.random() * 8) + 1;
       let updateCount = this.state.updateCount
 
-      // while(a < 8){
       power = Math.pow(2, a)
-      // }
-      // if((i == 2) || (i == 3)){
-      //     // //console.log(i, 'Discard')
-      //     return { id: i, src:  "Discard" };
-
-      // }
-      // else{
-      // //console.log(i, 'Power')
-      // updateCount = {value:}
+      
       updateCount.push({ value: power })
-      // if(power == 2){
-      //  console.log('২')
-      //   // var powerBangla = '২'
-      // }
+   
       if (i == 1) {
         return { id: i, src: this.banglaConverter(power) };
       }
@@ -190,7 +155,6 @@ export default class GridTable extends Component {
         return { id: i, src: this.banglaConverter(power) };
       }
 
-      // }
     });
     that.setState({
       randSource: randItem,
@@ -203,6 +167,7 @@ export default class GridTable extends Component {
     return true;
   }
 
+  //Function for sound
   sound() {
 
     // Import the react-native-sound module
@@ -234,6 +199,7 @@ export default class GridTable extends Component {
     whoosh.release()
   }
 
+  //Converts English numbers to Bangla
   banglaConverter(sValue) {
     var source
     if (sValue == 2) {
@@ -272,6 +238,7 @@ export default class GridTable extends Component {
     return source
   }
 
+  //Sets the number in the top most possible position
   setAbove(i, sValue, topSection) {
 
     var initialSource = "                        "
@@ -331,6 +298,7 @@ export default class GridTable extends Component {
 
   }
 
+  //Sets number below the other number in the same column
   setBelow(i, sValue, topSection) {
 
     var source = this.banglaConverter(sValue)
@@ -404,6 +372,7 @@ export default class GridTable extends Component {
     return source
   }
 
+  //Slide value function slides the next playable number from the GRAY box to the BLACK box
   slideValue(index2) {
     var updateCount = this.state.updateCount
     var a = Math.floor(Math.random() * 8) + 1;
@@ -419,6 +388,7 @@ export default class GridTable extends Component {
     this.setState({ index2: 0 })
   }
 
+  //Check sum function to check and add numbers repeatedly, each second.
   checkSum() {
     var topSection = this.state.topSection
     var points = this.state.points
@@ -477,15 +447,8 @@ export default class GridTable extends Component {
             }
             //console.log(newSum, "New Sum")
             var newSource = this.banglaConverter(newSum)
-            // this.slideValue(index2)
-
-            // addCount = addCount + 1
-            // console.log(addCount, "ADD COUNT")
-            // if(addCount >= 4 && discardCount < 4){
-            //   discardCount = discardCount + 1
-            //   addCount = 0
-            //   console.log(addCount, 'should be zero')
-            // }
+           
+           
             if (discardCount < 4) {
               addCount = addCount + 1
               if (addCount >= 4) {
@@ -520,15 +483,7 @@ export default class GridTable extends Component {
               newSum = 2048
             }
             var newSource = this.banglaConverter(newSum)
-            // this.slideValue(index2)
-
-            // addCount = addCount + 1
-            // console.log(addCount, "ADD COUNT")
-            // if(addCount >= 4 && discardCount < 4){
-            //   discardCount = discardCount + 1
-            //   addCount = 0
-            //   console.log(addCount, 'should be zero')
-            // }
+          
             if (discardCount < 4) {
               addCount = addCount + 1
               if (addCount >= 4) {
@@ -555,6 +510,7 @@ export default class GridTable extends Component {
 
   }
 
+  //Discard function
   discard() {
     var updateCount = this.state.updateCount
     // var discardCount = this.state.discardCount
@@ -572,6 +528,7 @@ export default class GridTable extends Component {
     this.setState({ uri: randItem[0].src })
   }
 
+  //Game Over function
   gameOver() {
     var initialSource = "                        "
     var topSection = this.state.topSection
@@ -597,6 +554,7 @@ export default class GridTable extends Component {
     alert(e);
   }
 
+  //Alerts Player when game is over
   gameOverAlert() {
     const { navigate, state } = this.props.navigation
     var points = this.state.points
@@ -846,15 +804,7 @@ export default class GridTable extends Component {
                         //If the selected value from the "Random Section" is equal to the existing number on the Gameboard
                         if (this.state.sumValue == parseInt(val2)) {
                           this.slideValue(index2)
-                          // console.log(second, "second")
-
-                          //             addCount = addCount + 1
-                          //             console.log(addCount, "ADD COUNT")
-                          // if(addCount >= 4 && discardCount < 4){
-                          //   discardCount = discardCount + 1
-                          //   addCount = 0
-                          //   console.log(addCount, 'should be zero')
-                          // }
+                        
                           if (discardCount < 4) {
                             addCount = addCount + 1
                             if (addCount >= 4) {
@@ -893,21 +843,8 @@ export default class GridTable extends Component {
                     })
                     //Shows Ad and Navigates to Game Over Page
                     this.gameOverAlert()
-                    // {interstitial.show()}
-                    // {navigate(
-                    //   "Over" , {points: this.state.points}
-                    //  )}
-
-
-                    // Alert.alert("GAME OVER")
+             
                   }
-                  //   if(item.src == 2){item.src = "২"
-                  // this.setState({uri: item.src})}
-                  // if(items[index1].src == 2){
-                  // items[index1].src = "২"
-                  // item.src = "২"
-                  // this.setState({uri: item.src})
-                  // }
                 }}>
 
                   <Text style={styles.itemText}>{item.src}</Text>
@@ -920,18 +857,6 @@ export default class GridTable extends Component {
             keyExtractor={(item, index) => index.toString()}
           />
         </View>
-        {/* <Advert /> */}
-        {/* <View>   */}
-        {/* <CountDown
-            until={10}
-            size={30}
-            onFinish={() => alert('Finished')}
-            digitStyle={{backgroundColor: '#FFF'}}
-            digitTxtStyle={{color: '#1CC625'}}
-            timeToShow={['M', 'S']}
-            timeLabels={{m: 'MM', s: 'SS'}}
-          /> */}
-        {/* </View> */}
 
         {/* Random Number generator section */}
         <View style={{ paddingTop: 15, top: -10 }}>
@@ -1002,20 +927,9 @@ export default class GridTable extends Component {
                         })
                         //Shows Ad and Navigates to Game Over Page
                         this.gameOverAlert()
-                        // {interstitial.show()}
-                        // {navigate(
-                        //   "Over" , {points: this.state.points}
-                        //  )}
-
-
-                        // Alert.alert("GAME OVER")
                       }
                       // this.gameOver()
                     }
-
-                    // else if(this.gameOver()){
-                    //   Alert.alert("GAME OVER")
-                    // }
                   }}>
                   <Text style={styles.itemText2}>{item.src}</Text>
                 </TouchableOpacity>
