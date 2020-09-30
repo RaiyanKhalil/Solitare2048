@@ -917,7 +917,7 @@ export default class GridTable extends Component {
                       this.discard()
                     }
                     else if (discardCount == 0) {
-                      Alert.alert("DISCARD LIMIT HAS REACHED")
+                      Alert.alert("বাতিল করার লিমিট শেষ")
                       if (this.gameOver()) {
                         // <Ad />
                         //When game is over time is set to ZERO so that time function (onStart) doesn't keep running
