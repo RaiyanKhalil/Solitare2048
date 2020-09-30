@@ -4,12 +4,12 @@ import CountDown from 'react-native-countdown-component';
 import { BannerAd, BannerAdSize, TestIds, InterstitialAd, AdEventType } from '@react-native-firebase/admob';
 
 
-//import all the components we will need
 let randItem, items
 var RandomNumber, power, discardCount = 4, addCount = 0
+
+// Ad IDs
 const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
 const adUnitId2 = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
-// AdSize adSize = new AdSize(300, 50);
 
 const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
   requestNonPersonalizedAdsOnly: true,
