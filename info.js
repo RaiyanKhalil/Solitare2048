@@ -5,8 +5,11 @@ import {
   StyleSheet,
   Text,
   TouchableHighlight,
-  View
+  View,
+  Image,
+  Linking 
 } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 class info extends Component {
   static navigationOptions = ({navigation}) => ({
@@ -47,8 +50,41 @@ class info extends Component {
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
             <Text style = {{fontSize: 20, fontWeight: 'bold', textDecorationLine: 'underline'}}>About Us</Text>
-              <Text style={styles.modalText}>TechDojo</Text>
+            <View style = {{paddingTop: 60}}>
+              <Image
+              source={require('./Assets/reikriyalogo.png')}
+              style={{ width: 100, height: 100 }}
+              />
+              </View>
+            
+              {/* <Text style={styles.modalText}>TechDojo</Text> */}
+              <View style = {{paddingTop: 20}}>
+            <TouchableHighlight
+                style={styles.openButton3}
+                onPress={() => {
+                  Linking.openURL('https://play.google.com/store/apps/dev?id=8774935651829597111&hl=en')
+                }}
+              >
+                <Text style={styles.textStyle}>More Games</Text>
+              </TouchableHighlight>
+              </View>
+              <View style = {{flex: 1, paddingTop: 20}}>
+            <TouchableHighlight
+                style={styles.openButton2}
+                onPress={() => {
+                  Linking.openURL('https://www.facebook.com/Reikriya-726064067787183/')
+                }}
+              >
+                <Text style={styles.textStyle}>Facebook</Text>
+              </TouchableHighlight>
+              </View>
+              {/* <View style = {{paddingBottom: 10}}> */}
 
+              
+              <Text style = {{fontWeight: "bold", fontSize: 20, paddingBottom: 20}} onPress = {() => Linking.openURL('http://www.reikriya.com/')}>Reikriya ©2020</Text>
+              
+              {/* </View> */}
+              <View>
               <TouchableHighlight
                 style={{ ...styles.openButton, backgroundColor: "#000000" }}
                 onPress={() => {
@@ -57,6 +93,7 @@ class info extends Component {
               >
                 <Text style={styles.textStyle2}>Close</Text>
               </TouchableHighlight>
+              </View>
             </View>
           </View>
         </Modal>
@@ -74,16 +111,21 @@ class info extends Component {
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
               <Text style = {{fontSize: 20, fontWeight: 'bold', textDecorationLine: 'underline'}}>About Game</Text>
+              <View>
               <Text style={styles.modalText}>A simple Bangla number game. A brain training game to enhance your Math skills. Start adding similar numbers and become a math Genius.</Text>
-
+              </View>
+              <Text style = {{fontWeight: "bold", fontSize: 20, paddingBottom: 20}} onPress = {() => Linking.openURL('http://www.reikriya.com/')}>Reikriya ©2020</Text>
+              <View>
               <TouchableHighlight
                 style={{ ...styles.openButton, backgroundColor: "#000000" }}
                 onPress={() => {
                   this.setModalVisible2(!modalVisible2);
                 }}
               >
+                
                 <Text style={styles.textStyle2}>Close</Text>
               </TouchableHighlight>
+              </View>
             </View>
           </View>
         </Modal>
@@ -125,7 +167,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     margin: 20,
-    backgroundColor: "#FFB6C1",
+    backgroundColor: "#FFFF99",
     borderRadius: 20,
     padding: 35,
     alignItems: "center",
@@ -146,6 +188,28 @@ const styles = StyleSheet.create({
     elevation: 2,
     height: 50,
     width: 200
+  },
+  openButton2: {
+    backgroundColor: "#4267B2",
+    //borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    height: 50,
+    width: 150,
+    justifyContent: "center",
+    alignItems: "center",
+    
+  },
+  openButton3: {
+    backgroundColor: "#000000",
+    //borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    height: 50,
+    width: 150,
+    justifyContent: "center",
+    alignItems: "center",
+    
   },
   textStyle: {
     color: "white",
