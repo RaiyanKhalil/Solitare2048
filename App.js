@@ -5,7 +5,6 @@ import { createStackNavigator } from 'react-navigation-stack';
 import BasicTable from './basicTable';
 import GridTable from './gridTable'
 import GameOver from './gameOver'
-import Splash from './Splash'
 import tutorial from './tutorial'
 import info from './info'
 
@@ -24,7 +23,6 @@ const RootStack = createStackNavigator(
     Game: GridTable,
     Basic: BasicTable,
     Over: GameOver,
-    Splash: Splash,
     tutorial: tutorial,
     info: info
     
