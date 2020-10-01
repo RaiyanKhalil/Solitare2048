@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState } from 'react';
-import { StyleSheet, View, FlatList, ActivityIndicator, Image, TouchableOpacity, Alert, Button, Text, Dimensions, BackHandler } from 'react-native';
+import { StyleSheet, View, FlatList, ScrollView, Image, TouchableOpacity, Alert, Button, Text, Dimensions, BackHandler } from 'react-native';
 import CountDown from 'react-native-countdown-component';
 import { BannerAd, BannerAdSize, TestIds, InterstitialAd, AdEventType } from '@react-native-firebase/admob';
 
@@ -54,7 +54,7 @@ export default class GridTable extends Component {
 
     this.state = {
       dataSource: {},
-      randSource: {}, updateCount: [], topSection: [], sumValue: 0, flag: false, index2: 0, points: 0, second: 30, flag2: false
+      randSource: {}, updateCount: [], topSection: [], sumValue: 0, flag: false, index2: 0, points: 0, second: 60, flag2: false
     };
 
   }
@@ -63,13 +63,23 @@ export default class GridTable extends Component {
     return {
       headerTitleStyle: {
         textAlign: "center",
-        flex: 1
+        flex: 1,
+        fontSize:32
       },
       headerStyle: {
         backgroundColor: '#FFFFFF',
+        borderBottomWidth: 0,
+        elevation:0,
       },
       title: "২০৪৮",
-      headerLeft: null
+      headerLeft: (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',marginLeft:8, padding:8, backgroundColor:'#303030', borderRadius:10 }}>
+          <TouchableOpacity
+          onPress={() => {  navigation.goBack()
+        }}>
+            <Text style={{color:'#ffffff', fontSize:14}}>QUIT</Text>
+            </TouchableOpacity>
+          </View>    )
     }
   }
 
@@ -682,10 +692,8 @@ export default class GridTable extends Component {
     const { navigate, state } = this.props.navigation
 
     return (
-      <View>
-        {/* <Ad /> */}
+      <ScrollView>
         <View>
-        {/* <BannerAd unitId={TestIds.BANNER} /> */}
         <BannerAd
           unitId={adUnitId2}
           size={BannerAdSize.SMART_BANNER}
@@ -696,7 +704,7 @@ export default class GridTable extends Component {
         />
         </View>
         {/* <View style={{ top: 10}}>  */}
-        <View style={{ flexDirection: 'row' }}>
+        <View style={{ flexDirection: 'row', marginBottom:5, marginTop:5 }}>
           <Text style={{ fontSize: 23, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", bottom: 0, flex: 1 }}>
             পয়েন্ট: {this.state.points}
           </Text>
@@ -846,8 +854,9 @@ export default class GridTable extends Component {
              
                   }
                 }}>
-
+                  <View style={{width:'100%', height: '100%', flex:1, alignItems:'center', flexDirection:'row'}}>
                   <Text style={styles.itemText}>{item.src}</Text>
+                  </View>
                 </TouchableOpacity>
 
               </View>
@@ -941,7 +950,7 @@ export default class GridTable extends Component {
             keyExtractor={(randItem, index) => index.toString()}
           />
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -963,7 +972,10 @@ const styles = StyleSheet.create({
   },
   itemText: {
     color: '#000000',
-    fontSize: 34
+    fontSize: 34,
+    alignItems:'center',
+    alignSelf: 'center',
+    textAlignVertical:'center',
   },
   itemText2: {
     color: '#fff',

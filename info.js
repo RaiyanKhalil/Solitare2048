@@ -13,12 +13,11 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 class info extends Component {
   static navigationOptions = ({navigation}) => ({
-    // headerTitleStyle: { 
-    //   textAlign:"center", 
-    //   flex:1,
-    //   },
+    headerLeft: null,
       headerStyle: {
         backgroundColor: '#FFFFFF',
+        borderBottomWidth: 0,
+        elevation:0,
       },
 
     })
@@ -143,7 +142,7 @@ class info extends Component {
         </View>
 
         {/* Button for About Game */}
-        <View>
+        <View style = {{ paddingBottom: 50}}>
         <TouchableHighlight
           style={styles.openButton}
           onPress={() => {
@@ -151,6 +150,16 @@ class info extends Component {
           }}
         >
           <Text style={styles.textStyle}>About Game</Text>
+        </TouchableHighlight>
+        </View>
+        <View>
+        <TouchableHighlight
+          style={{...styles.openButton, backgroundColor: '#707070'}}
+          onPress={() => {
+            this.props.navigation.goBack();
+          }}
+        >
+          <Text style={styles.textStyle}>Go Back</Text>
         </TouchableHighlight>
         </View>
       </View>

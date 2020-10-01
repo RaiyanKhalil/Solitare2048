@@ -18,6 +18,8 @@ class GameOver extends Component {
         },
     headerStyle: {
         backgroundColor: '#FFFFFF',
+        borderBottomWidth: 0,
+        elevation:0,
         },    
     title: "Game Over",
     headerLeft: null
@@ -46,10 +48,10 @@ class GameOver extends Component {
     const {navigate, state} = this.props.navigation
 
     return (
-     <View>
+     <View style={{width:'100%'}}>
          <BannerAd
       unitId={adUnitId2}
-      size={BannerAdSize.BANNER}
+      size={BannerAdSize.SMART_BANNER}
       requestOptions={{
       requestNonPersonalizedAdsOnly: true,
       

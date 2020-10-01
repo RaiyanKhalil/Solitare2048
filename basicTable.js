@@ -37,10 +37,12 @@ class BasicTable extends Component{
     //   },
       headerStyle: {
         backgroundColor: '#FFFFFF',
+        borderBottomWidth: 0,
+        elevation:0,
       },
       headerLeft: null,
     headerRight: (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', }}>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',marginRight:4 }}>
       <TouchableOpacity
       onPress={() => {  navigation.navigate("info")
     }}>
