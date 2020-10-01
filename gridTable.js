@@ -637,43 +637,32 @@ export default class GridTable extends Component {
   }
 
   getTimeStyle(time){
+    let style= {
+      height: 50,
+      width: 50,
+      borderWidth: 5,
+      borderColor: '#000000',
+      borderRadius: 20,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }
     if(time <= 10){
       return{
-        textAlign: 'center',
-        height: 50,
-        width: 50,
-        borderWidth: 5,
-        borderColor: '#000000',
-        borderRadius: 20,
+        ...style,
         backgroundColor: "#FF0000",
-        fontSize: 23, fontWeight: "bold",
-        textAlignVertical: "center"
       }
     }
     else if(time >= 100){
       return{
-        textAlign: 'center',
-        height: 50,
-        width: 50,
-        borderWidth: 5,
-        borderColor: '#000000',
-        borderRadius: 20,
-        backgroundColor: "#00FF00",
-        fontSize: 23, fontWeight: "bold",
-        textAlignVertical: "center"
+        ...style,
+        backgroundColor: "#00FF00"
       }
     }
     else{
       return{
-        textAlign: 'center',
-        height: 50,
-        width: 50,
-        borderWidth: 5,
-        borderColor: '#000000',
-        borderRadius: 20,
-        backgroundColor: "#FFFF00",
-        fontSize: 23, fontWeight: "bold",
-        textAlignVertical: "center"
+        ...style,
+        backgroundColor: "#FFFF00"
       }
     }
   }
@@ -705,17 +694,13 @@ export default class GridTable extends Component {
         </View>
         {/* <View style={{ top: 10}}>  */}
         <View style={{ flexDirection: 'row', marginBottom:5, marginTop:5 }}>
-          <Text style={{ fontSize: 23, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", bottom: 0, flex: 1 }}>
+          <Text style={{ fontSize: 23, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", bottom: 0, flex: 1, color:'black' }}>
             পয়েন্ট: {this.state.points}
           </Text>
-          <View style={{
-            // flex: 1,
-            // flexDirection: 'row',
-            margin: 0
-          }}>
-            <Text style={this.getTimeStyle(this.state.second)}>{this.state.second}</Text>
+          <View style={this.getTimeStyle(this.state.second)}>
+            <Text style={{fontSize: 23, fontWeight: "bold",textAlign:'center', color:'#000000'}}>{this.state.second}</Text>
           </View>
-          <Text style={{ fontSize: 23, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", bottom: 0, flex: 1 }}>
+          <Text style={{ fontSize: 23, fontWeight: "bold", alignItems: "center", textAlign: "center", textAlignVertical: "center", bottom: 0, flex: 1, color:'black' }}>
           বাতিল: {discardCount}
           </Text>
         </View>

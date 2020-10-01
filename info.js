@@ -48,7 +48,7 @@ class info extends Component {
         >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-            <Text style = {{fontSize: 20, fontWeight: 'bold', textDecorationLine: 'underline'}}>About Us</Text>
+            <Text style = {{fontSize: 20, fontWeight: 'bold', textDecorationLine: 'underline', color:'black'}}>About Us</Text>
             <View style = {{paddingTop: 60}}>
               <Image
               source={require('./Assets/reikriyalogo.png')}
@@ -80,7 +80,7 @@ class info extends Component {
               {/* <View style = {{paddingBottom: 10}}> */}
 
               
-              <Text style = {{fontWeight: "bold", fontSize: 20, paddingBottom: 20}} onPress = {() => Linking.openURL('http://www.reikriya.com/')}>Reikriya ©2020</Text>
+              <Text style = {{fontWeight: "bold", fontSize: 20, paddingBottom: 20, color:'black'}} onPress = {() => Linking.openURL('http://www.reikriya.com/')}>Reikriya ©2020</Text>
               
               {/* </View> */}
               <View>
@@ -109,11 +109,11 @@ class info extends Component {
         >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-              <Text style = {{fontSize: 20, fontWeight: 'bold', textDecorationLine: 'underline'}}>About Game</Text>
+              <Text style = {{fontSize: 20, fontWeight: 'bold', textDecorationLine: 'underline', color:'black'}}>About Game</Text>
               <View>
               <Text style={styles.modalText}>A simple Bangla number game. A brain training game to enhance your Math skills. Start adding similar numbers and become a math Genius.</Text>
               </View>
-              <Text style = {{fontWeight: "bold", fontSize: 20, paddingBottom: 20}} onPress = {() => Linking.openURL('http://www.reikriya.com/')}>Reikriya ©2020</Text>
+              <Text style = {{fontWeight: "bold", fontSize: 20, paddingBottom: 20, color:'black'}} onPress = {() => Linking.openURL('http://www.reikriya.com/')}>Reikriya ©2020</Text>
               <View>
               <TouchableHighlight
                 style={{ ...styles.openButton, backgroundColor: "#000000" }}
@@ -242,7 +242,8 @@ const styles = StyleSheet.create({
     height: 250,
     width: 250,
     textAlignVertical: 'center',
-    fontSize: 20,
+    fontSize: 20, 
+    color:'black'
   }
 });
 

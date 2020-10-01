@@ -19,7 +19,7 @@ render(){
   const {navigate} = this.props.navigation
 
     return(
-        <ScrollView>
+        <ScrollView style={{padding:10}}>
             <View style={{ borderColor: '#000000', borderWidth: 5, paddingTop: 10}}>
                   <Image
                     // source={require('./Assets/load2.gif')}
@@ -37,7 +37,7 @@ render(){
                    
                   }
                   >
-                    <Text style = {{color: '#000000', fontSize: 30, textAlignVertical: 'center', fontWeight: 'bold', textAlignVertical: "center", }}>BACK</Text>
+                    <Text style = {{color: '#000000', fontSize: 22, textAlignVertical: 'center', fontWeight: 'bold', textAlignVertical: "center", }}>BACK</Text>
                   </TouchableOpacity>
                     <TouchableOpacity
                       style={styles.button}
@@ -50,10 +50,10 @@ render(){
                    
                   }
                   >
-                    <Text style = {{color: '#000000', fontSize: 30, textAlignVertical: 'center', fontWeight: 'bold', textAlignVertical: "center", }}>CONTINUE</Text>
+                    <Text style = {{color: '#000000', fontSize: 22, textAlignVertical: 'center', fontWeight: 'bold', textAlignVertical: "center", }}>CONTINUE</Text>
                   </TouchableOpacity>
                   </View>
-                  <View style={{padding: 14, marginLeft:10, marginTop:10}}>
+                  <View style={{padding: 14, marginLeft:10, marginTop:6}}>
                     <Text style={styles.instruction}>Add numbers in a column within time limit</Text>
                     <Text style={styles.instruction}>Select number from black box to start your game</Text>
                     <Text style={styles.instruction}>Tap on any pink box to place selected number</Text>
@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
     
   },
   instruction: {
+    color: 'black',
     fontSize: 18, 
     padding:7,
     marginLeft:5,
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#FFB6C1",
     padding: 10,
-    width: 200,
+    width: 150,
     borderRadius: 30,
     borderWidth: 5,
     margin: 4
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
     padding: 10
   },
   view: {
-    paddingTop: 27,
+    paddingTop: 14,
     // justifyContent: 'center'
     alignSelf: 'center',
     flexDirection:'row'
