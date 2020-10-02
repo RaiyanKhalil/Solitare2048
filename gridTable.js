@@ -53,6 +53,7 @@ export default class GridTable extends Component {
     this.backButtonClick = this.backButtonClick.bind(this);
 
     this.state = {
+      longPress: false,
       dataSource: {},
       randSource: {}, updateCount: [], topSection: [], sumValue: 0, flag: false, index2: 0, points: 0, second: 60, flag2: false
     };
@@ -535,7 +536,7 @@ export default class GridTable extends Component {
 
     discardCount = discardCount - 1
     // Alert.alert(JSON.stringify(this.state.discardCount))
-    this.setState({ uri: randItem[0].src })
+    this.setState({ uri: randItem[0].src, longPress:false })
   }
 
   //Game Over function
@@ -587,51 +588,44 @@ export default class GridTable extends Component {
   }
 
   getTextStyle(id) {
+    let commonStyle = {        
+      alignItems: 'center',
+      justifyContent: 'center',
+      flex: 1,
+      margin: 3,
+      height: Dimensions.get('window').width / 4, // approximate a square
+      paddingTop: 0,
+      borderRadius: 30
+    }
     if (id == 1) {
       return {
+        ...commonStyle,
         backgroundColor: '#000000',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1,
-        margin: 3,
-        height: Dimensions.get('window').width / 4, // approximate a square
-        paddingTop: 0,
-        borderRadius: 30
+        borderColor: this.state.flag ? '#3a8c3a':'',
+        borderWidth: this.state.flag? 8 : 0
       }
     } else if(id == 0){
       return {
+        ...commonStyle,
         backgroundColor: '#C0C0C0',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1,
-        margin: 3,
-        height: Dimensions.get('window').width / 4, // approximate a square
-        paddingTop: 0,
-        borderRadius: 30
       }
     }
     else if(id == 2){
       return {
+        ...commonStyle,
         backgroundColor: '#FFFF00',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1,
-        margin: 3,
-        height: Dimensions.get('window').width / 4, // approximate a square
-        paddingTop: 0,
-        borderRadius: 30
       }
     }
     else if(id == 3){
       return {
+        ...commonStyle,
         backgroundColor: '#C0C0C0',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1,
-        margin: 3,
-        height: Dimensions.get('window').width / 4, // approximate a square
-        paddingTop: 0,
-        borderRadius: 30
+      }
+    }
+    else if(id == 4){
+      return {
+        ...commonStyle,
+        backgroundColor: '#230303',
       }
     }
   }
@@ -857,9 +851,8 @@ export default class GridTable extends Component {
           <FlatList
             data={this.state.randSource}
             renderItem={({ item }) => (
-              <View style={this.getTextStyle(item.id)}>
+              <View style={this.state.longPress && item.id == 1 ? this.getTextStyle(4): this.getTextStyle(item.id)}>
                 <TouchableOpacity onPress={() => {
-
                   var index = item.id
                   var val1 = updateCount[index].value
                   if (index == 1) {
@@ -897,14 +890,19 @@ export default class GridTable extends Component {
 
 
                   // })
+                  this.setState({longPress:false})
 
                 }}
-                onPressOut  = {() => {
-                 this.getTextStyle(3)
+                onPressIn  = {() => {
+                  this.setState({longPress: true})
                 }
               }
+              onPressOut  = {() => {
+                this.setState({longPress: false})
+              }
+              }
+            
                   onLongPress={() => {
-                    this.getTextStyle(4)
                     // var jsonDiscardCount = JSON.stringify(discardCount)
                     this.setState({ flag: false, sumValue: 0, index2: 0 })
                     if (item.id == 1 && discardCount > 0) {
@@ -923,7 +921,8 @@ export default class GridTable extends Component {
                         this.gameOverAlert()
                       }
                       // this.gameOver()
-                    }
+                      this.setState({longPress:false})
+                    }                   
                   }}>
                   <Text style={styles.itemText2}>{item.src}</Text>
                 </TouchableOpacity>
