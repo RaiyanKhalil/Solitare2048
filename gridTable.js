@@ -16,46 +16,16 @@ const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
   keywords: ['fashion', 'clothing'],
 });
 
-//Ad function
-function Ad() {
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    const eventListener = interstitial.onAdEvent(type => {
-      if (type === AdEventType.LOADED) {
-        setLoaded(true);
-      }
-    });
-
-    // Start loading the interstitial straight away
-    // interstitial.load();
-
-    // Unsubscribe from events on unmount
-    return () => {
-      eventListener();
-    };
-  }, []);
-
-  // No advert ready to show yet
-  if (!loaded) {
-    return null;
-  }
-
-  return (
-    <View>
-      {interstitial.show()}
-    </View>
-  )
-}
 export default class GridTable extends Component {
   constructor() {
     super();
     this.backButtonClick = this.backButtonClick.bind(this);
 
     this.state = {
+      interstitLoad: false,
       longPress: false,
       dataSource: {},
-      randSource: {}, updateCount: [], topSection: [], sumValue: 0, flag: false, index2: 0, points: 0, second: 60, flag2: false
+      randSource: {}, updateCount: [], topSection: [], sumValue: 0, flag: false, index2: 0, points: 0, second: 45, flag2: false
     };
 
   }
@@ -117,7 +87,9 @@ export default class GridTable extends Component {
 
           ],
           { cancelable: false })
-        { interstitial.show() }
+          if(this.state.interstitLoad){
+            interstitial.show() 
+          }
 
        
 
@@ -133,7 +105,11 @@ export default class GridTable extends Component {
     // RandomNumber = Math.floor(Math.random() * 16) + 1 ;
     interstitial.load();
     BackHandler.addEventListener('hardwareBackPress', this.backButtonClick);
-
+    interstitial.onAdEvent(type => {
+      if (type === AdEventType.LOADED) {
+        this.setState({interstitLoad:true})
+      }
+    });
 
     discardCount = 4
     // this.advert
@@ -584,7 +560,9 @@ export default class GridTable extends Component {
 
       ],
       { cancelable: false })
-    { interstitial.show() }
+     if(this.state.interstitLoad){
+       interstitial.show() 
+     }
   }
 
   getTextStyle(id) {
@@ -924,7 +902,9 @@ export default class GridTable extends Component {
                       this.setState({longPress:false})
                     }                   
                   }}>
-                  <Text style={styles.itemText2}>{item.src}</Text>
+                 <View style={{width:'100%', height:'100%', flexDirection:'row', alignItems:'center'}}>
+                   <Text style={styles.itemText2}>{item.src}</Text>
+                 </View>
                 </TouchableOpacity>
 
               </View>
