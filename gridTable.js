@@ -2,7 +2,7 @@ import React, { Component, useEffect, useState } from 'react';
 import { StyleSheet, View, FlatList, ScrollView, Image, TouchableOpacity, Alert, Button, Text, Dimensions, BackHandler } from 'react-native';
 import CountDown from 'react-native-countdown-component';
 import { BannerAd, BannerAdSize, TestIds, InterstitialAd, AdEventType } from '@react-native-firebase/admob';
-
+let timerInterval =  null
 
 let randItem, items
 var RandomNumber, power, discardCount = 4, addCount = 0
@@ -46,7 +46,9 @@ export default class GridTable extends Component {
       headerLeft: (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',marginLeft:8, padding:8, backgroundColor:'#303030', borderRadius:10 }}>
           <TouchableOpacity
-          onPress={() => {  navigation.goBack()
+          onPress={() => {  
+            clearInterval(timerInterval);
+            navigation.goBack()
         }}>
             <Text style={{color:'#ffffff', fontSize:14}}>QUIT</Text>
             </TouchableOpacity>
@@ -95,6 +97,7 @@ export default class GridTable extends Component {
 
       }
     }, 1000);
+    timerInterval = this._interval
   }
   componentDidMount() {
     var that = this;
